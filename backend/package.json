@@ -1,0 +1,17 @@
+{
+  "name": "blogyoo-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node -e \"console.log('No backend server defined. Add server.js or change this script.')\"",
+    "migrate": "node migrate.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "mysql2": "^3.2.0"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}
