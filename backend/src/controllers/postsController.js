@@ -14,7 +14,7 @@ const normalizePostPayload = (payload, user) => {
     ...payload,
     author_id: user?.role === "editor" || !payload.author_id ? user.id : payload.author_id,
     published_at: status === "published" ? payload.published_at || new Date() : null,
-    status,
+    status
   };
 };
 
@@ -104,5 +104,5 @@ module.exports = {
   browse,
   destroy,
   edit,
-  read,
+  read
 };

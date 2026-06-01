@@ -12,9 +12,9 @@
     "mysql2": "^3.2.0"
   },
   "devDependencies": {
+    "eslint": "^8.57.1",
     "jest": "^30.4.2"
-  }
-  ,
+  },
   "_comments": {
     "name": "Nom du package backend (informations projet)",
     "scripts": "Scripts disponibles : 'dev' (placeholder), 'migrate' (exécute migrate.js), 'test' (lance jest)",

@@ -11,7 +11,7 @@ const { getPermissionsForBlogRole } = require("../utils/permissions");
 function getRequestMeta(req) {
   return {
     ip: req.ip,
-    userAgent: req.get("user-agent"),
+    userAgent: req.get("user-agent")
   };
 }
 
@@ -19,7 +19,7 @@ const authValidationMessages = [
   "Le pseudo",
   "L'e-mail",
   "Le mot de passe",
-  "La confirmation",
+  "La confirmation"
 ];
 
 function isAuthValidationError(error) {
@@ -41,13 +41,13 @@ const signup = async (req, res) => {
     accepted_privacy,
     accepted_privacy_version,
     marketing_consent,
-    cookies_consent,
+    cookies_consent
   } = req.body;
 
   if (!username || !email || !password) {
     return res.status(400).json({
       status: "fail",
-      message: "username, email et password sont obligatoires",
+      message: "username, email et password sont obligatoires"
     });
   }
 
@@ -64,13 +64,13 @@ const signup = async (req, res) => {
       accepted_privacy,
       accepted_privacy_version,
       marketing_consent,
-      cookies_consent,
+      cookies_consent
     }, req.file, getRequestMeta(req));
 
     return res.status(201).json({
       status: "success",
       message: "Compte créé sur BlogYoo",
-      data: { user },
+      data: { user }
     });
   } catch (err) {
     console.error(err);
@@ -79,30 +79,30 @@ const signup = async (req, res) => {
     if (err.message === "EMAIL_ALREADY_EXISTS") {
       return res.status(409).json({
         status: "fail",
-        message: "Cet email est déjà utilisé.",
+        message: "Cet email est déjà utilisé."
       });
     }
     if (err.message === "USERNAME_ALREADY_EXISTS") {
       return res.status(409).json({
         status: "fail",
-        message: "Ce nom d'utilisateur est déjà utilisé.",
+        message: "Ce nom d'utilisateur est déjà utilisé."
       });
     }
     if (err.message === "LEGAL_CONSENT_REQUIRED") {
       return res.status(400).json({
         status: "fail",
-        message: "Vous devez accepter les conditions d'utilisation et la politique de confidentialite avant de creer un compte.",
+        message: "Vous devez accepter les conditions d'utilisation et la politique de confidentialite avant de creer un compte."
       });
     }
     if (isAuthValidationError(err)) {
       return res.status(400).json({
         status: "fail",
-        message: err.message,
+        message: err.message
       });
     }
     return res.status(500).json({
       status: "error",
-      message: "Erreur interne du serveur lors de la création du compte.",
+      message: "Erreur interne du serveur lors de la création du compte."
     });
   }
 };
@@ -118,7 +118,7 @@ const signin = async (req, res) => {
   if (!login || !password) {
     return res.status(400).json({
       status: "fail",
-      message: "login et password sont obligatoires",
+      message: "login et password sont obligatoires"
     });
   }
 
@@ -130,7 +130,7 @@ const signin = async (req, res) => {
         status: "success",
         requiresTwoFactor: true,
         temporaryToken: result.temporaryToken,
-        user: result.user,
+        user: result.user
       });
     }
 
@@ -141,31 +141,31 @@ const signin = async (req, res) => {
       user,
       currentBlog,
       data: { user, currentBlog },
-      redirectTo,
+      redirectTo
     });
   } catch (err) {
     console.error(err);
     if (err.message === "INVALID_CREDENTIALS") {
       return res.status(401).json({
         status: "fail",
-        message: "Identifiants incorrects",
+        message: "Identifiants incorrects"
       });
     }
     if (err.message === "ACCOUNT_DISABLED") {
       return res.status(403).json({
         status: "fail",
-        message: "Ce compte est désactivé",
+        message: "Ce compte est désactivé"
       });
     }
     if (isAuthValidationError(err)) {
       return res.status(400).json({
         status: "fail",
-        message: err.message,
+        message: err.message
       });
     }
     return res.status(500).json({
       status: "error",
-      message: "Erreur interne du serveur lors de l'authentification.",
+      message: "Erreur interne du serveur lors de l'authentification."
     });
   }
 };
@@ -184,12 +184,12 @@ const verifyTwoFactorLogin = async (req, res) => {
       user,
       currentBlog,
       data: { user, currentBlog },
-      redirectTo,
+      redirectTo
     });
   } catch (error) {
     return res.status(401).json({
       status: "fail",
-      message: "Code 2FA invalide ou expire.",
+      message: "Code 2FA invalide ou expire."
     });
   }
 };
@@ -209,7 +209,7 @@ const verifyTwoFactorSetup = async (req, res) => {
     return res.status(200).json({
       status: "success",
       message: "Double authentification activee.",
-      data,
+      data
     });
   } catch (error) {
     return res.status(400).json({ status: "fail", message: "Code 2FA invalide." });
@@ -221,12 +221,12 @@ const disableTwoFactor = async (req, res) => {
     await authService.disableTwoFactor(req.user.id, req.body, getRequestMeta(req));
     return res.status(200).json({
       status: "success",
-      message: "Double authentification desactivee.",
+      message: "Double authentification desactivee."
     });
   } catch (error) {
     return res.status(400).json({
       status: "fail",
-      message: "Impossible de desactiver la double authentification.",
+      message: "Impossible de desactiver la double authentification."
     });
   }
 };
@@ -236,13 +236,13 @@ const oauthRedirect = (provider) => (req, res) => {
     const url = authService.getOAuthRedirectUrl(provider, {
       legalAccepted: req.query.legalAccepted,
       termsVersion: req.query.termsVersion,
-      privacyVersion: req.query.privacyVersion,
+      privacyVersion: req.query.privacyVersion
     });
     return res.redirect(url);
   } catch (error) {
     return res.status(503).json({
       status: "fail",
-      message: "Provider OAuth non configure.",
+      message: "Provider OAuth non configure."
     });
   }
 };
@@ -275,16 +275,16 @@ const me = async (req, res) => {
       blogName: membership.blog_name,
       blogSlug: membership.blog_slug,
       role: membership.role,
-      permissions: getPermissionsForBlogRole(membership.role),
+      permissions: getPermissionsForBlogRole(membership.role)
     }));
 
     return res.status(200).json({
       status: "success",
       user: {
         ...req.user,
-        blogMemberships,
+        blogMemberships
       },
-      currentBlog: blogMemberships.find((membership) => membership.role === "owner") || blogMemberships[0] || null,
+      currentBlog: blogMemberships.find((membership) => membership.role === "owner") || blogMemberships[0] || null
     });
   } catch (error) {
     console.error(error);
@@ -301,5 +301,5 @@ module.exports = {
   setupTwoFactor,
   verifyTwoFactorLogin,
   verifyTwoFactorSetup,
-  me,
+  me
 };

@@ -51,7 +51,7 @@ const edit = (req, res) => {
         id: userId,
         username: users.username,
         email: users.email,
-        full_name: users.full_name,
+        full_name: users.full_name
       };
 
   const query = isAdmin
@@ -79,15 +79,15 @@ const add = async (req, res) => {
 
   if (!users || Object.keys(users).length === 0) {
     return res.status(400).json({
-      status: 'fail',
-      message: 'Le body est requis pour créer un utilisateur. Utilisez JSON avec Content-Type: application/json.',
+      status: "fail",
+      message: "Le body est requis pour créer un utilisateur. Utilisez JSON avec Content-Type: application/json."
     });
   }
 
   if (!users.username || !users.email || !users.password) {
     return res.status(400).json({
       status: "fail",
-      message: "username, email et password sont requis.",
+      message: "username, email et password sont requis."
     });
   }
 
@@ -97,7 +97,7 @@ const add = async (req, res) => {
       ...users,
       password_hash,
       role: users.platform_role === "admin" ? "admin" : "user",
-      platform_role: users.platform_role || "user",
+      platform_role: users.platform_role || "user"
     });
     return res.location(`/users/${result.insertId}`).sendStatus(201);
   } catch (err) {
@@ -128,7 +128,7 @@ const uploadAvatar = (req, res) => {
   if (!req.file) {
     return res.status(400).json({
       status: "fail",
-      message: "Image avatar requise.",
+      message: "Image avatar requise."
     });
   }
 
@@ -143,7 +143,7 @@ const uploadAvatar = (req, res) => {
 
       return res.status(200).json({
         success: true,
-        avatar_url: avatarUrl,
+        avatar_url: avatarUrl
       });
     })
     .catch((err) => {
@@ -175,5 +175,5 @@ module.exports = {
   add,
   destroy,
   toggleActive,
-  uploadAvatar,
+  uploadAvatar
 };

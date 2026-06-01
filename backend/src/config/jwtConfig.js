@@ -5,5 +5,5 @@ const jwtExpiresIn = process.env.JWT_EXPIRES_IN || "2h";
 
 module.exports = {
   jwtSecret,
-  jwtExpiresIn,
+  jwtExpiresIn
 };

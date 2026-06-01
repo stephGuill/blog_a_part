@@ -89,7 +89,7 @@ const add = (req, res) => {
     if (!media.blog_id || !media.file_path) {
         return res.status(400).json({
             status: "fail",
-            message: "blog_id et fichier sont requis.",
+            message: "blog_id et fichier sont requis."
         });
     }
 
@@ -133,5 +133,5 @@ module.exports = {
     read, // GET /media/:id
     edit, // PUT /media/:id
     add, // POST /media
-    destroy, // DELETE /media/:id
+    destroy // DELETE /media/:id
 };

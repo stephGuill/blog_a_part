@@ -36,7 +36,7 @@ const add = async (req, res) => {
       target_type,
       target_id,
       reason,
-      details,
+      details
     });
     return res.location(`/reports/${result.insertId}`).sendStatus(201);
   } catch (error) {
@@ -60,7 +60,7 @@ const moderate = async (req, res) => {
       target_type: "report",
       target_id: Number(req.params.id),
       action: "report:moderate",
-      metadata_json: { status },
+      metadata_json: { status }
     });
     return res.sendStatus(204);
   } catch (error) {
@@ -72,5 +72,5 @@ const moderate = async (req, res) => {
 module.exports = {
   add,
   browse,
-  moderate,
+  moderate
 };

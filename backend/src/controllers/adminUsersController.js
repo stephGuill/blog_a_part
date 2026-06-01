@@ -9,7 +9,7 @@ const adminUsersService = require("../services/AdminUsersService");
 function sendError(res, error) {
   return res.status(error.status || 500).json({
     success: false,
-    message: error.status ? error.message : "Erreur serveur.",
+    message: error.status ? error.message : "Erreur serveur."
   });
 }
 
@@ -29,7 +29,7 @@ const browse = async (req, res) => {
 const filterOptions = (req, res) => {
   return res.json({
     success: true,
-    data: adminUsersService.getFilterOptions(),
+    data: adminUsersService.getFilterOptions()
   });
 };
 
@@ -75,5 +75,5 @@ module.exports = {
   bulkUpdate,
   filterOptions,
   updateRole,
-  updateStatus,
+  updateStatus
 };

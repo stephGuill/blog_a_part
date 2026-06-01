@@ -21,7 +21,7 @@ const allowedOrigins = new Set([
   "http://localhost:3000",
   "http://localhost:5173",
   "http://127.0.0.1:3000",
-  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5173"
 ].filter(Boolean));
 
 app.use(
@@ -34,7 +34,7 @@ app.use(
 
       callback(new Error(`CORS blocked origin: ${origin}`));
     },
-    optionsSuccessStatus: 200,
+    optionsSuccessStatus: 200
   })
 );
 

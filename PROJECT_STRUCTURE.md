@@ -1,9 +1,9 @@
-# 📁 Structure Complète du Projet BlogYoo
+# 📁 Structure Complète du Projet blog_a_part
 
 ## 🏗️ Architecture Générale
 
 ```
-BlogYoo/
+blog_a_part/
 ├── 📄 package.json                 # Scripts racine (dev, start, migrate, lint, fix)
 ├── 📄 README.md                    # Documentation principale
 ├── 📄 .gitignore                   # Fichiers ignorés par Git
@@ -237,7 +237,7 @@ BlogYoo/
 │   │   │   │
 │   │   │   ├── 📁 public/                # Pages visibles sans connexion
 │   │   │   │   ├── 📁 Home/
-│   │   │   │   │    ├── 📄 Home.jsx           # Page d’accueil marketing BlogYoo
+│   │   │   │   │    ├── 📄 Home.jsx           # Page d’accueil marketing blog_a_part
 │   │   │   │   │    └── 📄 Home.css           # Styles page accueil
 │   │   │   │   │
 │   │   │   │   │
@@ -291,7 +291,7 @@ BlogYoo/
 │   │   │   │
 │   │   │   ├── 📁 admin/                 # Back-office administrateur plateforme
 │   │   │   │   ├── 📁 AdminDashboard/
-│   │   │   │   │   ├── 📄 AdminDashboard.jsx # Dashboard global admin BlogYoo
+│   │   │   │   │   ├── 📄 AdminDashboard.jsx # Dashboard global admin blog_a_part
 │   │   │   │   │   └── 📄 AdminDashboard.css # Styles dashboard admin
 |   │   │   │   │
 │   │   │   │   ├── 📁 AdminUsers/
@@ -415,7 +415,7 @@ BlogYoo/
 ### Schéma SQL (backend/database.sql)
 
 ```sql
-blogyoo
+blog_a_part
 ├── users
 │   ├── id (PK, INT AUTO_INCREMENT)
 │   ├── username (VARCHAR 100, UNIQUE)
@@ -637,7 +637,7 @@ JWT_EXPIRES_IN=le temps d'une session de navigation (ex: 1h, 2d, etc.)
 ### .env Frontend
 ```
 VITE_API_URL=http://localhost:5000
-VITE_APP_NAME=BlogYoo
+VITE_APP_NAME=bolg_a_part
 ```
 
 ---

@@ -22,5 +22,5 @@ module.exports = {
   editorStats,
   moderatorStats,
   ownerStats,
-  userStats,
+  userStats
 };
