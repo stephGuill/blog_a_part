@@ -1,10 +1,16 @@
 const AbstractManager = require("./AbstractManager");
 
+// BuilderManager.js
+// Manager pour les entités du constructeur de pages (builder): pages, sections, blocks.
+// Fournit des opérations CRUD et utilitaires pour les pages construites dynamiquement.
+
 class BuilderManager extends AbstractManager {
+  // table principale : builder_pages
   constructor() {
     super({ table: "builder_pages" });
   }
 
+  // findPagesByBlogId(blogId): retourne toutes les pages d'un blog triées par date de mise à jour
   findPagesByBlogId(blogId) {
     return this.database.query(
       `SELECT *

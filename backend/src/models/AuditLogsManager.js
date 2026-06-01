@@ -1,15 +1,19 @@
 const AbstractManager = require("./AbstractManager");
 
+// AuditLogsManager.js
+// Manager pour la table `audit_logs`. Permet d'enregistrer des événements
+// de type audit (qui a fait quoi, sur quel objet, ancien/nouvelles valeurs, meta).
+
 class AuditLogsManager extends AbstractManager {
   constructor() {
     super({ table: "audit_logs" });
   }
 
+  // insert(log): ajoute une entrée d'audit
+  // log: { actor_user_id, target_type, target_id, action, old_values, new_values, metadata_json, ip_address, user_agent, bulk_action_id }
   insert(log) {
     return this.database.query(
-      `INSERT INTO ${this.table}
-        (actor_user_id, target_type, target_id, action, old_values, new_values, metadata_json, ip_address, user_agent, bulk_action_id)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (actor_user_id, target_type, target_id, action, old_values, new_values, metadata_json, ip_address, user_agent, bulk_action_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         log.actor_user_id || null,
         log.target_type,
