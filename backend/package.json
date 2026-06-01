@@ -14,4 +14,12 @@
   "devDependencies": {
     "jest": "^30.4.2"
   }
+  ,
+  "_comments": {
+    "name": "Nom du package backend (informations projet)",
+    "scripts": "Scripts disponibles : 'dev' (placeholder), 'migrate' (exécute migrate.js), 'test' (lance jest)",
+    "dependencies": "Dépendances nécessaires à l'exécution (dotenv, mysql2)",
+    "devDependencies": "Dépendances de développement comme jest pour les tests",
+    "note": "Cette clé _comments est ajoutée uniquement pour documenter le fichier; elle n'affecte pas le fonctionnement de npm."
+  }
 }
