@@ -1,5 +1,11 @@
+// adminUsersController.js
+// Contrôleur : opérations administratives sur les utilisateurs
+// - Permet au super-admin de lister, filtrer et modifier rôles/statuts.
+// - Utilise `AdminUsersService` pour la logique métier; ce fichier se contente
+//   d'appeler les services et de formater les réponses HTTP.
 const adminUsersService = require("../services/AdminUsersService");
 
+// Helper local : renvoie une réponse d'erreur formatée selon l'erreur fournie
 function sendError(res, error) {
   return res.status(error.status || 500).json({
     success: false,

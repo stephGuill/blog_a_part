@@ -1,5 +1,11 @@
+// builderController.js
+// Contrôleur : routes pour le page builder (pages, sections, blocs)
+// - Délègue à `BuilderService` la logique métier (création, modification,
+//   réordonnancement, publication, upload de medias, etc.).
+// - Gère la transformation des erreurs SQL/ER_DUP_ENTRY en réponses HTTP.
 const builderService = require("../services/BuilderService");
 
+// Helper local : formatte les erreurs retournées par le service
 function sendError(res, error) {
   if (error.code === "ER_DUP_ENTRY") {
     return res.status(409).json({

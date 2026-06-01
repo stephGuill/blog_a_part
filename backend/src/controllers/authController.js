@@ -1,7 +1,13 @@
+// authController.js
+// Contrôleur : routes d'authentification et gestion 2FA / OAuth
+// - Fournit l'inscription (`signup`), la connexion (`signin`), la gestion
+//   de la double authentification (setup/verify/disable) et les callbacks OAuth.
+// - Délègue la logique métier à `AuthService` et formate les réponses HTTP.
 const authService = require("../services/AuthService");
 const models = require("../models");
 const { getPermissionsForBlogRole } = require("../utils/permissions");
 
+// Récupère des métadonnées utiles pour les logs / sécurité (IP, user-agent)
 function getRequestMeta(req) {
   return {
     ip: req.ip,

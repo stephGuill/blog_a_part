@@ -1,7 +1,12 @@
+// usersController.js
+// Contrôleur : opérations CRUD pour les utilisateurs
+// - Fournit des endpoints pour lister, lire, éditer, créer, activer/désactiver,
+//   uploader un avatar et supprimer un utilisateur.
+// - Utilize `models.users` pour la persistance et `argon2` pour le hachage.
 const models = require("../models");
 const argon2 = require("argon2");
- 
 
+// Récupère la liste des utilisateurs sans exposer de champs sensibles
 const browse = (req, res) => {
   models.users
     .findAllSafe()

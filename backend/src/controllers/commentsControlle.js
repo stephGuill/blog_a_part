@@ -1,5 +1,10 @@
+// commentsControlle.js (note: nom de fichier contient une faute de frappe)
+// Contrôleur : gestion des commentaires (CRUD)
+// - Attention : le nom du fichier semble manquer un 'r' (commentsController.js attendu).
+// - Fournit : browse, read, edit, add, destroy. Délègue la logique à `models.comments`.
 const models = require("../models");
 
+// Récupère tous les commentaires
 const browse = (req, res) => {
   models.comments
     .findAll()

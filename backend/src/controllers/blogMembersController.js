@@ -1,5 +1,10 @@
+// blogMembersController.js
+// Contrôleur : gestion des membres d'un blog (invitation, upsert, suppression)
+// - Permet d'inviter/upserter des membres et de les supprimer; journalise
+//   les actions via `models.auditLogs`.
 const models = require("../models");
 
+// Récupère la liste des membres pour un blog donné
 const browseByBlog = async (req, res) => {
   try {
     const [rows] = await models.blogMembers.findByBlog(req.params.blogId);

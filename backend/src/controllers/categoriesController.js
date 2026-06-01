@@ -1,5 +1,11 @@
+// categoriesController.js
+// Contrôleur : gestion des catégories (CRUD)
+// - Endpoints standard : browse, read, edit, add, destroy
+// - Validations TODO : il est recommandé d'ajouter des vérifications
+//   (longueur, unicité du slug, format) avant insertion/modification.
 const models = require("../models");
 
+// Liste toutes les catégories
 const browse = (req, res) => {
   models.categories
     .findAll()

@@ -1,8 +1,13 @@
+// blogsController.js
+// Contrôleur : gestion des blogs (publique, privées, CRUD)
+// - Gère la lecture publique, la lecture protégée par membership,
+//   la création et la mise à jour de blogs. Utilise `slugify` pour les slugs.
 const slugify = require("slugify");
 
 const models = require("../models");
 const { hasGlobalAdminAccess } = require("../utils/permissions");
 
+// Liste ou filtre les blogs selon le scope (mine / public)
 const browse = (req, res) => {
   const query = (() => {
     if (req.query.scope === "mine") {

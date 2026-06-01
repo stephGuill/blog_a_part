@@ -1,3 +1,7 @@
+// dashboardController.js
+// Contrôleur: endpoints de tableau de bord minimalistes pour différents rôles
+// - Fournit des réponses factices/formatées pour les vues admin/owner/editor/moderator/user
+// - Utilisé principalement côté front pour afficher des dashboards spécifiques
 const adminStats = (req, res) =>
   res.json({ status: "success", dashboard: "admin", user: req.user });
 

@@ -1,5 +1,10 @@
+// themesController.js
+// Contrôleur : gestion des thèmes (liste, lecture, création, modification, suppression)
+// - Ce fichier délègue presque toute la logique à `models.themes` et se
+//   contente de formater les réponses HTTP et gérer les erreurs.
 const models = require("../models");
 
+// Récupère tous les thèmes disponibles
 const browse = (req, res) => {
   models.themes
     .findAll()

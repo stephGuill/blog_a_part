@@ -1,5 +1,9 @@
+// itemsController.js
+// Contrôleur : gestion des entités "item" (CRUD basique)
+// - Délègue la persistence à `models.item` et se charge des réponses HTTP.
 const models = require("../models");
 
+// Récupère tous les items
 const browse = (req, res) => {
   models.item
     .findAll()

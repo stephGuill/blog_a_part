@@ -1,7 +1,12 @@
+// postsController.js
+// Contrôleur : gestion des articles (posts)
+// - Normalise le payload, gère les statuts, et fournit les actions CRUD.
+// - Les permissions/scope sont appliqués en fonction de `req.user`.
 const models = require("../models");
 
 const POST_STATUSES = ["draft", "pending", "published", "archived"];
 
+// Normalise et enrichit le payload envoyé par le client avant persistance
 const normalizePostPayload = (payload, user) => {
   const status = POST_STATUSES.includes(payload.status) ? payload.status : "draft";
 

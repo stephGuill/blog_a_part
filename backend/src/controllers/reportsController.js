@@ -1,5 +1,13 @@
+// reportsController.js
+// Contrôleur : gestion des signalements (reports)
+// - Fournit : lister (`browse`), ajouter (`add`) et modérer (`moderate`) des signalements.
+// - Les fonctions utilisent `req.user` pour vérifier les permissions et renvoient
+//   des codes HTTP explicites (200, 201, 204, 400, 500, ...).
+// - Les erreurs sont loggées côté serveur pour le débogage.
 const models = require("../models");
 
+// Liste les signalements. Si l'utilisateur a le rôle global `admin`,
+// on retourne tous les signalements ; sinon on restreint au blog accessible.
 const browse = async (req, res) => {
   try {
     const query =

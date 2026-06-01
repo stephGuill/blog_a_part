@@ -1,3 +1,8 @@
+// mediaController.js
+// Contrôleur : gestion de la médiathèque (médias uploadés)
+// - Endpoints CRUD pour `media` et upload de fichiers (multipart).
+// - Les méthodes valident la présence d'un fichier, construisent les métadonnées
+//   attendues par `models.media` et renvoient des codes HTTP standard.
 // Contrôleur pour l'entité media
 // Chaque méthode correspond à une opération CRUD
 
