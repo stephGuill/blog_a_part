@@ -1,8 +1,8 @@
-# BlogYoo
+# blog_a_part
 
 ## 🧩 Résumé
 
-BlogYoo est une application fullstack avec :
+blog_a_part est une application fullstack avec :
 - backend Express + MySQL
 - frontend React + Vite
 - authentification JWT + Argon2
