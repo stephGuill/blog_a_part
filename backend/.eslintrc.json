@@ -15,4 +15,11 @@
     "comma-dangle": ["warn", "never"],
     "quotes": ["warn", "double"]
   }
+  ,"_comments": {
+    "env": "Environnement d'exécution: activer les globals pour Node et ES2021",
+    "extends": "Hérite des règles recommandées d'ESLint",
+    "parserOptions": "Options du parser (version ECMAScript ciblée)",
+    "rules": "Règles de lint personnalisées. Ajustez selon la politique de code.",
+    "note": "Cette clé _comments est uniquement informative et ne change pas le comportement d'ESLint."
+  }
 }

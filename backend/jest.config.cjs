@@ -1,14 +1,19 @@
 // Configuration Jest (CommonJS) pour le backend
-// Ce fichier indique à Jest d'exécuter les tests en environnement `node`
-// et où chercher les fichiers de test.
+// Ce fichier explique ligne par ligne la configuration minimale utilisée
+// pour exécuter la suite de tests du dossier `backend`.
+
+// Export CommonJS attendu par Jest
 module.exports = {
-  // Exécute les tests dans un environnement Node (pas de DOM)
+  // testEnvironment : indique à Jest d'utiliser un environnement Node.js
+  // (vs. 'jsdom' qui simule un navigateur). Ici les tests sont côté serveur.
   testEnvironment: 'node',
 
-  // Racine(s) à partir desquelles Jest recherche les tests
+  // roots : liste des répertoires racines à partir desquels Jest va rechercher
+  // les fichiers de test. '<rootDir>' correspond au dossier `backend` quand
+  // Jest est lancé depuis ce dossier.
   roots: ['<rootDir>'],
 
-  // Motifs des fichiers de test pris en charge
-  // - recherche dans `__tests__/**` et tous les fichiers nommés *.test.js / *.spec.js
+  // testMatch : motifs glob pour localiser les fichiers de test. Jest va
+  // exécuter les fichiers correspondant à ces patterns.
   testMatch: ['**/__tests__/**/*.test.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
 };

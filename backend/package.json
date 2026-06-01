@@ -16,10 +16,22 @@
     "jest": "^30.4.2"
   },
   "_comments": {
-    "name": "Nom du package backend (informations projet)",
-    "scripts": "Scripts disponibles : 'dev' (placeholder), 'migrate' (exécute migrate.js), 'test' (lance jest)",
-    "dependencies": "Dépendances nécessaires à l'exécution (dotenv, mysql2)",
-    "devDependencies": "Dépendances de développement comme jest pour les tests",
-    "note": "Cette clé _comments est ajoutée uniquement pour documenter le fichier; elle n'affecte pas le fonctionnement de npm."
+    "name": "Nom du package backend (identifiant du package)",
+    "version": "Version du package - utile pour la gestion des releases",
+    "private": "Champ true empêche la publication accidentelle sur npm",
+    "scripts": {
+      "dev": "Script d'exécution en développement — ici un placeholder",
+      "migrate": "Exécute le runner de migration 'migrate.js'",
+      "test": "Lance la suite de tests via 'jest'"
+    },
+    "dependencies": {
+      "dotenv": "Charge les variables d'environnement depuis un .env",
+      "mysql2": "Client MySQL utilisé par le runner de migrations"
+    },
+    "devDependencies": {
+      "eslint": "Configuration et outils de lint",
+      "jest": "Framework de tests unitaires"
+    },
+    "note": "Cette clé _comments est ajoutée pour documenter le fichier JSON sans casser npm. Ne modifiez pas les clés standard sans raison."
   }
 }
