@@ -1,0 +1,31 @@
+.button--secondary {
+  background: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border-color: var(--button-secondary-border);
+}
+
+.button {
+  gap: 8px;
+}
+
+.button--danger {
+  border-color: rgba(220, 76, 76, 0.35);
+  background: #d64545;
+  color: #fff;
+}
+
+.button--primary:hover,
+.button--primary:focus-visible {
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.button--secondary:hover,
+.button--secondary:focus-visible {
+  background: color-mix(in srgb, var(--button-secondary-bg) 78%, var(--color-sky) 22%);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+}

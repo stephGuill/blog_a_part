@@ -1,0 +1,20 @@
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.theme-card__palette {
+  display: grid;
+  height: 120px;
+  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.theme-card h2 {
+  color: var(--color-navy);
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}

@@ -1,0 +1,234 @@
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.admin-search {
+  display: flex;
+  min-height: 46px;
+  min-width: min(420px, 100%);
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--color-muted);
+}
+
+.admin-search input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--input-text);
+  font: inherit;
+}
+
+.admin-search input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.admin-feedback {
+  margin: 0 0 16px;
+  border: 1px solid rgba(82, 125, 166, 0.22);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  background: rgba(167, 199, 231, 0.14);
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+.user-cell {
+  display: grid;
+  gap: 3px;
+}
+
+.user-cell span {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.table-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.admin-bulk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.admin-bulk strong {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-main);
+}
+
+.admin-bulk .field {
+  min-width: 180px;
+}
+
+.inline-admin-select {
+  min-height: 34px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-weight: 800;
+}
+
+.action-button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+}
+
+.action-button--view {
+  border-color: rgba(82, 125, 166, 0.32);
+  background: rgba(82, 125, 166, 0.12);
+  color: #527da6;
+}
+
+.action-button--edit {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+}
+
+.action-button--suspend {
+  border-color: rgba(245, 158, 11, 0.34);
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.action-button--delete {
+  border-color: rgba(220, 76, 76, 0.34);
+  background: rgba(220, 76, 76, 0.13);
+  color: var(--color-danger);
+}
+
+.admin-user-panel {
+  position: relative;
+  display: grid;
+  max-width: 760px;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.admin-user-panel .avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.admin-user-panel h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.panel-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.admin-user-panel dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.admin-user-panel dl div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding: 11px 0;
+}
+
+.admin-user-panel dt {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-user-panel dd {
+  margin: 0;
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+.admin-user-form {
+  display: grid;
+  gap: 14px;
+}
+
+[data-theme="dark"] .admin-search {
+  background: var(--input-bg);
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .action-button--view {
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .action-button--edit {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .action-button--suspend {
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .action-button--delete {
+  color: #f87171;
+}
+
+@media (max-width: 720px) {
+  .admin-toolbar {
+    align-items: stretch;
+  }
+
+  .admin-search {
+    min-width: 100%;
+  }
+
+  .admin-user-panel dl div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

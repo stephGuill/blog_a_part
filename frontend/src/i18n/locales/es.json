@@ -1,0 +1,412 @@
+{
+  "app": {
+    "name": "BlogYoo",
+    "tagline": "Frontend editorial cálido y reactivo",
+    "workspace": "Espacio de trabajo",
+    "commandCenter": "Centro de control BlogYoo"
+  },
+  "common": {
+    "search": "Búsqueda global",
+    "notifications": "Notificaciones",
+    "language": "Cambiar idioma",
+    "loading": "Cargando",
+    "empty": "No hay datos disponibles",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "publish": "Publicar",
+    "archive": "Archivar",
+    "inspect": "Inspeccionar"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "switchToLight": "Cambiar a modo claro",
+    "switchToDark": "Cambiar a modo oscuro"
+  },
+  "languages": {
+    "fr": "Francés",
+    "en": "Inglés",
+    "ar": "Árabe",
+    "es": "Español"
+  },
+  "nav": {
+    "home": "Inicio",
+    "blogs": "Blogs",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "mainNavigation": "Navegación principal",
+    "dashboardNavigation": "Navegación del panel",
+    "pricing": "Precios",
+    "features": "Funciones",
+    "dashboard": "Panel",
+    "profile": "Perfil",
+    "settings": "Ajustes",
+    "admin": "Admin",
+    "platform": "Plataforma",
+    "users": "Usuarios",
+    "themes": "Temas",
+    "reports": "Reportes",
+    "owner": "Owner",
+    "myBlogs": "Mis blogs",
+    "builder": "Builder",
+    "ownerThemes": "Temas owner",
+    "editor": "Redacción",
+    "posts": "Artículos",
+    "moderator": "Moderación",
+    "comments": "Comentarios",
+    "signin": "Iniciar sesión",
+    "signup": "Registrarse"
+  },
+  "sidebar": {
+    "brandSubtitle": "Suite editorial SaaS",
+    "groups": {
+      "general": "General",
+      "admin": "Administración",
+      "production": "Producción"
+    }
+  },
+  "roles": {
+    "admin": "Admin",
+    "owner": "Owner",
+    "editor": "Redactor",
+    "moderator": "Moderador",
+    "user": "Usuario"
+  },
+  "status": {
+    "active": "Activo",
+    "published": "Publicado",
+    "draft": "Borrador",
+    "archived": "Archivado",
+    "pending": "Pendiente",
+    "approved": "Aprobado",
+    "rejected": "Rechazado",
+    "suspended": "Suspendido",
+    "stable": "Estable",
+    "actif": "Activo",
+    "publie": "Publicado",
+    "revision": "En revisión",
+    "archive": "Archivado",
+    "invite": "Invitado",
+    "suspendu": "Suspendido",
+    "beta": "Beta",
+    "nouveau": "Nuevo",
+    "analyse": "En análisis",
+    "resolu": "Resuelto",
+    "spam": "Spam",
+    "public": "Público",
+    "private": "Privado"
+  },
+  "dashboard": {
+    "overview": "Vista general",
+    "users": "Usuarios",
+    "blogs": "Blogs",
+    "posts": "Artículos",
+    "revenue": "Ingresos simulados",
+    "reports": "Reportes",
+    "activity": "Actividad reciente",
+    "quickActions": "Acciones rápidas",
+    "platformHealth": "Estado de la plataforma",
+    "topBlogs": "Blogs destacados"
+  },
+  "auth": {
+    "signinTitle": "Iniciar sesión",
+    "signupTitle": "Crear cuenta",
+    "forgotPassword": "Contraseña olvidada",
+    "email": "Correo",
+    "password": "Contraseña",
+    "username": "Usuario",
+    "fullName": "Nombre completo",
+    "creating": "Creando...",
+    "createAccount": "Crear la cuenta",
+    "signupSuccess": "Cuenta creada. Ahora puedes iniciar sesión.",
+    "signupError": "No se pudo completar el registro.",
+    "alreadyAccount": "¿Ya tienes una cuenta?",
+    "legal": {
+      "prefix": "Acepto el",
+      "legalNotice": "aviso legal",
+      "terms": "términos de uso",
+      "and": "y la",
+      "privacy": "política de privacidad",
+      "required": "Debes aceptar el aviso legal y los términos para crear una cuenta."
+    }
+  },
+  "actions": {
+    "continue": "Continuar",
+    "newPost": "Nuevo artículo",
+    "createBlog": "Crear blog",
+    "newBlog": "Nuevo blog",
+    "configure": "Configurar",
+    "open": "Abrir",
+    "exportReport": "Exportar reporte",
+    "moderationMode": "Modo moderación",
+    "invite": "Invitar",
+    "suspend": "Suspender",
+    "newTheme": "Nuevo tema",
+    "activate": "Activar",
+    "process": "Tratar",
+    "reject": "Rechazar",
+    "viewQueue": "Ver cola",
+    "hide": "Ocultar",
+    "viewBlogs": "Ver blogs",
+    "contactUs": "Contactarnos",
+    "exploreBlog": "Explorar blog",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "openSidebar": "Abrir sidebar",
+    "closeSidebar": "Cerrar sidebar",
+    "logout": "Cerrar sesión"
+  },
+  "metrics": {
+    "users": "Usuarios",
+    "activeBlogs": "Blogs activos",
+    "blogs": "Blogs",
+    "views": "Vistas",
+    "posts": "Artículos",
+    "revenue": "Ingresos",
+    "reports": "Reportes",
+    "engagement": "Interacción",
+    "drafts": "Borradores",
+    "reviewQueue": "Por revisar",
+    "published": "Publicados",
+    "toProcess": "Por tratar",
+    "urgent": "Urgentes",
+    "resolved": "Resueltos",
+    "thousandSuffix": "K"
+  },
+  "table": {
+    "user": "Usuario",
+    "role": "Rol",
+    "status": "Estado",
+    "actions": "Acciones",
+    "author": "Autor",
+    "targetArticle": "Artículo objetivo",
+    "priority": "Prioridad"
+  },
+  "priority": {
+    "haute": "Alta",
+    "moyenne": "Media",
+    "basse": "Baja"
+  },
+  "themeTypes": {
+    "blog": "Blog",
+    "page": "Página",
+    "post": "Artículo"
+  },
+  "weekdays": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mié",
+    "thu": "Jue",
+    "fri": "Vie"
+  },
+  "activity": {
+    "newBlogPublished": "Nuevo blog publicado por Sophie",
+    "threePostsScheduled": "3 artículos programados esta semana",
+    "priorityReportHandled": "Reporte prioritario gestionado"
+  },
+  "time": {
+    "twelveMinutesAgo": "hace 12 min",
+    "oneHourAgo": "hace 1 h",
+    "yesterday": "ayer"
+  },
+  "footer": {
+    "platformEyebrow": "Plataforma en evolución",
+    "platformTitle": "BlogYoo ayuda a los equipos a publicar, moderar y hacer crecer universos editoriales.",
+    "platformText": "Una base SaaS clara para blogs, equipos con roles, accesos seguros y experiencias de contenido legibles.",
+    "navigation": "Navegación",
+    "product": "Producto",
+    "stack": "Stack",
+    "reactRouter": "React Router",
+    "trust": {
+      "title": "Garantías BlogYoo",
+      "rbac": "RBAC seguro",
+      "editorial": "Flujo editorial",
+      "saas": "Listo para SaaS"
+    },
+    "resources": {
+      "title": "Recursos",
+      "examples": "Ejemplos de blogs",
+      "support": "Soporte"
+    },
+    "faq": {
+      "title": "FAQ",
+      "roles": "¿Cómo funcionan los roles?",
+      "migration": "¿Puedo migrar un blog existente?",
+      "media": "¿Cuál es el límite de medios?",
+      "security": "¿Cómo se protegen los accesos?"
+    },
+    "newsletter": {
+      "eyebrow": "Newsletter",
+      "title": "Recibir novedades del producto",
+      "text": "Una nota breve sobre mejoras de BlogYoo, prácticas editoriales y seguridad.",
+      "emailLabel": "Correo electrónico",
+      "placeholder": "tu@ejemplo.com",
+      "submit": "Suscribirse"
+    },
+    "partners": {
+      "title": "Socios y usos",
+      "school": "Escuelas",
+      "creators": "Creadores",
+      "agencies": "Agencias"
+    },
+    "legal": {
+      "privacy": "Privacidad",
+      "terms": "Condiciones",
+      "security": "Seguridad",
+      "legalNotice": "Aviso legal"
+    },
+    "copyright": "© {{year}} BlogYoo. Todos los derechos reservados.",
+    "social": {
+      "eyebrow": "Redes",
+      "title": "Seguir BlogYoo",
+      "text": "Sigue anuncios, tutoriales y novedades del producto en nuestros canales.",
+      "facebook": "BlogYoo en Facebook",
+      "x": "BlogYoo en X",
+      "youtube": "BlogYoo en YouTube",
+      "instagram": "BlogYoo en Instagram"
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Hola, tu estudio BlogYoo está listo.",
+      "description": "Un punto de entrada común antes de pasar a admin, owner, editor o moderación."
+    },
+    "ownerDashboard": {
+      "title": "Dirige tus blogs como un estudio editorial.",
+      "description": "Rendimiento, recomendaciones y espacios modificados recientemente.",
+      "recommendationTitle": "Recomendación",
+      "recommendationText": "Publica dos artículos cortos esta semana en tus blogs más consultados para mantener el crecimiento.",
+      "recentBlogs": "Blogs modificados recientemente"
+    },
+    "adminDashboard": {
+      "eyebrow": "Admin plataforma",
+      "title": "Vista global del ecosistema BlogYoo.",
+      "description": "Supervisa crecimiento, salud del producto y contenido sensible desde una cuadrícula analytics premium.",
+      "editorialTraffic": "Tráfico editorial",
+      "weeklyGrowth": "Curva de crecimiento semanal",
+      "operationalServices": "Servicios operativos",
+      "mediaUploads": "Subidas de medios"
+    },
+    "adminBlogs": {
+      "eyebrow": "Admin blogs",
+      "title": "Control editorial de blogs.",
+      "description": "Vista híbrida cards + tabla para inspeccionar, moderar y medir rendimiento.",
+      "cardMeta": "{{count}} artículos por {{owner}}"
+    },
+    "adminUsers": {
+      "eyebrow": "Admin usuarios",
+      "title": "Gestión premium de usuarios.",
+      "description": "Busca, filtra y administra los roles de la plataforma.",
+      "searchPlaceholder": "Buscar por nombre, email o rol"
+    },
+    "ownerBlogs": {
+      "title": "Gestión de tus propiedades editoriales.",
+      "cardMeta": "{{count}} artículos publicados o en curso."
+    },
+    "editorDashboard": {
+      "title": "Planificación y producción editorial.",
+      "description": "Borradores, artículos por revisar y publicación cercana.",
+      "publicationSchedule": "Calendario de publicación"
+    },
+    "moderatorDashboard": {
+      "title": "Mantener conversaciones sanas.",
+      "description": "Comentarios por tratar, urgencias y tendencias de resolución."
+    },
+    "adminReports": {
+      "title": "Cola global de moderación.",
+      "description": "Prioriza abusos, trata objetivos y conserva un historial claro de decisiones."
+    },
+    "adminThemes": {
+      "eyebrow": "Admin temas",
+      "title": "Biblioteca de temas BlogYoo.",
+      "description": "Paletas, tipos y estados de temas reutilizables."
+    },
+    "commentsModeration": {
+      "title": "Cola de moderación de comentarios."
+    },
+    "publicHome": {
+      "title": "Construir una vitrina editorial moderna alrededor de blogs y las historias que llevan.",
+      "description": "Esta interfaz React organiza la exploración de blogs, la lectura de detalles y las páginas institucionales con una identidad visual clara y reactiva.",
+      "quickPreview": "Vista rápida",
+      "activeEdition": "Edición activa",
+      "showcaseHeadline": "Espacios de publicación claros, rápidos y listos para crecer.",
+      "cards": {
+        "explorer": {
+          "kicker": "Explorador",
+          "title": "Una navegación legible",
+          "text": "El layout comparte el mismo header y footer para mantener una navegación constante entre todas las páginas públicas."
+        },
+        "consumer": {
+          "kicker": "Consumidor",
+          "title": "Datos conectados",
+          "text": "Las páginas Blogs y BlogDetails usan directamente los endpoints backend ya disponibles para mostrar contenido real."
+        },
+        "evolve": {
+          "kicker": "Evolucionar",
+          "title": "Una base extensible",
+          "text": "La estructura facilita añadir categorías, medios, autenticación y formularios conectados más adelante."
+        }
+      }
+    },
+    "blogs": {
+      "title": "Explorar universos editoriales ya expuestos por la API del proyecto.",
+      "description": "La página carga blogs desde el backend, ofrece búsqueda instantánea y redirige a un detalle dedicado para cada entidad.",
+      "searchPlaceholder": "Nombre, slug o descripción",
+      "blogCount": "{{count}} blog(s)",
+      "publicCount": "{{count}} público(s)",
+      "resultCount": "{{count}} resultado(s)",
+      "loading": "Cargando blogs...",
+      "empty": "Ningún blog corresponde todavía a esta búsqueda.",
+      "untitled": "Blog sin título",
+      "defaultDescription": "Un espacio editorial listo para enriquecerse.",
+      "slug": "Slug",
+      "createdAt": "Creado el",
+      "upcomingDate": "Fecha futura"
+    },
+    "about": {
+      "title": "Una vitrina orientada al contenido, pensada para crecer con BlogYoo.",
+      "description": "Esta página explica la dirección del frontend: componentes React simples de leer, una guía Tailwind centralizada y conexión directa con endpoints backend.",
+      "method": "Método",
+      "visibleStack": "Stack visible",
+      "methodSteps": {
+        "tooling": "Estabilizar las herramientas con Tailwind CSS v4 y un build válido.",
+        "layout": "Usar una maquetación compartida para evitar duplicaciones entre páginas.",
+        "views": "Conectar primero las vistas que ya tienen endpoints explotables.",
+        "structure": "Mantener una estructura lo bastante simple para las próximas iteraciones."
+      },
+      "cards": {
+        "structure": {
+          "title": "Estructura clara",
+          "text": "El frontend se basa en un layout compartido, páginas dedicadas y una capa de servicios para separar la UI de las llamadas API."
+        },
+        "design": {
+          "title": "Diseño intencional",
+          "text": "Tailwind v4 se usa con un tema estable océano y coral para salir de interfaces genéricas sin romper la legibilidad."
+        },
+        "evolution": {
+          "title": "La evolución continúa",
+          "text": "La base actual abre el camino a formularios conectados, espacio de autor y listas de contenido más ricas."
+        }
+      }
+    },
+    "contact": {
+      "title": "Una página de contacto lista para una futura conexión backend.",
+      "description": "Para esta iteración, la página ofrece una interfaz clara, responsive y ya estructurada para conectar más tarde un endpoint de envío.",
+      "support": "Soporte",
+      "address": "Dirección",
+      "form": "Formulario",
+      "subject": "Asunto",
+      "subjectPlaceholder": "Asunto del mensaje",
+      "messagePlaceholder": "Describe tu necesidad",
+      "send": "Enviar"
+    }
+  },
+  "errors": {
+    "forbiddenTitle": "Acceso prohibido",
+    "notFoundTitle": "Página no encontrada",
+    "backHome": "Volver al inicio"
+  }
+}

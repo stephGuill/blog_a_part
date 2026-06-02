@@ -1,0 +1,7 @@
+.card-shell {
+  animation: fade-in 240ms ease-out both;
+}
+
+.card-shell--accent {
+  background: var(--gradient-sky);
+}

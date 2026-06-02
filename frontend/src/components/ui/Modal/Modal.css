@@ -1,0 +1,22 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(20, 61, 73, 0.42);
+}
+
+.modal {
+  width: min(560px, 100%);
+  border-radius: var(--radius-card);
+  background: #fff;
+  padding: 24px;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

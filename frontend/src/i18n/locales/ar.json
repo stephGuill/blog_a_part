@@ -1,0 +1,412 @@
+{
+  "app": {
+    "name": "BlogYoo",
+    "tagline": "واجهة تحريرية دافئة وسريعة الاستجابة",
+    "workspace": "مساحة العمل",
+    "commandCenter": "مركز تحكم BlogYoo"
+  },
+  "common": {
+    "search": "بحث شامل",
+    "notifications": "الإشعارات",
+    "language": "تغيير اللغة",
+    "loading": "جار التحميل",
+    "empty": "لا توجد بيانات متاحة",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "publish": "نشر",
+    "archive": "أرشفة",
+    "inspect": "فحص"
+  },
+  "theme": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن"
+  },
+  "languages": {
+    "fr": "الفرنسية",
+    "en": "الإنجليزية",
+    "ar": "العربية",
+    "es": "الإسبانية"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "blogs": "المدونات",
+    "about": "من نحن",
+    "contact": "اتصال",
+    "mainNavigation": "التنقل الرئيسي",
+    "dashboardNavigation": "تنقل لوحة التحكم",
+    "pricing": "الأسعار",
+    "features": "الميزات",
+    "dashboard": "لوحة التحكم",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "admin": "الإدارة",
+    "platform": "المنصة",
+    "users": "المستخدمون",
+    "themes": "القوالب",
+    "reports": "البلاغات",
+    "owner": "المالك",
+    "myBlogs": "مدوناتي",
+    "builder": "البناء",
+    "ownerThemes": "قوالب المالك",
+    "editor": "التحرير",
+    "posts": "المقالات",
+    "moderator": "الإشراف",
+    "comments": "التعليقات",
+    "signin": "تسجيل الدخول",
+    "signup": "إنشاء حساب"
+  },
+  "sidebar": {
+    "brandSubtitle": "منصة تحريرية SaaS",
+    "groups": {
+      "general": "عام",
+      "admin": "الإدارة",
+      "production": "الإنتاج"
+    }
+  },
+  "roles": {
+    "admin": "مدير",
+    "owner": "مالك",
+    "editor": "محرر",
+    "moderator": "مشرف",
+    "user": "مستخدم"
+  },
+  "status": {
+    "active": "نشط",
+    "published": "منشور",
+    "draft": "مسودة",
+    "archived": "مؤرشف",
+    "pending": "قيد الانتظار",
+    "approved": "مقبول",
+    "rejected": "مرفوض",
+    "suspended": "معلق",
+    "stable": "مستقر",
+    "actif": "نشط",
+    "publie": "منشور",
+    "revision": "قيد المراجعة",
+    "archive": "مؤرشف",
+    "invite": "مدعو",
+    "suspendu": "معلق",
+    "beta": "تجريبي",
+    "nouveau": "جديد",
+    "analyse": "قيد التحليل",
+    "resolu": "محلول",
+    "spam": "بريد مزعج",
+    "public": "عام",
+    "private": "خاص"
+  },
+  "dashboard": {
+    "overview": "نظرة عامة",
+    "users": "المستخدمون",
+    "blogs": "المدونات",
+    "posts": "المقالات",
+    "revenue": "إيرادات تجريبية",
+    "reports": "البلاغات",
+    "activity": "النشاط الأخير",
+    "quickActions": "إجراءات سريعة",
+    "platformHealth": "حالة المنصة",
+    "topBlogs": "أفضل المدونات"
+  },
+  "auth": {
+    "signinTitle": "تسجيل الدخول",
+    "signupTitle": "إنشاء حساب",
+    "forgotPassword": "نسيت كلمة المرور",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "username": "اسم المستخدم",
+    "fullName": "الاسم الكامل",
+    "creating": "جاري الإنشاء...",
+    "createAccount": "إنشاء الحساب",
+    "signupSuccess": "تم إنشاء الحساب. يمكنك الآن تسجيل الدخول.",
+    "signupError": "تعذر إتمام التسجيل.",
+    "alreadyAccount": "لديك حساب بالفعل؟",
+    "legal": {
+      "prefix": "أوافق على",
+      "legalNotice": "الإشعار القانوني",
+      "terms": "شروط الاستخدام",
+      "and": "و",
+      "privacy": "سياسة الخصوصية",
+      "required": "يجب قبول الإشعار القانوني والشروط لإنشاء حساب."
+    }
+  },
+  "actions": {
+    "continue": "متابعة",
+    "newPost": "مقال جديد",
+    "createBlog": "إنشاء مدونة",
+    "newBlog": "مدونة جديدة",
+    "configure": "إعداد",
+    "open": "فتح",
+    "exportReport": "تصدير التقرير",
+    "moderationMode": "وضع الإشراف",
+    "invite": "دعوة",
+    "suspend": "تعليق",
+    "newTheme": "قالب جديد",
+    "activate": "تفعيل",
+    "process": "معالجة",
+    "reject": "رفض",
+    "viewQueue": "عرض القائمة",
+    "hide": "إخفاء",
+    "viewBlogs": "عرض المدونات",
+    "contactUs": "اتصل بنا",
+    "exploreBlog": "استكشاف المدونة",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "openSidebar": "فتح الشريط الجانبي",
+    "closeSidebar": "إغلاق الشريط الجانبي",
+    "logout": "تسجيل الخروج"
+  },
+  "metrics": {
+    "users": "المستخدمون",
+    "activeBlogs": "المدونات النشطة",
+    "blogs": "المدونات",
+    "views": "المشاهدات",
+    "posts": "المقالات",
+    "revenue": "الإيرادات",
+    "reports": "البلاغات",
+    "engagement": "التفاعل",
+    "drafts": "المسودات",
+    "reviewQueue": "للمراجعة",
+    "published": "منشور",
+    "toProcess": "للمعالجة",
+    "urgent": "عاجل",
+    "resolved": "محلول",
+    "thousandSuffix": "ألف"
+  },
+  "table": {
+    "user": "المستخدم",
+    "role": "الدور",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "author": "الكاتب",
+    "targetArticle": "المقال المستهدف",
+    "priority": "الأولوية"
+  },
+  "priority": {
+    "haute": "مرتفعة",
+    "moyenne": "متوسطة",
+    "basse": "منخفضة"
+  },
+  "themeTypes": {
+    "blog": "مدونة",
+    "page": "صفحة",
+    "post": "مقال"
+  },
+  "weekdays": {
+    "mon": "الإثنين",
+    "tue": "الثلاثاء",
+    "wed": "الأربعاء",
+    "thu": "الخميس",
+    "fri": "الجمعة"
+  },
+  "activity": {
+    "newBlogPublished": "تم نشر مدونة جديدة بواسطة Sophie",
+    "threePostsScheduled": "تمت جدولة 3 مقالات هذا الأسبوع",
+    "priorityReportHandled": "تمت معالجة بلاغ ذي أولوية"
+  },
+  "time": {
+    "twelveMinutesAgo": "منذ 12 دقيقة",
+    "oneHourAgo": "منذ ساعة",
+    "yesterday": "أمس"
+  },
+  "footer": {
+    "platformEyebrow": "منصة تتطور",
+    "platformTitle": "تساعد BlogYoo الفرق على النشر والإشراف وتنمية عوالم تحريرية كاملة.",
+    "platformText": "قاعدة SaaS واضحة لإدارة المدونات والأدوار والوصول الآمن وتجارب المحتوى المقروءة.",
+    "navigation": "التنقل",
+    "product": "المنتج",
+    "stack": "التقنيات",
+    "reactRouter": "React Router",
+    "trust": {
+      "title": "ضمانات BlogYoo",
+      "rbac": "صلاحيات آمنة",
+      "editorial": "سير عمل تحريري",
+      "saas": "جاهز لـ SaaS"
+    },
+    "resources": {
+      "title": "الموارد",
+      "examples": "أمثلة مدونات",
+      "support": "الدعم"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "roles": "كيف تعمل الأدوار؟",
+      "migration": "هل يمكن نقل مدونة موجودة؟",
+      "media": "ما حد ملفات الوسائط؟",
+      "security": "كيف تتم حماية الوصول؟"
+    },
+    "newsletter": {
+      "eyebrow": "النشرة",
+      "title": "استقبل تحديثات المنتج",
+      "text": "رسالة قصيرة عن تحسينات BlogYoo والممارسات التحريرية وتحديثات الأمان.",
+      "emailLabel": "البريد الإلكتروني",
+      "placeholder": "you@example.com",
+      "submit": "اشترك"
+    },
+    "partners": {
+      "title": "الشركاء والاستخدامات",
+      "school": "مدارس",
+      "creators": "منشئون",
+      "agencies": "وكالات"
+    },
+    "legal": {
+      "privacy": "الخصوصية",
+      "terms": "الشروط",
+      "security": "الأمان",
+      "legalNotice": "الإشعار القانوني"
+    },
+    "copyright": "© {{year}} BlogYoo. جميع الحقوق محفوظة.",
+    "social": {
+      "eyebrow": "الشبكات",
+      "title": "تابع BlogYoo",
+      "text": "تابع الإعلانات والدروس وأخبار المنتج على قنواتنا.",
+      "facebook": "BlogYoo على Facebook",
+      "x": "BlogYoo على X",
+      "youtube": "BlogYoo على YouTube",
+      "instagram": "BlogYoo على Instagram"
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "title": "مرحباً، استوديو BlogYoo جاهز.",
+      "description": "نقطة دخول مشتركة قبل الانتقال إلى الإدارة أو المالك أو التحرير أو الإشراف."
+    },
+    "ownerDashboard": {
+      "title": "أدر مدوناتك مثل استوديو تحريري.",
+      "description": "الأداء والتوصيات وآخر المساحات المعدلة.",
+      "recommendationTitle": "توصية",
+      "recommendationText": "انشر مقالتين قصيرتين هذا الأسبوع على أكثر مدوناتك زيارة للحفاظ على النمو.",
+      "recentBlogs": "آخر المدونات المعدلة"
+    },
+    "adminDashboard": {
+      "eyebrow": "إدارة المنصة",
+      "title": "نظرة عامة على منظومة BlogYoo.",
+      "description": "راقب النمو وصحة المنتج والمحتوى الحساس من شبكة تحليلات احترافية.",
+      "editorialTraffic": "حركة التحرير",
+      "weeklyGrowth": "منحنى النمو الأسبوعي",
+      "operationalServices": "الخدمات التشغيلية",
+      "mediaUploads": "رفع الوسائط"
+    },
+    "adminBlogs": {
+      "eyebrow": "إدارة المدونات",
+      "title": "التحكم التحريري في المدونات.",
+      "description": "عرض يجمع البطاقات والجدول للفحص والإشراف وقياس الأداء.",
+      "cardMeta": "{{count}} مقالات بواسطة {{owner}}"
+    },
+    "adminUsers": {
+      "eyebrow": "إدارة المستخدمين",
+      "title": "إدارة احترافية للمستخدمين.",
+      "description": "ابحث وصف وادِر أدوار المنصة.",
+      "searchPlaceholder": "البحث بالاسم أو البريد أو الدور"
+    },
+    "ownerBlogs": {
+      "title": "إدارة ممتلكاتك التحريرية.",
+      "cardMeta": "{{count}} مقالات منشورة أو قيد العمل."
+    },
+    "editorDashboard": {
+      "title": "تخطيط وإنتاج تحريري.",
+      "description": "مسودات ومقالات للمراجعة ونشر قريب.",
+      "publicationSchedule": "جدول النشر"
+    },
+    "moderatorDashboard": {
+      "title": "حافظ على صحة المحادثات.",
+      "description": "تعليقات للمعالجة وحالات عاجلة واتجاهات الحل."
+    },
+    "adminReports": {
+      "title": "قائمة الإشراف العامة.",
+      "description": "رتب البلاغات، عالج الأهداف، واحتفظ بسجل واضح للقرارات."
+    },
+    "adminThemes": {
+      "eyebrow": "إدارة القوالب",
+      "title": "مكتبة قوالب BlogYoo.",
+      "description": "ألوان وأنواع وحالات القوالب القابلة لإعادة الاستخدام."
+    },
+    "commentsModeration": {
+      "title": "قائمة إشراف التعليقات."
+    },
+    "publicHome": {
+      "title": "بناء واجهة تحريرية حديثة حول المدونات والقصص التي تحملها.",
+      "description": "تنظم واجهة React هذه استكشاف المدونات وقراءة التفاصيل والصفحات المؤسسية حول هوية بصرية واضحة وسريعة الاستجابة.",
+      "quickPreview": "لمحة سريعة",
+      "activeEdition": "إصدار نشط",
+      "showcaseHeadline": "مساحات نشر واضحة وسريعة وجاهزة للنمو.",
+      "cards": {
+        "explorer": {
+          "kicker": "استكشاف",
+          "title": "تنقل واضح",
+          "text": "يشارك التخطيط نفس الرأس والتذييل للحفاظ على تنقل ثابت بين جميع الصفحات العامة."
+        },
+        "consumer": {
+          "kicker": "محتوى",
+          "title": "بيانات متصلة",
+          "text": "تستخدم صفحات المدونات والتفاصيل نقاط النهاية المتاحة في الخلفية لعرض محتوى حقيقي."
+        },
+        "evolve": {
+          "kicker": "تطوير",
+          "title": "قاعدة قابلة للتوسع",
+          "text": "البنية جاهزة لإضافة التصنيفات والوسائط والمصادقة والنماذج المتصلة لاحقاً."
+        }
+      }
+    },
+    "blogs": {
+      "title": "استكشف العوالم التحريرية المعروضة بالفعل عبر API المشروع.",
+      "description": "تحمل الصفحة المدونات من الخلفية، وتوفر بحثاً فورياً، وتوجه إلى صفحة تفاصيل مخصصة لكل عنصر.",
+      "searchPlaceholder": "الاسم أو الرابط أو الوصف",
+      "blogCount": "{{count}} مدونة",
+      "publicCount": "{{count}} عام",
+      "resultCount": "{{count}} نتيجة",
+      "loading": "جار تحميل المدونات...",
+      "empty": "لا توجد مدونة تطابق هذا البحث بعد.",
+      "untitled": "مدونة بدون عنوان",
+      "defaultDescription": "مساحة تحريرية جاهزة للإثراء.",
+      "slug": "الرابط",
+      "createdAt": "تاريخ الإنشاء",
+      "upcomingDate": "تاريخ قادم"
+    },
+    "about": {
+      "title": "واجهة موجهة للمحتوى ومصممة للنمو مع BlogYoo.",
+      "description": "تشرح هذه الصفحة اتجاه الواجهة: مكونات React سهلة القراءة، نظام Tailwind مركزي، واتصال مباشر بنقاط النهاية الخلفية.",
+      "method": "المنهجية",
+      "visibleStack": "التقنيات الظاهرة",
+      "methodSteps": {
+        "tooling": "تثبيت الأدوات مع Tailwind CSS v4 وبناء صالح.",
+        "layout": "استخدام تخطيط مشترك لتجنب التكرار بين الصفحات.",
+        "views": "ربط الواجهات التي لديها نقاط نهاية قابلة للاستخدام أولاً.",
+        "structure": "الحفاظ على بنية بسيطة بما يكفي للتكرارات القادمة."
+      },
+      "cards": {
+        "structure": {
+          "title": "بنية واضحة",
+          "text": "تعتمد الواجهة على تخطيط مشترك وصفحات مخصصة وطبقة خدمات تفصل الواجهة عن نداءات API."
+        },
+        "design": {
+          "title": "تصميم مقصود",
+          "text": "يستخدم Tailwind v4 مع طابع مستقر بألوان المحيط والمرجان لتجنب الواجهات العامة مع الحفاظ على الوضوح."
+        },
+        "evolution": {
+          "title": "التطور مستمر",
+          "text": "تفتح القاعدة الحالية الطريق للنماذج المتصلة ومساحة الكاتب وقوائم محتوى أغنى."
+        }
+      }
+    },
+    "contact": {
+      "title": "صفحة اتصال جاهزة لاتصال خلفي مستقبلي.",
+      "description": "في هذه المرحلة، تقدم الصفحة واجهة واضحة وسريعة الاستجابة ومهيأة لربط نقطة إرسال لاحقاً دون تغيير تجربة المستخدم.",
+      "support": "الدعم",
+      "address": "العنوان",
+      "form": "النموذج",
+      "subject": "الموضوع",
+      "subjectPlaceholder": "موضوع الرسالة",
+      "messagePlaceholder": "صف احتياجك",
+      "send": "إرسال"
+    }
+  },
+  "errors": {
+    "forbiddenTitle": "الوصول ممنوع",
+    "notFoundTitle": "الصفحة غير موجودة",
+    "backHome": "العودة للرئيسية"
+  }
+}

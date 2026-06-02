@@ -1,0 +1,9 @@
+.admin-blog-cards {
+  margin-bottom: 18px;
+}
+
+.admin-blog-cards h2 {
+  color: var(--color-navy);
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+}
