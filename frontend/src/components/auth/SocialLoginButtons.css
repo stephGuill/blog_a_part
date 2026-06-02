@@ -1,0 +1,57 @@
+.social-login {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.social-login a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.social-login a:hover,
+.social-login a:focus-visible {
+  border-color: var(--color-sky-deep);
+  background: color-mix(in srgb, var(--bg-card) 76%, var(--color-sky) 24%);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.social-login__google {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1a73e8;
+  font-weight: 900;
+}
+
+.social-login__facebook {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #1877f2;
+  color: #ffffff;
+  font-weight: 900;
+  font-family: Arial, sans-serif;
+}
+
+@media (max-width: 560px) {
+  .social-login {
+    grid-template-columns: 1fr;
+  }
+}
