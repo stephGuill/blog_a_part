@@ -1,0 +1,5 @@
+.activity-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 18px;
+}
