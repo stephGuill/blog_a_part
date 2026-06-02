@@ -1,0 +1,18 @@
+# Fichiers et dossiers à ignorer par ESLint
+# Modules et dépendances
+node_modules
+
+# Répertoires de build (artefacts)
+build
+dist
+
+# Dossiers contenant les scripts SQL (non JavaScript)
+backend/database
+*.sql
+
+# Fichiers d'environnement locaux
+.env
+.env.local
+
+# Répertoire d'uploads (binaries / images)
+uploads

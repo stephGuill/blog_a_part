@@ -1,0 +1,101 @@
+// Permissions map and helpers
+// - Définit les constantes de permission (chaînes littérales) utilisées partout.
+// - Mappe les rôles de blog aux permissions applicables.
+// - Exporte des helpers: getPermissionsForBlogRole(role), hasGlobalAdminAccess(user)
+const { BLOG_ROLES, GLOBAL_ROLES } = require("./roles");
+
+const PERMISSIONS = {
+  ADMIN_ACCESS: "admin:access",
+  ADMIN_MANAGE_BLOGS: "admin:manage_blogs",
+  ADMIN_MANAGE_REPORTS: "admin:manage_reports",
+  ADMIN_MANAGE_USERS: "admin:manage_users",
+  BLOG_CREATE: "blog:create",
+  BLOG_DELETE: "blog:delete",
+  BLOG_MANAGE_MEMBERS: "blog:manage_members",
+  BLOG_MANAGE_SETTINGS: "blog:manage_settings",
+  BLOG_READ: "blog:read",
+  BLOG_TRANSFER_OWNERSHIP: "blog:transfer_ownership",
+  BLOG_UPDATE: "blog:update",
+  BUILDER_CREATE: "builder:create",
+  BUILDER_DELETE: "builder:delete",
+  BUILDER_PUBLISH: "builder:publish",
+  BUILDER_READ: "builder:read",
+  BUILDER_UPDATE: "builder:update",
+  BUILDER_UPLOAD_MEDIA: "builder:upload_media",
+  COMMENT_DELETE: "comment:delete",
+  COMMENT_MODERATE: "comment:moderate",
+  COMMENT_READ: "comment:read",
+  POST_CREATE: "post:create",
+  POST_DELETE: "post:delete",
+  POST_PUBLISH: "post:publish",
+  POST_READ: "post:read",
+  POST_UNPUBLISH: "post:unpublish",
+  POST_UPDATE: "post:update",
+  REPORT_CREATE: "report:create",
+  REPORT_MANAGE: "report:manage",
+  REPORT_READ: "report:read",
+};
+
+const BLOG_ROLE_PERMISSIONS = {
+  [BLOG_ROLES.OWNER]: [
+    PERMISSIONS.BLOG_DELETE,
+    PERMISSIONS.BLOG_MANAGE_MEMBERS,
+    PERMISSIONS.BLOG_MANAGE_SETTINGS,
+    PERMISSIONS.BLOG_READ,
+    PERMISSIONS.BLOG_TRANSFER_OWNERSHIP,
+    PERMISSIONS.BLOG_UPDATE,
+    PERMISSIONS.BUILDER_CREATE,
+    PERMISSIONS.BUILDER_DELETE,
+    PERMISSIONS.BUILDER_PUBLISH,
+    PERMISSIONS.BUILDER_READ,
+    PERMISSIONS.BUILDER_UPDATE,
+    PERMISSIONS.BUILDER_UPLOAD_MEDIA,
+    PERMISSIONS.COMMENT_DELETE,
+    PERMISSIONS.COMMENT_MODERATE,
+    PERMISSIONS.COMMENT_READ,
+    PERMISSIONS.POST_CREATE,
+    PERMISSIONS.POST_DELETE,
+    PERMISSIONS.POST_PUBLISH,
+    PERMISSIONS.POST_READ,
+    PERMISSIONS.POST_UNPUBLISH,
+    PERMISSIONS.POST_UPDATE,
+    PERMISSIONS.REPORT_MANAGE,
+    PERMISSIONS.REPORT_READ,
+  ],
+  [BLOG_ROLES.EDITOR]: [
+    PERMISSIONS.BLOG_READ,
+    PERMISSIONS.BUILDER_CREATE,
+    PERMISSIONS.BUILDER_READ,
+    PERMISSIONS.BUILDER_UPDATE,
+    PERMISSIONS.BUILDER_UPLOAD_MEDIA,
+    PERMISSIONS.POST_CREATE,
+    PERMISSIONS.POST_READ,
+    PERMISSIONS.POST_UPDATE,
+  ],
+  [BLOG_ROLES.MODERATOR]: [
+    PERMISSIONS.BLOG_READ,
+    PERMISSIONS.COMMENT_DELETE,
+    PERMISSIONS.COMMENT_MODERATE,
+    PERMISSIONS.COMMENT_READ,
+    PERMISSIONS.POST_READ,
+    PERMISSIONS.REPORT_MANAGE,
+    PERMISSIONS.REPORT_READ,
+  ],
+  [BLOG_ROLES.MEMBER]: [PERMISSIONS.BLOG_READ, PERMISSIONS.POST_READ, PERMISSIONS.REPORT_CREATE],
+  [BLOG_ROLES.VIEWER]: [PERMISSIONS.BLOG_READ, PERMISSIONS.POST_READ, PERMISSIONS.REPORT_CREATE],
+};
+
+const ADMIN_PERMISSIONS = Object.values(PERMISSIONS);
+
+const getPermissionsForBlogRole = (role) => BLOG_ROLE_PERMISSIONS[role] || [];
+
+const hasGlobalAdminAccess = (user) =>
+  user?.globalRole === GLOBAL_ROLES.ADMIN || user?.platform_role === GLOBAL_ROLES.ADMIN || user?.role === GLOBAL_ROLES.ADMIN;
+
+module.exports = {
+  ADMIN_PERMISSIONS,
+  BLOG_ROLE_PERMISSIONS,
+  PERMISSIONS,
+  getPermissionsForBlogRole,
+  hasGlobalAdminAccess,
+};

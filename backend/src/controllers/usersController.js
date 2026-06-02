@@ -1,7 +1,17 @@
+// usersController.js
+// Contrôleur : opérations CRUD pour les utilisateurs
+// - Fournit des endpoints pour lister, lire, éditer, créer, activer/désactiver,
+//   uploader un avatar et supprimer un utilisateur.
+// - Utilise `models.users` pour la persistance et `argon2` pour le hachage.
+// Conventions :
+// - `req.user` est supposé être injecté par le middleware d'auth (`protect`)
+//   et contient au minimum `id`, `role` et `globalRole`.
+// Exports: browse, read, edit, add, destroy, toggleActive, uploadAvatar
 const models = require("../models");
 const argon2 = require("argon2");
- 
 
+// browse(req, res) : retourne la liste des utilisateurs (champs non sensibles).
+// - Méthode protégée en général (selon route) ; retourne un tableau d'utilisateurs.
 const browse = (req, res) => {
   models.users
     .findAllSafe()
@@ -14,6 +24,8 @@ const browse = (req, res) => {
     });
 };
 
+// read(req, res) : récupère un utilisateur non sensible par son id.
+// - Si non trouvé, retourne 404.
 const read = (req, res) => {
   models.users
     .findSafeById(req.params.id)
@@ -30,6 +42,12 @@ const read = (req, res) => {
     });
 };
 
+// edit(req, res) : met à jour un utilisateur.
+// - Comportement :
+//   * Si l'appelant est admin (`isAdmin`), il peut mettre à jour tous les champs
+//     (utilise `update` ou `updateAdmin` selon si un nouveau password_hash est fourni).
+//   * Sinon, l'utilisateur ne peut mettre à jour que son profil (username/email/full_name)
+// - Body attendu : objet partiel des champs à modifier.
 const edit = (req, res) => {
   const users = req.body;
 
@@ -69,20 +87,23 @@ const edit = (req, res) => {
     });
 };
 
+// add(req, res) : création d'un nouvel utilisateur (admin route en général)
+// - Body requis : `{ username, email, password, ... }`
+// - Hache le mot de passe et appelle `models.users.insert`.
 const add = async (req, res) => {
   const users = req.body;
 
   if (!users || Object.keys(users).length === 0) {
     return res.status(400).json({
-      status: 'fail',
-      message: 'Le body est requis pour créer un utilisateur. Utilisez JSON avec Content-Type: application/json.',
+      status: "fail",
+      message: "Le body est requis pour créer un utilisateur. Utilisez JSON avec Content-Type: application/json."
     });
   }
 
   if (!users.username || !users.email || !users.password) {
     return res.status(400).json({
       status: "fail",
-      message: "username, email et password sont requis.",
+      message: "username, email et password sont requis."
     });
   }
 
@@ -101,6 +122,8 @@ const add = async (req, res) => {
   }
 };
 
+// toggleActive(req, res) : active ou désactive un compte (admin uniquement)
+// - Body attendu : { is_active: true|false }
 const toggleActive = (req, res) => {
   const isActive = req.body?.is_active === true || req.body?.is_active === 1;
 
@@ -119,6 +142,8 @@ const toggleActive = (req, res) => {
     });
 };
 
+// uploadAvatar(req, res) : gestion de l'upload d'avatar via Multer
+// - `req.file` doit être présent (upload middleware) et exposes `filename`.
 const uploadAvatar = (req, res) => {
   if (!req.file) {
     return res.status(400).json({
@@ -170,5 +195,5 @@ module.exports = {
   add,
   destroy,
   toggleActive,
-  uploadAvatar,
+  uploadAvatar
 };

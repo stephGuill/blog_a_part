@@ -1,5 +1,11 @@
+// themesController.js
+// Contrôleur : gestion des thèmes (liste, lecture, création, modification, suppression)
+// - Ce fichier délègue presque toute la logique à `models.themes` et se
+//   contente de formater les réponses HTTP et gérer les erreurs.
 const models = require("../models");
 
+// browse(req, res) : retourne tous les thèmes disponibles
+// - Requête publique : renvoie un tableau d'objets thème
 const browse = (req, res) => {
   models.themes
     .findAll()
@@ -12,6 +18,7 @@ const browse = (req, res) => {
     });
 };
 
+// read(req, res) : récupère un thème par id (404 si introuvable)
 const read = (req, res) => {
   models.themes
     .find(req.params.id)
@@ -28,6 +35,8 @@ const read = (req, res) => {
     });
 };
 
+// edit(req, res) : met à jour un thème existant
+// - Body attendu : champs modifiables du thème (name, type, config_json...)
 const edit = (req, res) => {
   const themes = req.body;
 
@@ -50,6 +59,8 @@ const edit = (req, res) => {
     });
 };
 
+// add(req, res) : crée un nouveau thème
+// - Body attendu : { name, type, description, config_json?, preview_url? }
 const add = (req, res) => {
   const themes = req.body;
 
@@ -66,6 +77,7 @@ const add = (req, res) => {
     });
 };
 
+// destroy(req, res) : supprime un thème par id
 const destroy = (req, res) => {
   models.themes
     .delete(req.params.id)
@@ -87,5 +99,5 @@ module.exports = {
   read,
   edit,
   add,
-  destroy,
+  destroy
 };

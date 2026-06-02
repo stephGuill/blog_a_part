@@ -1,5 +1,10 @@
+// blogMembersController.js
+// Contrôleur : gestion des membres d'un blog (invitation, upsert, suppression)
+// - Permet d'inviter/upserter des membres et de les supprimer; journalise
+//   les actions via `models.auditLogs`.
 const models = require("../models");
 
+// Récupère la liste des membres pour un blog donné
 const browseByBlog = async (req, res) => {
   try {
     const [rows] = await models.blogMembers.findByBlog(req.params.blogId);
@@ -20,7 +25,7 @@ const inviteOrUpsert = async (req, res) => {
   if (role === "owner") {
     return res.status(403).json({
       status: "error",
-      message: "Le transfert de propriété doit passer par une route dédiée.",
+      message: "Le transfert de propriété doit passer par une route dédiée."
     });
   }
 
@@ -29,14 +34,14 @@ const inviteOrUpsert = async (req, res) => {
       blog_id: Number(req.params.blogId),
       user_id: Number(user_id),
       role,
-      status,
+      status
     });
     await models.auditLogs.insert({
       actor_user_id: req.user.id,
       target_type: "blog_member",
       target_id: Number(user_id),
       action: "blog_member:upsert",
-      metadata_json: { blog_id: Number(req.params.blogId), role, status },
+      metadata_json: { blog_id: Number(req.params.blogId), role, status }
     });
 
     return res.sendStatus(204);
@@ -54,7 +59,7 @@ const remove = async (req, res) => {
       target_type: "blog_member",
       target_id: Number(req.params.userId),
       action: "blog_member:remove",
-      metadata_json: { blog_id: Number(req.params.blogId) },
+      metadata_json: { blog_id: Number(req.params.blogId) }
     });
     return res.sendStatus(204);
   } catch (error) {
@@ -66,5 +71,5 @@ const remove = async (req, res) => {
 module.exports = {
   browseByBlog,
   inviteOrUpsert,
-  remove,
+  remove
 };

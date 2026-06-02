@@ -1,17 +1,23 @@
+// builderController.js
+// Contrôleur : routes pour le page builder (pages, sections, blocs)
+// - Délègue à `BuilderService` la logique métier (création, modification,
+//   réordonnancement, publication, upload de medias, etc.).
+// - Gère la transformation des erreurs SQL/ER_DUP_ENTRY en réponses HTTP.
 const builderService = require("../services/BuilderService");
 
+// Helper local : formatte les erreurs retournées par le service
 function sendError(res, error) {
   if (error.code === "ER_DUP_ENTRY") {
     return res.status(409).json({
       status: "fail",
-      message: "Ce slug existe déjà pour ce blog.",
+      message: "Ce slug existe déjà pour ce blog."
     });
   }
 
   const statusCode = error.statusCode || 500;
   return res.status(statusCode).json({
     status: statusCode >= 500 ? "error" : "fail",
-    message: statusCode >= 500 ? "Erreur serveur builder." : error.message,
+    message: statusCode >= 500 ? "Erreur serveur builder." : error.message
   });
 }
 
@@ -190,7 +196,7 @@ const uploadMedia = async (req, res) => {
     return res.status(201).json({
       success: true,
       message: "Fichier uploadé avec succès.",
-      data: media,
+      data: media
     });
   } catch (error) {
     console.error(error);
@@ -215,5 +221,5 @@ module.exports = {
   updateBlock,
   updatePage,
   updateSection,
-  uploadMedia,
+  uploadMedia
 };

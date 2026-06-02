@@ -1,5 +1,14 @@
+// reportsController.js
+// Contrôleur : gestion des signalements (reports)
+// - Fournit : lister (`browse`), ajouter (`add`) et modérer (`moderate`) des signalements.
+// - Les fonctions utilisent `req.user` pour vérifier les permissions et renvoient
+//   des codes HTTP explicites (200, 201, 204, 400, 500, ...).
+// - Les erreurs sont loggées côté serveur pour le débogage.
 const models = require("../models");
 
+// browse(req, res) : liste des signalements.
+// - Si user.globalRole === 'admin' retourne tous les rapports, sinon ceux
+//   appartenant au blog que l'utilisateur peut administrer/modérer.
 const browse = async (req, res) => {
   try {
     const query =
@@ -14,6 +23,9 @@ const browse = async (req, res) => {
   }
 };
 
+// add(req, res) : crée un signalement
+// - Body requis : { target_type, target_id, reason, details?, blog_id? }
+// - reporter_user_id sera rempli depuis `req.user` si présent
 const add = async (req, res) => {
   const { blog_id, target_type, target_id, reason, details } = req.body;
 
@@ -37,6 +49,9 @@ const add = async (req, res) => {
   }
 };
 
+// moderate(req, res) : modère un signalement (changer son statut)
+// - Body : { status: 'pending'|'reviewed'|'rejected'|'resolved' }
+// - Enregistre également un audit log de l'action
 const moderate = async (req, res) => {
   const { status } = req.body;
   const allowed = ["pending", "reviewed", "rejected", "resolved"];
@@ -64,5 +79,5 @@ const moderate = async (req, res) => {
 module.exports = {
   add,
   browse,
-  moderate,
+  moderate
 };

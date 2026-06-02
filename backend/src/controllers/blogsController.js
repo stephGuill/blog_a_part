@@ -1,8 +1,13 @@
+// blogsController.js
+// Contrôleur : gestion des blogs (publique, privées, CRUD)
+// - Gère la lecture publique, la lecture protégée par membership,
+//   la création et la mise à jour de blogs. Utilise `slugify` pour les slugs.
 const slugify = require("slugify");
 
 const models = require("../models");
 const { hasGlobalAdminAccess } = require("../utils/permissions");
 
+// Liste ou filtre les blogs selon le scope (mine / public)
 const browse = (req, res) => {
   const query = (() => {
     if (req.query.scope === "mine") {
@@ -71,7 +76,7 @@ const edit = async (req, res) => {
       id: blogId,
       is_public: Object.prototype.hasOwnProperty.call(req.body, "is_public")
         ? Boolean(req.body.is_public)
-        : Boolean(existingBlog.is_public),
+        : Boolean(existingBlog.is_public)
     };
 
     const [result] = await models.blog.update(blog);
@@ -86,7 +91,7 @@ const edit = async (req, res) => {
     if (err.code === "ER_DUP_ENTRY") {
       return res.status(409).json({
         status: "error",
-        message: "Ce slug est deja utilise par un autre blog.",
+        message: "Ce slug est deja utilise par un autre blog."
       });
     }
     return res.sendStatus(500);
@@ -105,7 +110,7 @@ const add = async (req, res) => {
     slug: generatedSlug,
     description: req.body.description?.trim() || "",
     is_public: Boolean(req.body.is_public),
-    status: req.body.status || "active",
+    status: req.body.status || "active"
   };
 
   try {
@@ -133,14 +138,14 @@ const add = async (req, res) => {
       blog_id: result.insertId,
       user_id: req.user.id,
       role: "owner",
-      status: "active",
+      status: "active"
     });
     await models.auditLogs.insert({
       actor_user_id: req.user.id,
       target_type: "blog",
       target_id: result.insertId,
       action: "blog:create",
-      metadata_json: { slug: blog.slug, name: blog.name },
+      metadata_json: { slug: blog.slug, name: blog.name }
     });
 
     const [createdRows] = await models.blog.find(result.insertId);
@@ -150,7 +155,7 @@ const add = async (req, res) => {
     if (err.code === "ER_DUP_ENTRY") {
       return res.status(409).json({
         status: "error",
-        message: "Ce slug est deja utilise par un autre blog.",
+        message: "Ce slug est deja utilise par un autre blog."
       });
     }
     return res.sendStatus(500);
@@ -178,5 +183,5 @@ module.exports = {
   browse,
   destroy,
   edit,
-  read,
+  read
 };
