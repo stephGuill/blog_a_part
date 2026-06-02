@@ -1,0 +1,28 @@
+.editor-calendar {
+  margin-top: 18px;
+}
+
+.editor-calendar h2 {
+  color: var(--color-navy);
+  font-family: var(--font-display);
+}
+
+.calendar-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.calendar-strip span {
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 214, 165, 0.25);
+  color: var(--color-muted);
+  font-weight: 850;
+}
+
+.calendar-strip strong {
+  display: block;
+  color: var(--color-navy);
+  font-size: 1.6rem;
+}
