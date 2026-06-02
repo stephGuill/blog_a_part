@@ -1,0 +1,121 @@
+.profile-card {
+  display: grid;
+  gap: 20px;
+}
+
+.profile-card h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-display);
+}
+
+.profile-card__hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.profile-card__hero .avatar {
+  width: 64px;
+  height: 64px;
+}
+
+.profile-details {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.profile-details div,
+.profile-membership {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  background: var(--input-bg);
+  color: var(--text-main);
+}
+
+.profile-details span,
+.profile-memberships h3,
+.profile-note {
+  color: var(--text-muted);
+}
+
+.profile-details strong {
+  color: var(--text-main);
+}
+
+.profile-memberships {
+  display: grid;
+  gap: 10px;
+}
+
+.profile-memberships h3 {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.profile-membership {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.profile-note {
+  margin: 0;
+}
+
+.profile-modal-page {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  min-height: 100vh;
+}
+
+.profile-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 36, 50, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+.profile-modal__center {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 22px;
+}
+
+.profile-card.is-modal {
+  position: relative;
+  width: min(620px, 100%);
+  box-shadow: var(--shadow-lift);
+}
+
+.profile-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .profile-card__hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

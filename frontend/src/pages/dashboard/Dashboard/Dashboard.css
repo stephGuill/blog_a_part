@@ -1,0 +1,24 @@
+.dashboard-home__lower {
+  margin-top: 18px;
+}
+
+.dashboard-welcome {
+  grid-column: span 5;
+  background: var(--gradient-sky);
+}
+
+.dashboard-activity {
+  grid-column: span 7;
+}
+
+.dashboard-welcome h2 {
+  color: var(--color-navy);
+  font-family: var(--font-display);
+}
+
+@media (max-width: 900px) {
+  .dashboard-welcome,
+  .dashboard-activity {
+    grid-column: 1 / -1;
+  }
+}
