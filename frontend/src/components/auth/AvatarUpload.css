@@ -1,0 +1,79 @@
+.avatar-upload {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  border: 1px dashed color-mix(in srgb, var(--color-sky-deep) 42%, var(--border-color));
+  border-radius: 20px;
+  padding: 14px;
+  background: color-mix(in srgb, var(--bg-card) 82%, var(--color-sky) 18%);
+}
+
+.avatar-upload__preview {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+  background: var(--bg-card);
+  color: var(--color-sky-deep);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.avatar-upload__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-upload__content {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.avatar-upload__content input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.avatar-upload__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.avatar-upload__content p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.avatar-upload__clear {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--color-danger);
+  cursor: pointer;
+}

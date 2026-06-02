@@ -1,0 +1,39 @@
+.form-card {
+  display: grid;
+  gap: clamp(14px, 3vw, 18px);
+  max-width: 680px;
+}
+
+.auth-error {
+  border: 1px solid rgba(220, 76, 76, 0.28);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: rgba(220, 76, 76, 0.08);
+  color: var(--color-danger);
+  font-weight: 800;
+}
+
+.auth-form__links {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.auth-form__links a,
+.auth-form__switch a {
+  color: var(--color-sky-deep);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.auth-form__links a:hover,
+.auth-form__switch a:hover {
+  color: var(--color-ink);
+}
+
+.auth-form__switch {
+  margin: 0;
+  color: var(--color-muted);
+  font-weight: 700;
+  text-align: center;
+}
