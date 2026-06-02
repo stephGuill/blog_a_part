@@ -1,0 +1,40 @@
+:root {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-ink: #edf4f7;
+  --color-navy: #d7edf4;
+  --color-muted: #9db2bc;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-card: rgba(17, 33, 43, 0.78);
+  --color-card-strong: rgba(17, 33, 43, 0.92);
+  --color-chip: rgba(255, 255, 255, 0.12);
+  --color-focus: rgba(255, 214, 165, 0.46);
+  --bg-page: #101923;
+  --bg-card: rgba(17, 33, 43, 0.92);
+  --text-main: #edf4f7;
+  --text-muted: #9db2bc;
+  --text-inverse: #09161f;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --input-bg: rgba(9, 22, 31, 0.92);
+  --input-text: #f8fbfc;
+  --input-placeholder: #9db2bc;
+  --input-border: rgba(255, 255, 255, 0.16);
+  --button-primary-bg: linear-gradient(135deg, #ffd6a5 0%, #ff8d72 100%);
+  --button-primary-text: #1b2432;
+  --button-primary-border: rgba(255, 214, 165, 0.36);
+  --button-secondary-bg: rgba(255, 255, 255, 0.1);
+  --button-secondary-text: #edf4f7;
+  --button-secondary-border: rgba(255, 255, 255, 0.18);
+  --footer-bg: linear-gradient(145deg, #061018 0%, #0e2230 54%, #07131b 100%);
+  --footer-text: #f7fbfc;
+  --footer-muted: rgba(247, 251, 252, 0.7);
+  --footer-border: rgba(255, 255, 255, 0.14);
+  --footer-surface: rgba(255, 255, 255, 0.07);
+  --gradient-page: radial-gradient(circle at top left, rgba(82, 125, 166, 0.3), transparent 32%),
+    radial-gradient(circle at top right, rgba(216, 169, 79, 0.18), transparent 30%),
+    linear-gradient(180deg, #101923 0%, #16242e 55%, #101923 100%);
+  --dashboard-sidebar: rgba(9, 22, 31, 0.96);
+}
