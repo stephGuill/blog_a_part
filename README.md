@@ -86,7 +86,7 @@ npm run fix          # corrige frontend + backend
   
   ## Descriptions de Ticket GitHub
   
-Branche : feat/profile-page
+Branche : feature/backend-migrations-jest
 
 Fichiers :
 - frontend/src/pages/dashboard/Profile/Profile.jsx
