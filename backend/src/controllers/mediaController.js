@@ -8,73 +8,67 @@
 
 const models = require("../models"); // On importe tous les modèles
 
-// Récupère tous les médias
+// browse(req, res) : récupère tous les médias
+// - Retourne la liste complète; filtrage/pagination non gérés ici
+// Exports: browse, read, edit, add, destroy
 const browse = (req, res) => {
-    // Appelle la méthode findAll() du MediaManager
     models.media
         .findAll()
         .then(([rows]) => {
-            // Renvoie la liste des médias
             res.send(rows);
         })
         .catch((err) => {
-            // En cas d'erreur serveur
             console.error(err);
             res.sendStatus(500);
         });
 };
 
-// Récupère un média par son id
+// read(req, res) : récupère un média par son id (404 si absent)
 const read = (req, res) => {
     models.media
         .find(req.params.id)
         .then(([rows]) => {
             if (rows[0] == null) {
-                // Si aucun média trouvé, renvoie 404
                 res.sendStatus(404);
             } else {
-                // Sinon, renvoie le média trouvé
                 res.send(rows[0]);
             }
         })
         .catch((err) => {
-            // En cas d'erreur serveur
             console.error(err);
             res.sendStatus(500);
         });
 };
 
-// Modifie un média existant
+// edit(req, res) : met à jour les métadonnées d'un média existant
+// - Body : champs modifiables (alt_text, metadata_json, etc.)
 const edit = (req, res) => {
-    const media = req.body; // Récupère les données envoyées
-    media.id = parseInt(req.params.id, 10); // Ajoute l'id à l'objet media
+    const media = req.body;
+    media.id = parseInt(req.params.id, 10);
 
-    // Appelle la méthode update() du MediaManager
     models.media
         .update(media)
         .then(([result]) => {
             if (result.affectedRows === 0) {
-                // Si aucun média modifié (id inexistant), renvoie 404
                 res.sendStatus(404);
             } else {
-                // Sinon, modification réussie
                 res.sendStatus(204);
             }
         })
         .catch((err) => {
-            // En cas d'erreur serveur
             console.error(err);
             res.sendStatus(500);
         });
 };
 
-// Ajoute un nouveau média
+// add(req, res) : ajoute un nouveau média depuis un upload multipart ou manuel
+// - Si `req.file` est présent, on extrait les métadonnées du fichier
+// - Body attendu : { blog_id, uploader_id?, metadata_json? }
 const add = (req, res) => {
-    const media = req.body; // Récupère les données envoyées
+    const media = req.body;
 
     if (req.file) {
-        // FR: Le fichier vient du champ multipart "file" et ne depasse pas 2 Mo.
-        // EN: The file comes from the multipart "file" field and is capped at 2 MB.
+        // Le fichier provient du champ multipart "file"
         media.file_path = `/uploads/${req.file.filename}`;
         media.file_name = req.file.originalname;
         media.mime_type = req.file.mimetype;
@@ -82,46 +76,38 @@ const add = (req, res) => {
     }
 
     media.uploader_id = req.user?.id || media.uploader_id;
-    media.metadata_json = media.metadata_json
-        ? JSON.stringify(media.metadata_json)
-        : JSON.stringify({ source: req.file ? "upload" : "manual" });
+    media.metadata_json = media.metadata_json ? JSON.stringify(media.metadata_json) : JSON.stringify({ source: req.file ? "upload" : "manual" });
 
     if (!media.blog_id || !media.file_path) {
         return res.status(400).json({
             status: "fail",
-            message: "blog_id et fichier sont requis."
+            message: "blog_id et fichier sont requis.",
         });
     }
 
-    // Appelle la méthode insert() du MediaManager
     models.media
         .insert(media)
         .then(([result]) => {
-            // Renvoie l'URL du nouveau média créé
             res.location(`/media/${result.insertId}`).sendStatus(201);
         })
         .catch((err) => {
-            // En cas d'erreur serveur
             console.error(err);
             res.sendStatus(500);
         });
 };
 
-// Supprime un média par son id
+// destroy(req, res) : supprime un média par son id
 const destroy = (req, res) => {
     models.media
         .delete(req.params.id)
         .then(([result]) => {
             if (result.affectedRows === 0) {
-                // Si aucun média supprimé (id inexistant), renvoie 404
                 res.sendStatus(404);
             } else {
-                // Sinon, suppression réussie
                 res.sendStatus(204);
             }
         })
         .catch((err) => {
-            // En cas d'erreur serveur
             console.error(err);
             res.sendStatus(500);
         });

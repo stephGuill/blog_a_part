@@ -1,3 +1,6 @@
+// Roles constants
+// - `GLOBAL_ROLES` : rôles globaux applicables à la plateforme
+// - `BLOG_ROLES` : rôles locaux au niveau d'un blog
 const GLOBAL_ROLES = {
   ADMIN: "admin",
   USER: "user",

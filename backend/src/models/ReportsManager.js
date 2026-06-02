@@ -1,15 +1,16 @@
 const AbstractManager = require("./AbstractManager");
 
 // ReportsManager.js
-// Manager pour la table `reports` (signalements). Permet d'insérer des rapports,
-// de lister les rapports d'un blog et de mettre à jour leur statut.
+// Manager pour la table `reports` (signalements).
+// Fournit insert, findByBlog et updateStatus avec commentaires ligne-par-ligne.
 
 class ReportsManager extends AbstractManager {
   constructor() {
+    // Indiquer la table 'reports'
     super({ table: "reports" });
   }
 
-  // insert(report): ajoute un signalement
+  // insert(report) : ajoute un signalement dans la table
   insert(report) {
     return this.database.query(
       `INSERT INTO ${this.table} (blog_id, reporter_user_id, target_type, target_id, reason, details, status) VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -17,12 +18,12 @@ class ReportsManager extends AbstractManager {
     );
   }
 
-  // findByBlog(blogId): récupère les rapports d'un blog
+  // findByBlog(blogId) : récupère les signalements d'un blog triés par date
   findByBlog(blogId) {
     return this.database.query(`SELECT * FROM ${this.table} WHERE blog_id = ? ORDER BY created_at DESC`, [blogId]);
   }
 
-  // updateStatus: met à jour le statut du rapport et enregistre le relecteur
+  // updateStatus(id, status, reviewerId) : met à jour le statut et qui a revu
   updateStatus(id, status, reviewerId) {
     return this.database.query(`UPDATE ${this.table} SET status = ?, reviewed_by = ?, reviewed_at = NOW() WHERE id = ?`, [status, reviewerId, id]);
   }

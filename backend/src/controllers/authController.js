@@ -3,15 +3,18 @@
 // - Fournit l'inscription (`signup`), la connexion (`signin`), la gestion
 //   de la double authentification (setup/verify/disable) et les callbacks OAuth.
 // - Délègue la logique métier à `AuthService` et formate les réponses HTTP.
+// Exports: signup, signin, verifyTwoFactorLogin, setupTwoFactor, verifyTwoFactorSetup,
+//          disableTwoFactor, oauthRedirect, oauthCallback, me
 const authService = require("../services/AuthService");
 const models = require("../models");
 const { getPermissionsForBlogRole } = require("../utils/permissions");
 
 // Récupère des métadonnées utiles pour les logs / sécurité (IP, user-agent)
+// - Utilisé par AuthService pour enregistrer la provenance des connexions
 function getRequestMeta(req) {
   return {
     ip: req.ip,
-    userAgent: req.get("user-agent")
+    userAgent: req.get("user-agent"),
   };
 }
 
@@ -22,6 +25,8 @@ const authValidationMessages = [
   "La confirmation"
 ];
 
+// isAuthValidationError(error): détecte si l'erreur provient d'une validation
+// métier (par ex. champs manquants) afin de renvoyer un 400 plutôt qu'un 500.
 function isAuthValidationError(error) {
   return authValidationMessages.some((message) => error.message?.startsWith(message));
 }
@@ -29,6 +34,8 @@ function isAuthValidationError(error) {
 // POST /api/auth/signup
 // FR: Inscrit un nouvel utilisateur dans la base avec un mot de passe haché.
 // EN: Registers a new user in the database with a hashed password.
+// Body attendu: { username, email, password, confirmPassword?, full_name?, ... }
+// - Accepte un fichier `req.file` optionnel (avatar) si upload middleware présent
 const signup = async (req, res) => {
   // const { username, email, password, full_name } = req.body;
   const {
@@ -110,6 +117,7 @@ const signup = async (req, res) => {
 // POST /api/auth/signin
 // FR: Authentifie l'utilisateur et renvoie un token JWT contenant son rôle.
 // EN: Authenticates the user and returns a JWT containing their role.
+// Body attendu: { login: string (email|username), password: string }
 const signin = async (req, res) => {
   const login = req.body.login || req.body.identifier;
   const { password } = req.body;
@@ -170,6 +178,8 @@ const signin = async (req, res) => {
   }
 };
 
+// verifyTwoFactorLogin(req, res): vérifie le code 2FA lors du login
+// - Body attendu: { temporaryToken: string, code: string }
 const verifyTwoFactorLogin = async (req, res) => {
   try {
     const { token, user, currentBlog, redirectTo } = await authService.verifyTwoFactorLogin(
@@ -194,6 +204,8 @@ const verifyTwoFactorLogin = async (req, res) => {
   }
 };
 
+// setupTwoFactor(req, res): commence la procédure d'activation 2FA
+// - Requiert que `req.user` soit présent (utilisateur connecté)
 const setupTwoFactor = async (req, res) => {
   try {
     const data = await authService.setupTwoFactor(req.user.id);
@@ -203,6 +215,9 @@ const setupTwoFactor = async (req, res) => {
   }
 };
 
+// verifyTwoFactorSetup(req, res): vérifie le code fourni durant l'activation 2FA
+// - Body attendu: { code: string }
+// - Requiert `req.user` connecté
 const verifyTwoFactorSetup = async (req, res) => {
   try {
     const data = await authService.verifyTwoFactorSetup(req.user.id, req.body.code, getRequestMeta(req));
@@ -216,6 +231,8 @@ const verifyTwoFactorSetup = async (req, res) => {
   }
 };
 
+// disableTwoFactor(req, res): désactive la 2FA pour l'utilisateur connecté
+// - Body peut contenir une raison/confirmation selon implémentation du service
 const disableTwoFactor = async (req, res) => {
   try {
     await authService.disableTwoFactor(req.user.id, req.body, getRequestMeta(req));
@@ -231,6 +248,8 @@ const disableTwoFactor = async (req, res) => {
   }
 };
 
+// oauthRedirect(provider): renvoie l'URL de redirection OAuth pour le provider
+// - provider: 'google' | 'facebook' | 'apple'
 const oauthRedirect = (provider) => (req, res) => {
   try {
     const url = authService.getOAuthRedirectUrl(provider, {
@@ -247,6 +266,8 @@ const oauthRedirect = (provider) => (req, res) => {
   }
 };
 
+// oauthCallback(provider): callback HTTP appelé par le provider OAuth
+// - Gère l'échange de code pour token et redirige vers le front en ajoutant `token` en query
 const oauthCallback = (provider) => async (req, res) => {
   try {
     const { token, redirectTo } = await authService.handleOAuthCallback(
@@ -267,6 +288,8 @@ const oauthCallback = (provider) => async (req, res) => {
   }
 };
 
+// me(req, res): retourne les informations de l'utilisateur courant + memberships
+// - Requiert `req.user` injecté par `protect` middleware
 const me = async (req, res) => {
   try {
     const [memberships] = await models.blogMembers.findByUser(req.user.id);

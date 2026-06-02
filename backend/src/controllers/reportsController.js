@@ -6,8 +6,9 @@
 // - Les erreurs sont loggées côté serveur pour le débogage.
 const models = require("../models");
 
-// Liste les signalements. Si l'utilisateur a le rôle global `admin`,
-// on retourne tous les signalements ; sinon on restreint au blog accessible.
+// browse(req, res) : liste des signalements.
+// - Si user.globalRole === 'admin' retourne tous les rapports, sinon ceux
+//   appartenant au blog que l'utilisateur peut administrer/modérer.
 const browse = async (req, res) => {
   try {
     const query =
@@ -22,6 +23,9 @@ const browse = async (req, res) => {
   }
 };
 
+// add(req, res) : crée un signalement
+// - Body requis : { target_type, target_id, reason, details?, blog_id? }
+// - reporter_user_id sera rempli depuis `req.user` si présent
 const add = async (req, res) => {
   const { blog_id, target_type, target_id, reason, details } = req.body;
 
@@ -36,7 +40,7 @@ const add = async (req, res) => {
       target_type,
       target_id,
       reason,
-      details
+      details,
     });
     return res.location(`/reports/${result.insertId}`).sendStatus(201);
   } catch (error) {
@@ -45,6 +49,9 @@ const add = async (req, res) => {
   }
 };
 
+// moderate(req, res) : modère un signalement (changer son statut)
+// - Body : { status: 'pending'|'reviewed'|'rejected'|'resolved' }
+// - Enregistre également un audit log de l'action
 const moderate = async (req, res) => {
   const { status } = req.body;
   const allowed = ["pending", "reviewed", "rejected", "resolved"];
@@ -60,7 +67,7 @@ const moderate = async (req, res) => {
       target_type: "report",
       target_id: Number(req.params.id),
       action: "report:moderate",
-      metadata_json: { status }
+      metadata_json: { status },
     });
     return res.sendStatus(204);
   } catch (error) {

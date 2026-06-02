@@ -6,6 +6,7 @@ const AbstractManager = require("./AbstractManager");
 
 class BlogMembersManager extends AbstractManager {
   constructor() {
+    // Indiquer la table 'blog_members' au parent
     super({ table: "blog_members" });
   }
 
@@ -30,7 +31,7 @@ class BlogMembersManager extends AbstractManager {
     return this.database.query(`SELECT * FROM ${this.table} WHERE user_id = ? AND blog_id = ? AND status = 'active'`, [userId, blogId]);
   }
 
-  // findByBlog: liste les membres d'un blog avec infos utilisateur
+  // findByBlog: liste les membres d'un blog avec informations utilisateur jointes
   findByBlog(blogId) {
     return this.database.query(
       `SELECT bm.*, u.username, u.email, u.full_name FROM ${this.table} bm JOIN users u ON u.id = bm.user_id WHERE bm.blog_id = ? ORDER BY bm.role, u.username`,
@@ -38,7 +39,7 @@ class BlogMembersManager extends AbstractManager {
     );
   }
 
-  // findByUser: liste les blogs accessibles par un utilisateur
+  // findByUser: liste les blogs accessibles par un utilisateur (statut actif)
   findByUser(userId) {
     return this.database.query(
       `SELECT bm.*, b.name AS blog_name, b.slug AS blog_slug FROM ${this.table} bm JOIN blogs b ON b.id = bm.blog_id WHERE bm.user_id = ? AND bm.status = 'active' ORDER BY b.updated_at DESC`,

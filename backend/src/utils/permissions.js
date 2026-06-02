@@ -1,3 +1,7 @@
+// Permissions map and helpers
+// - Définit les constantes de permission (chaînes littérales) utilisées partout.
+// - Mappe les rôles de blog aux permissions applicables.
+// - Exporte des helpers: getPermissionsForBlogRole(role), hasGlobalAdminAccess(user)
 const { BLOG_ROLES, GLOBAL_ROLES } = require("./roles");
 
 const PERMISSIONS = {

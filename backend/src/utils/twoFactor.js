@@ -1,3 +1,8 @@
+// Utilities for Two-Factor Authentication (TOTP)
+// - Implements a minimal Base32 encoder/decoder and TOTP generation/verification
+// - Exports: generateSecret(), generateTotp(), verifyTotp(), createOtpAuthUrl(), generateRecoveryCodes()
+// - verifyTotp(secret, code, window) supports a small validation window (default 1)
+const crypto = require("node:crypto");
 const crypto = require("node:crypto");
 
 const BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";

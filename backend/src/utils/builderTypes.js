@@ -1,3 +1,6 @@
+// Builder type constants
+// - Définit les types et valeurs autorisées pour le Page Builder (pages, sections, blocs, médias)
+// - Utiliser `isAllowed(value, allowedValues)` pour valider une valeur contre une constante.
 const BUILDER_PAGE_TYPES = Object.freeze(["page", "post", "article", "landing"]);
 const BUILDER_PAGE_STATUSES = Object.freeze(["draft", "published", "archived"]);
 const BUILDER_SECTION_TYPES = Object.freeze([

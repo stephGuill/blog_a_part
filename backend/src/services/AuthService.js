@@ -201,6 +201,19 @@ async function verifyAppleIdToken(idToken, audience) {
 
 // FR: Service métier pour l'authentification.
 // EN: Business service for authentication.
+// Méthodes principales (résumé):
+// - signup(payload, avatarFile, meta): créer un utilisateur local (vérifie les consentements légaux).
+// - signin(identifier, password, meta): authentifier un utilisateur et retourner token ou token temporaire 2FA.
+// - verifyTwoFactorLogin(temporaryToken, code, meta): valider code TOTP et retourner access token.
+// - setupTwoFactor(userId): générer secret temporaire pour configuration 2FA (otpauth URL).
+// - verifyTwoFactorSetup(userId, code, meta): confirmer la configuration 2FA et générer recovery codes.
+// - disableTwoFactor(userId, {password, code}, meta): désactiver 2FA après vérification.
+// - getOAuthRedirectUrl(provider, legalState): construire l'URL d'autorisation OAuth pour le provider.
+// - handleOAuthCallback(provider, {code, state}, meta): finaliser le flux OAuth et créer/utiliser l'utilisateur.
+// - fetchOAuthProfile(provider, code): échange du token et normalisation du profil fournisseur.
+// Notes:
+// - Ce service utilise `models` pour la persistence et écrit des audit logs via `writeAudit()`.
+// - Les helpers en haut de fichier (verifyPassword, createAccessToken...) encapsulent la logique sécurité.
 class AuthService {
   async signup(payload, avatarFile = null, meta = {}) {
     const validationError = validateRegisterPayload(payload);

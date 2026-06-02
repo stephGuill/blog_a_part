@@ -80,7 +80,13 @@ function normalizeBlock(row) {
     is_visible: Boolean(row.is_visible),
   };
 }
+}
 
+// Service métier pour le Page Builder
+// - Gère pages, sections, blocs et l'upload de médias pour le builder visuel
+// - Méthodes importantes : listPages, getPage, createPage, updatePage, archivePage
+//   createSection/updateSection/deleteSection, createBlock/updateBlock/deleteBlock
+//   reorderSections/reorderBlocks, saveLayout, publishPage, unpublishPage, uploadMedia
 class BuilderService {
   async logAction({ actorUserId, targetType, targetId, action, metadata }) {
     await models.auditLogs.insert({

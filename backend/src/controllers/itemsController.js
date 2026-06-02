@@ -1,9 +1,16 @@
 // itemsController.js
 // Contrôleur : gestion des entités "item" (CRUD basique)
 // - Délègue la persistence à `models.item` et se charge des réponses HTTP.
+// Fonctions exposées:
+// - browse(req,res): liste tous les items
+// - read(req,res): récupère un item par id
+// - edit(req,res): met à jour un item
+// - add(req,res): crée un nouvel item
+// - destroy(req,res): supprime un item
 const models = require("../models");
 
-// Récupère tous les items
+// browse(req, res) : retourne la liste des items
+// - Utilisé généralement pour l'admin/global listing
 const browse = (req, res) => {
   models.item
     .findAll()
@@ -16,6 +23,7 @@ const browse = (req, res) => {
     });
 };
 
+// read(req, res) : lit un item par id (404 si absent)
 const read = (req, res) => {
   models.item
     .find(req.params.id)
@@ -32,6 +40,7 @@ const read = (req, res) => {
     });
 };
 
+// edit(req, res) : met à jour un item
 const edit = (req, res) => {
   const item = req.body;
 
@@ -54,6 +63,8 @@ const edit = (req, res) => {
     });
 };
 
+// add(req, res) : crée un nouvel item
+// - Sérialise les champs JSON côté modèle si nécessaire
 const add = (req, res) => {
   const item = req.body;
 
@@ -70,6 +81,7 @@ const add = (req, res) => {
     });
 };
 
+// destroy(req, res) : supprime un item par id
 const destroy = (req, res) => {
   models.item
     .delete(req.params.id)

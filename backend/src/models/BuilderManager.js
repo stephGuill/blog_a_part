@@ -3,10 +3,12 @@ const AbstractManager = require("./AbstractManager");
 // BuilderManager.js
 // Manager pour les entités du constructeur de pages (builder): pages, sections, blocks.
 // Fournit des opérations CRUD et utilitaires pour les pages construites dynamiquement.
+// Remarques : plusieurs colonnes stockent des objets JSON (layout_json, grid_config, style_json,
+// settings_json, content_json). Ce manager sérialise ces objets avant insertion/update.
 
 class BuilderManager extends AbstractManager {
-  // table principale : builder_pages
   constructor() {
+    // table principale : builder_pages
     super({ table: "builder_pages" });
   }
 
@@ -42,8 +44,10 @@ class BuilderManager extends AbstractManager {
         page.slug,
         page.type,
         page.status,
+        // champs SEO optionnels
         page.seo_title || null,
         page.seo_description || null,
+        // layout_json : on sérialise l'objet JS en chaîne JSON si présent
         page.layout_json ? JSON.stringify(page.layout_json) : null,
       ]
     );
@@ -59,8 +63,10 @@ class BuilderManager extends AbstractManager {
         page.slug,
         page.type,
         page.status,
+        // champs SEO optionnels
         page.seo_title || null,
         page.seo_description || null,
+        // sérialisation de layout_json
         page.layout_json ? JSON.stringify(page.layout_json) : null,
         page.blog_id,
         page.id,
@@ -73,6 +79,7 @@ class BuilderManager extends AbstractManager {
       `UPDATE builder_pages
        SET layout_json = ?
        WHERE blog_id = ? AND id = ?`,
+      // layoutJson attendu comme objet JS ; on le sérialise
       [layoutJson ? JSON.stringify(layoutJson) : null, blogId, pageId]
     );
   }
@@ -131,6 +138,7 @@ class BuilderManager extends AbstractManager {
         section.section_type,
         section.name || null,
         section.sort_order || 0,
+        // grid_config, style_json, settings_json : objets sérialisés
         section.grid_config ? JSON.stringify(section.grid_config) : null,
         section.style_json ? JSON.stringify(section.style_json) : null,
         section.settings_json ? JSON.stringify(section.settings_json) : null,
@@ -149,6 +157,7 @@ class BuilderManager extends AbstractManager {
         section.section_type,
         section.name || null,
         section.sort_order || 0,
+        // sérialisation des champs JSON avant update
         section.grid_config ? JSON.stringify(section.grid_config) : null,
         section.style_json ? JSON.stringify(section.style_json) : null,
         section.settings_json ? JSON.stringify(section.settings_json) : null,
@@ -204,6 +213,7 @@ class BuilderManager extends AbstractManager {
         block.parent_block_id || null,
         block.block_type,
         block.name || null,
+        // content_json/style_json/settings_json : objets convertis en JSON
         block.content_json ? JSON.stringify(block.content_json) : null,
         block.style_json ? JSON.stringify(block.style_json) : null,
         block.settings_json ? JSON.stringify(block.settings_json) : null,
@@ -222,6 +232,7 @@ class BuilderManager extends AbstractManager {
         block.parent_block_id || null,
         block.block_type,
         block.name || null,
+        // sérialisation des champs JSON
         block.content_json ? JSON.stringify(block.content_json) : null,
         block.style_json ? JSON.stringify(block.style_json) : null,
         block.settings_json ? JSON.stringify(block.settings_json) : null,

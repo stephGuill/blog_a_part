@@ -1,43 +1,30 @@
 // MediaManager.js
-// Ce fichier gère les requêtes SQL pour l'entité media en mode orienté objet
+// Manager pour la table `media`.
+// Chaque méthode transforme éventuellement des objets JS en JSON et exécute
+// une requête paramétrée via `this.database.query`.
 
 const AbstractManager = require("./AbstractManager");
 
 class MediaManager extends AbstractManager {
     constructor() {
-        // On précise le nom de la table SQL à utiliser
+        // Indique la table 'media' au constructeur parent
         super({ table: "media" });
     }
 
-    // Crée un nouveau média
+    // insert(media) : insère un nouveau média
     insert(media) {
-        // blog_id : id du blog, uploader_id : id de l'uploader, file_path, file_name, mime_type, size_bytes, alt_text, metadata_json
+        // Paramétrage des valeurs : éviter l'injection SQL
         return this.database.query(
-            `INSERT INTO ${this.table} (blog_id, uploader_id, file_path, file_name, mime_type, size_bytes, alt_text, metadata_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [
-                media.blog_id,
-                media.uploader_id,
-                media.file_path,
-                media.file_name,
-                media.mime_type,
-                media.size_bytes,
-                media.alt_text,
-                media.metadata_json
-            ]
+            `INSERT INTO ${this.table} (blog_id, uploader_id, file_path, file_name, mime_type, size_bytes, alt_text, metadata_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [media.blog_id, media.uploader_id, media.file_path, media.file_name, media.mime_type, media.size_bytes, media.alt_text, media.metadata_json]
         );
     }
 
-    // Met à jour un média existant
+    // update(media) : met à jour un média existant (par id)
     update(media) {
         return this.database.query(
-            `UPDATE ${this.table} SET file_path = ?, file_name = ?, mime_type = ?, size_bytes = ?, alt_text = ?, metadata_json = ? WHERE id = ?`, [
-                media.file_path,
-                media.file_name,
-                media.mime_type,
-                media.size_bytes,
-                media.alt_text,
-                media.metadata_json,
-                media.id
-            ]
+            `UPDATE ${this.table} SET file_path = ?, file_name = ?, mime_type = ?, size_bytes = ?, alt_text = ?, metadata_json = ? WHERE id = ?`,
+            [media.file_path, media.file_name, media.mime_type, media.size_bytes, media.alt_text, media.metadata_json, media.id]
         );
     }
 

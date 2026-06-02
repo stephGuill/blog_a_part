@@ -9,6 +9,16 @@ const {
   BLOCKING_STATUSES,
 } = require("../utils/adminUsers");
 
+// Service d'administration des utilisateurs
+// - Fournit l'ensemble des opérations métiers utilisées par l'interface admin
+// - Méthodes clés :
+//   * getFilterOptions(), validateListQuery(), list(query)
+//   * getTargetUser(userId)
+//   * ensureCanChangeRole(actor, target, nextRole)
+//   * ensureCanChangeStatus(actor, target, nextStatus)
+//   * log(req, target, action, oldValues, newValues, reason)
+//   * updateRole(), updateStatus(), bulkUpdate()
+// - Les erreurs métiers sont levées via `makeError(message, status)`.
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 20;
 const MAX_BULK_USERS = 100;

@@ -1,3 +1,6 @@
+// Validation helpers for authentication payloads
+// - Patterns exported for reuse in tests/clients
+// - Helpers: stripHtml(), validateRegisterPayload(payload), validateLoginPayload(payload)
 const USERNAME_PATTERN = /^[a-zA-Z0-9_-]{3,30}$/;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;

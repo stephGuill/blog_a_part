@@ -1,3 +1,5 @@
+// Allowed CSS-like style properties and sanitizer for builder styling JSON.
+// - `sanitizeStyleJson` filtre les clés/valeurs pour éviter l'injection CSS/HTML
 const ALLOWED_STYLE_PROPERTIES = Object.freeze([
   "alignItems",
   "backgroundColor",

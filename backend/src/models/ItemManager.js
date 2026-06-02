@@ -1,8 +1,8 @@
 const AbstractManager = require("./AbstractManager");
 
 // ItemManager.js
-// Manager générique pour une table `item` (exemple minimal).
-// Fournit insert et update pour la colonne `title`.
+// Manager minimal pour la table `item`. Exemple de pattern Insert/Update simple.
+// Utilisé comme référence ou placeholder pour des entités légères.
 
 class ItemManager extends AbstractManager {
   constructor() {
