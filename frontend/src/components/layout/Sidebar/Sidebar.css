@@ -1,0 +1,201 @@
+.dashboard-sidebar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sidebar);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 24px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 30% 0%, rgba(255, 214, 165, 0.22), transparent 32%),
+    var(--dashboard-sidebar);
+  color: #fff;
+  transition: padding 220ms ease;
+}
+
+.dashboard-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 24px;
+  padding: 12px;
+  background: var(--dashboard-sidebar-soft);
+  overflow: hidden;
+}
+
+.dashboard-brand__mark {
+  flex: 0 0 46px;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--gradient-editorial);
+  font-weight: 900;
+}
+
+.dashboard-brand__text {
+  min-width: 0;
+  white-space: nowrap;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.dashboard-brand strong,
+.dashboard-brand small {
+  display: block;
+}
+
+.dashboard-brand small {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.76rem;
+}
+
+.dashboard-sidebar__toggle {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  align-self: flex-end;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.dashboard-sidebar__toggle:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.dashboard-nav {
+  display: grid;
+  gap: 22px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.dashboard-nav__group {
+  display: grid;
+  gap: 8px;
+}
+
+.dashboard-nav__label {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: opacity 160ms ease;
+}
+
+.dashboard-nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 16px;
+  padding: 11px 12px;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 760;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.dashboard-nav__link span {
+  min-width: 0;
+  white-space: nowrap;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.dashboard-nav__link:hover,
+.dashboard-nav__link.is-active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+.dashboard-sidebar.is-compact {
+  align-items: center;
+  gap: 18px;
+  padding: 18px 14px;
+}
+
+.dashboard-sidebar.is-compact .dashboard-brand {
+  justify-content: center;
+  padding: 10px;
+}
+
+.dashboard-sidebar.is-compact .dashboard-brand__text,
+.dashboard-sidebar.is-compact .dashboard-nav__label,
+.dashboard-sidebar.is-compact .dashboard-nav__link span {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-6px);
+}
+
+.dashboard-sidebar.is-compact .dashboard-sidebar__toggle {
+  align-self: center;
+}
+
+.dashboard-sidebar.is-compact .dashboard-nav {
+  width: 100%;
+  padding-right: 0;
+}
+
+.dashboard-sidebar.is-compact .dashboard-nav__group {
+  justify-items: center;
+}
+
+.dashboard-sidebar.is-compact .dashboard-nav__link {
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+
+.dashboard-sidebar.is-compact .dashboard-nav__link::after {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  z-index: 30;
+  min-width: max-content;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px 10px;
+  background: var(--dashboard-sidebar);
+  box-shadow: var(--shadow-lift);
+  color: #fff;
+  content: attr(data-label);
+  font-size: 0.76rem;
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(4px, -50%);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.dashboard-sidebar.is-compact .dashboard-nav__link:hover::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+@media (max-width: 980px) {
+  .dashboard-sidebar {
+    min-height: 100vh;
+    padding: 14px 10px;
+  }
+
+  .dashboard-nav {
+    display: grid;
+    gap: 14px;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .dashboard-nav__group {
+    min-width: 0;
+  }
+}

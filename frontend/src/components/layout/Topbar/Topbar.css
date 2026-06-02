@@ -1,0 +1,147 @@
+.topbar {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 14px 16px;
+  background: var(--color-card-strong);
+  box-shadow: var(--shadow-small);
+  backdrop-filter: blur(18px);
+}
+
+.topbar h1 {
+  margin: 3px 0 0;
+  color: var(--text-main);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.topbar__tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar__search {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0 14px;
+  background: var(--input-bg);
+  color: var(--text-muted);
+}
+
+.topbar__search input {
+  width: 180px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--input-text);
+}
+
+.topbar__search input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.topbar__icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.topbar__icon:hover {
+  transform: translateY(-1px);
+  border-color: rgba(82, 125, 166, 0.38);
+  color: var(--color-sky-deep);
+}
+
+.topbar__theme,
+.topbar__language {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0 13px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 0.78rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.topbar__theme:hover,
+.topbar__language:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-small);
+}
+
+.topbar__language select {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--input-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.topbar__language option {
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+.topbar__logout {
+  border-color: rgba(220, 76, 76, 0.34);
+  background: rgba(220, 76, 76, 0.12);
+  color: var(--color-danger);
+}
+
+.topbar__logout:hover {
+  border-color: rgba(220, 76, 76, 0.5);
+  color: var(--color-danger);
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar__tools {
+    width: 100%;
+  }
+
+  .topbar__search {
+    flex: 1;
+  }
+
+  .topbar__search input {
+    width: 100%;
+  }
+
+  .topbar__tools {
+    flex-wrap: wrap;
+  }
+
+  .topbar__language,
+  .topbar__theme {
+    flex: 1;
+    justify-content: center;
+  }
+}
