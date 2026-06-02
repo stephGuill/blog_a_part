@@ -1,0 +1,48 @@
+.badge {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 0 10px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge--neutral {
+  background: var(--color-chip);
+  color: var(--color-navy);
+}
+
+.badge--dark,
+.badge--admin {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+.badge--owner,
+.badge--warning {
+  background: rgba(216, 169, 79, 0.18);
+  color: #7a5a10;
+}
+
+.badge--editor,
+.badge--info {
+  background: rgba(167, 199, 231, 0.36);
+  color: var(--color-sky-deep);
+}
+
+.badge--moderator,
+.badge--success {
+  background: rgba(143, 185, 150, 0.22);
+  color: #416e49;
+}
+
+.badge--danger {
+  background: rgba(220, 76, 76, 0.14);
+  color: var(--color-danger);
+}
