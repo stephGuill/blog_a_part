@@ -1,15 +1,20 @@
+/* ===== TABLEAU DE BORD ADMINISTRATEUR ===== */
+
+/* Grille de statistiques : auto-fit avec largeur minimum 170px par carte */
 .admin-dashboard__stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 16px;
 }
 
+/* Ligne supérieure d'une carte stat : icône à gauche, badge tendance à droite */
 .admin-stat__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Conteneur d'icône : carré 42px centré, fond dégradé, coins arrondis */
 .admin-stat__icon {
   display: grid;
   width: 42px;
@@ -20,6 +25,7 @@
   color: var(--color-navy);
 }
 
+/* Valeur principale de la carte analytique : grande taille, fonte display, navy */
 .analytics-card strong {
   display: block;
   margin-top: 24px;
@@ -29,28 +35,34 @@
   line-height: 1;
 }
 
+/* Libellé secondaire de la carte analytique : texte atténué, semi-gras */
 .analytics-card > span {
   color: var(--color-muted);
   font-weight: 750;
 }
 
+/* Section bento : marge supérieure pour séparer des stats */
 .admin-dashboard__bento {
   margin-top: 18px;
 }
 
+/* Carte graphique éditorial : s'étale sur 7 colonnes de la grille */
 .platform-chart {
   grid-column: span 7;
 }
 
+/* Carte santé plateforme : s'étale sur 5 colonnes */
 .platform-health {
   grid-column: span 5;
 }
 
+/* Carte activité et top blogs : chacune s'étale sur 6 colonnes (demi-ligne) */
 .activity-panel,
 .top-blogs {
   grid-column: span 6;
 }
 
+/* Titres dans les cartes bento : police display, taille 1.8rem, navy */
 .platform-chart h2,
 .platform-health h2 {
   margin: 8px 0 0;
@@ -59,6 +71,7 @@
   font-size: 1.8rem;
 }
 
+/* Conteneur du mini-graphique : grille 7 colonnes, hauteur fixe, barres alignées en bas */
 .mini-chart {
   display: grid;
   height: 220px;
@@ -68,6 +81,7 @@
   margin-top: 26px;
 }
 
+/* Barre du mini-graphique : dégradé coral→peach, coins arrondis en capsule */
 .mini-chart__bar {
   min-height: 34px;
   border-radius: 999px 999px 12px 12px;
@@ -75,6 +89,7 @@
   box-shadow: 0 12px 30px rgba(255, 103, 79, 0.18);
 }
 
+/* Ligne de données dans les cartes santé / activité / top-blogs */
 .health-row,
 .activity-row,
 .top-blog-row {
@@ -86,6 +101,7 @@
   padding: 14px 0;
 }
 
+/* Texte avec icône dans health-row et activity-row : flex + encre + demi-gras */
 .health-row span,
 .activity-row span {
   display: flex;
@@ -95,16 +111,20 @@
   font-weight: 760;
 }
 
+/* Horodatage et vues dans activity/top-blog : texte atténué */
 .activity-row small,
 .top-blog-row span {
   color: var(--color-muted);
 }
 
+/* Nom du blog dans top-blog-row : texte navy gras */
 .top-blog-row strong {
   color: var(--color-navy);
 }
 
+/* ===== RESPONSIVE : écrans ≤ 900px ===== */
 @media (max-width: 900px) {
+  /* Toutes les cartes bento passent sur une seule colonne sur mobile */
   .platform-chart,
   .platform-health,
   .activity-panel,

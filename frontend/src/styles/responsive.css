@@ -1,0 +1,199 @@
+/* FR: Breakpoints mobile-first pour garder une progression claire.
+   EN: Mobile-first breakpoints keep spacing and density predictable. */
+
+@media (min-width: 560px) {
+  :root {
+    --text-hero: clamp(2.95rem, 8vw, 3.85rem);
+    --text-page: clamp(2.45rem, 6.8vw, 3.2rem);
+    --text-card: clamp(1.42rem, 4vw, 1.7rem);
+    --text-lead: 1.05rem;
+  }
+
+  .card-grid,
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-nav a {
+    padding: 0 15px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 540px) and (max-width: 960px) {
+  :root {
+    --space-section: 30px;
+    --text-hero: clamp(2rem, 6vw, 2.8rem);
+    --text-page: clamp(1.85rem, 5.4vw, 2.45rem);
+  }
+
+  .site-header__inner {
+    min-height: 52px;
+    padding-block: 6px;
+  }
+
+  .section,
+  .by-page {
+    padding-block: 26px;
+  }
+
+  .hero-grid,
+  .contact-grid,
+  .detail-grid {
+    gap: 18px;
+  }
+
+  .actions {
+    margin-top: 18px;
+  }
+}
+
+@media (min-width: 760px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .meta-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .panel,
+  .content-card,
+  .blog-card,
+  .stat-card,
+  .form-card,
+  .analytics-card,
+  .card-shell {
+    padding: clamp(22px, 3vw, 28px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --text-hero: clamp(4rem, 5.2vw, 4.85rem);
+    --text-page: clamp(3.35rem, 4.3vw, 4rem);
+    --text-card: clamp(1.62rem, 2vw, 1.86rem);
+    --text-lead: 1.08rem;
+  }
+
+  .section {
+    padding: var(--space-section) 0 clamp(48px, 6vw, 72px);
+  }
+
+  .hero-grid,
+  .detail-grid,
+  .contact-grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.75fr);
+    align-items: center;
+    gap: 54px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .meta-grid {
+    grid-template-columns: 1.4fr 0.85fr;
+  }
+
+  .panel,
+  .form-card {
+    padding: 30px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --container-page: min(1200px, calc(100% - 72px));
+    --container-wide: min(1360px, calc(100% - 88px));
+    --text-hero: clamp(4.55rem, 4.5vw, 5.75rem);
+    --text-page: clamp(3.75rem, 3.8vw, 4.75rem);
+  }
+
+  .section {
+    padding-block: clamp(76px, 7vw, 104px);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --container-page: min(1280px, calc(100% - 112px));
+    --container-wide: min(1480px, calc(100% - 128px));
+  }
+
+  .hero-grid,
+  .detail-grid,
+  .contact-grid {
+    gap: 72px;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --space-section: 38px;
+    --text-hero: clamp(2.12rem, 10.8vw, 2.38rem);
+    --text-page: clamp(1.96rem, 9.5vw, 2.18rem);
+    --text-card: clamp(1.24rem, 6vw, 1.32rem);
+    --text-lead: 0.96rem;
+    --radius-card: 20px;
+  }
+
+  .site-header__inner,
+  .section,
+  .site-footer__inner {
+    width: var(--container-page);
+  }
+
+  .main-nav {
+    gap: 6px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .main-nav a {
+    min-height: 36px;
+    padding: 0 9px;
+    font-size: 0.62rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-card__meta {
+    grid-template-columns: 1fr;
+  }
+
+  .panel,
+  .content-card,
+  .blog-card,
+  .stat-card,
+  .form-card {
+    padding: 20px;
+  }
+
+  .actions .button {
+    width: 100%;
+  }
+
+  .by-container,
+  .by-section,
+  .by-page {
+    width: var(--container-page);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

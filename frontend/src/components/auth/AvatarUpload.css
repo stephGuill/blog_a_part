@@ -1,79 +1,89 @@
+/* Conteneur principal du composant d'upload d'avatar */
+/* position: relative permet de positionner absolument le bouton de suppression */
 .avatar-upload {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 14px;
-  align-items: center;
-  border: 1px dashed color-mix(in srgb, var(--color-sky-deep) 42%, var(--border-color));
-  border-radius: 20px;
-  padding: 14px;
-  background: color-mix(in srgb, var(--bg-card) 82%, var(--color-sky) 18%);
+  position: relative; /* Référence pour le positionnement absolu du bouton .avatar-upload__clear */
+  display: grid; /* Mise en page en grille pour aligner prévisualisation et contenu */
+  grid-template-columns: auto minmax(0, 1fr); /* Colonne auto pour l'image, colonne flexible pour le contenu */
+  gap: 14px; /* Espace entre la prévisualisation et le contenu textuel */
+  align-items: center; /* Centrage vertical des éléments sur l'axe transversal */
+  border: 1px dashed color-mix(in srgb, var(--color-sky-deep) 42%, var(--border-color)); /* Bordure pointillée avec mélange de couleurs CSS */
+  border-radius: 20px; /* Coins arrondis pour un aspect carte moderne */
+  padding: 14px; /* Espacement interne uniforme */
+  background: color-mix(in srgb, var(--bg-card) 82%, var(--color-sky) 18%); /* Fond légèrement teinté de bleu */
 }
 
+/* Zone de prévisualisation de l'avatar (carré arrondi) */
 .avatar-upload__preview {
-  display: grid;
-  place-items: center;
-  width: 72px;
-  height: 72px;
-  border-radius: 22px;
-  background: var(--bg-card);
-  color: var(--color-sky-deep);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  display: grid; /* Grille pour centrer l'icône ou l'image */
+  place-items: center; /* Centrage horizontal ET vertical en une seule propriété */
+  width: 72px; /* Largeur fixe de la zone de prévisualisation */
+  height: 72px; /* Hauteur fixe — ratio 1:1 pour une forme carrée */
+  border-radius: 22px; /* Coins très arrondis pour un aspect "superellipse" */
+  background: var(--bg-card); /* Fond de la zone d'aperçu */
+  color: var(--color-sky-deep); /* Couleur de l'icône par défaut (quand pas d'image) */
+  overflow: hidden; /* Cache les débordements de l'image (nécessaire pour border-radius) */
+  box-shadow: var(--shadow-soft); /* Ombre douce pour donner de la profondeur */
 }
 
+/* Image d'aperçu — couvre entièrement la zone de prévisualisation */
 .avatar-upload__preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; /* Occupe toute la largeur disponible */
+  height: 100%; /* Occupe toute la hauteur disponible */
+  object-fit: cover; /* Recadre l'image sans déformation pour remplir la zone */
 }
 
+/* Conteneur du label-bouton et du texte d'aide */
 .avatar-upload__content {
-  display: grid;
-  gap: 6px;
-  min-width: 0;
+  display: grid; /* Empile le bouton et le texte verticalement */
+  gap: 6px; /* Petit espace entre le bouton et le texte descriptif */
+  min-width: 0; /* Évite le débordement du texte dans les grilles */
 }
 
+/* L'input file est masqué visuellement — accessible uniquement via le label */
+/* Technique d'accessibilité : masqué mais fonctionnel, pas display:none */
 .avatar-upload__content input {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  opacity: 0;
-  pointer-events: none;
+  position: absolute; /* Sort du flux normal */
+  inline-size: 1px; /* Largeur minimale de 1px (0px peut poser des problèmes d'accessibilité) */
+  block-size: 1px; /* Hauteur minimale de 1px */
+  opacity: 0; /* Totalement transparent */
+  pointer-events: none; /* Désactive les interactions souris/tactile directes */
 }
 
+/* Label stylisé en bouton pour déclencher la sélection de fichier */
 .avatar-upload__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  border-radius: 999px;
-  padding: 10px 14px;
-  background: var(--color-ink);
-  color: var(--color-cream);
-  font-weight: 900;
-  cursor: pointer;
+  display: inline-flex; /* Inline pour s'adapter au contenu, flex pour aligner icône et texte */
+  align-items: center; /* Centrage vertical de l'icône et du texte */
+  justify-content: center; /* Centrage horizontal */
+  gap: 8px; /* Espace entre l'icône et le texte */
+  width: fit-content; /* S'adapte exactement au contenu */
+  border-radius: 999px; /* Forme pilule (pill) — coins entièrement arrondis */
+  padding: 10px 14px; /* Espacement interne confortable */
+  background: var(--color-ink); /* Fond sombre (couleur d'encre du thème) */
+  color: var(--color-cream); /* Texte clair sur fond sombre */
+  font-weight: 900; /* Texte très gras pour l'emphase */
+  cursor: pointer; /* Curseur pointer pour indiquer l'interactivité */
 }
 
+/* Texte d'aide sous le bouton (formats et taille max) */
 .avatar-upload__content p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  font-weight: 700;
+  margin: 0; /* Supprime la marge par défaut des paragraphes */
+  color: var(--text-muted); /* Couleur atténuée pour un texte secondaire */
+  font-size: 0.88rem; /* Légèrement plus petit que le corps du texte */
+  font-weight: 700; /* Semi-gras */
 }
 
+/* Bouton de suppression de l'avatar positionné en haut à droite du conteneur */
 .avatar-upload__clear {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: var(--bg-card);
-  color: var(--color-danger);
-  cursor: pointer;
+  position: absolute; /* Positionné par rapport à .avatar-upload (position: relative) */
+  top: 10px; /* Distance depuis le bord supérieur du conteneur */
+  right: 10px; /* Distance depuis le bord droit du conteneur */
+  display: inline-grid; /* Grille pour centrer l'icône X */
+  place-items: center; /* Centrage de l'icône dans le bouton */
+  width: 30px; /* Dimension du bouton — carré */
+  height: 30px; /* Dimension du bouton — carré */
+  border: 1px solid var(--border-color); /* Bordure légère */
+  border-radius: 999px; /* Bouton circulaire */
+  background: var(--bg-card); /* Fond du bouton */
+  color: var(--color-danger); /* Croix en rouge pour indiquer une action destructive */
+  cursor: pointer; /* Curseur pointer */
 }

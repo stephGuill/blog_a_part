@@ -1,39 +1,45 @@
+/* Conteneur principal du formulaire — grille verticale avec espacement adaptatif */
 .form-card {
-  display: grid;
-  gap: clamp(14px, 3vw, 18px);
-  max-width: 680px;
+  display: grid; /* Empile les éléments du formulaire verticalement */
+  gap: clamp(14px, 3vw, 18px); /* Espacement adaptatif : entre 14px et 18px selon la largeur viewport */
+  max-width: 680px; /* Largeur maximale pour la lisibilité sur grands écrans */
 }
 
+/* Message d'erreur affiché en haut du formulaire */
 .auth-error {
-  border: 1px solid rgba(220, 76, 76, 0.28);
-  border-radius: 14px;
-  padding: 10px 12px;
-  background: rgba(220, 76, 76, 0.08);
-  color: var(--color-danger);
-  font-weight: 800;
+  border: 1px solid rgba(220, 76, 76, 0.28); /* Bordure rouge semi-transparente */
+  border-radius: 14px; /* Coins arrondis cohérents */
+  padding: 10px 12px; /* Espacement interne */
+  background: rgba(220, 76, 76, 0.08); /* Fond rouge très léger */
+  color: var(--color-danger); /* Texte en rouge danger */
+  font-weight: 800; /* Texte en gras pour attirer l'attention */
 }
 
+/* Conteneur du lien "Mot de passe oublié ?" aligné à droite */
 .auth-form__links {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -6px;
+  display: flex; /* Flex pour contrôler l'alignement */
+  justify-content: flex-end; /* Aligne le lien à droite */
+  margin-top: -6px; /* Remonte légèrement pour réduire l'espace visuel sous le champ */
 }
 
+/* Liens dans la zone des liens et dans le bas du formulaire — style commun */
 .auth-form__links a,
 .auth-form__switch a {
-  color: var(--color-sky-deep);
-  font-weight: 900;
-  text-decoration: none;
+  color: var(--color-sky-deep); /* Couleur bleue pour identifier les liens */
+  font-weight: 900; /* Liens en gras */
+  text-decoration: none; /* Supprime le soulignement natif */
 }
 
+/* Changement de couleur au survol des liens */
 .auth-form__links a:hover,
 .auth-form__switch a:hover {
-  color: var(--color-ink);
+  color: var(--color-ink); /* Couleur d'encre (plus foncée) au survol */
 }
 
+/* Paragraphe en bas du formulaire "Pas encore de compte ?" */
 .auth-form__switch {
-  margin: 0;
-  color: var(--color-muted);
-  font-weight: 700;
-  text-align: center;
+  margin: 0; /* Supprime la marge par défaut des paragraphes */
+  color: var(--color-muted); /* Texte en couleur atténuée */
+  font-weight: 700; /* Semi-gras */
+  text-align: center; /* Centré horizontalement */
 }

@@ -1,3 +1,16 @@
+/* ============================
+   PRÉVISUALISATION DE BLOG (BlogPreview)
+   ============================
+   Styles de la carte de prévisualisation d'un blog.
+   Les styles visuels principaux (card-title, card-kicker, content-card)
+   sont définis dans les fichiers CSS globaux — ce fichier ne surcharge
+   que le comportement du texte long.
+*/
+
 .content-card {
+  /* overflow-wrap: anywhere → permet au navigateur de couper le texte n'importe où
+     pour éviter les débordements de texte long.
+     Utile pour les titres de blogs et descriptions saisis par l'utilisateur,
+     qui peuvent contenir de longs mots ou des URLs sans espaces. */
   overflow-wrap: anywhere;
 }

@@ -1,8 +1,12 @@
+/* ===== SIGNALEMENTS ADMIN ===== */
+
+/* Grille de la liste des signalements : une carte par ligne */
 .report-list {
   display: grid;
   gap: 14px;
 }
 
+/* Carte signalement : ligne flexible avec espacement entre info et actions */
 .report-card {
   display: flex;
   flex-wrap: wrap;
@@ -11,12 +15,14 @@
   gap: 18px;
 }
 
+/* Titre de la cible du signalement : police display, navy, marge réduite */
 .report-card h2 {
   margin: 12px 0 4px;
   color: var(--color-navy);
   font-family: var(--font-display);
 }
 
+/* Zone d'actions : boutons + badge alignés horizontalement */
 .report-card__actions {
   display: flex;
   flex-wrap: wrap;

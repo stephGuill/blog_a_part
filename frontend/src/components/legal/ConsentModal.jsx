@@ -1,40 +1,70 @@
+// Icônes lucide-react pour la modale RGPD
+// FileText   : icône document pour les liens vers les pages légales
+// ShieldCheck : icône bouclier pour symboliser la protection des données
+// X          : icône croix pour le bouton de fermeture
 import { FileText, ShieldCheck, X } from "lucide-react";
+// useEffect : vérifie au montage si le consentement légal est déjà enregistré
+// useState  : gère l'état local des cases à cocher et de la visibilité
 import { useEffect, useState } from "react";
+// Link : navigation interne vers les pages légales sans rechargement
 import { Link } from "react-router-dom";
 
+// hasRequiredLegalConsent : retourne true si l'utilisateur a déjà accepté les versions actuelles
+// saveLegalConsent : persiste les choix de consentement dans le localStorage
 import { hasRequiredLegalConsent, saveLegalConsent } from "@utils/legalConsent";
 
+// Styles CSS de la modale de consentement (backdrop, panneau, cases à cocher)
 import "./ConsentModal.css";
 
+// Composant ConsentModal : modale RGPD affichée automatiquement lors de la première visite
+// ou quand le consentement enregistré est absent/obsolète.
+//
+// Comportement :
+//   - Au montage : vérifie si un consentement valide existe via hasRequiredLegalConsent()
+//   - Si non : affiche la modale avec les cases à cocher obligatoires (CGU + confidentialité)
+//   - handleAccept : sauvegarde le consentement et ferme la modale
+//   - handleRefuse : sauvegarde un consentement refusé et affiche un message explicatif
 function ConsentModal() {
+  // isVisible : true si la modale doit être affichée (consentement manquant ou obsolète)
   const [isVisible, setIsVisible] = useState(false);
+  // acceptedTerms : true si l'utilisateur a coché la case CGU (obligatoire)
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  // acceptedPrivacy : true si l'utilisateur a coché la case politique de confidentialité (obligatoire)
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  // marketingConsent : true si l'utilisateur accepte les communications marketing (optionnel)
   const [marketingConsent, setMarketingConsent] = useState(false);
+  // message : texte affiché après un refus pour informer l'utilisateur
   const [message, setMessage] = useState("");
 
+  // Vérification du consentement au montage : si absent ou obsolète, affiche la modale
   useEffect(() => {
     setIsVisible(!hasRequiredLegalConsent());
-  }, []);
+  }, []); // Tableau vide : exécuté une seule fois au montage
 
+  // Rendu conditionnel : ne rend rien si la modale est masquée
   if (!isVisible) {
     return null;
   }
 
+  // canAccept : vrai seulement si les deux cases obligatoires sont cochées
   const canAccept = acceptedTerms && acceptedPrivacy;
 
+  // handleAccept : sauvegarde le consentement complet et ferme la modale
   const handleAccept = () => {
-    if (!canAccept) return;
+    if (!canAccept) return; // Sécurité : ne pas accepter si les cases obligatoires ne sont pas cochées
 
     saveLegalConsent({
       acceptedTerms,
       acceptedPrivacy,
       marketingConsent,
+      // Les cookies analytics et marketing suivent le choix du consentement marketing
       cookiesConsent: { analytics: marketingConsent, marketing: marketingConsent },
     });
     setIsVisible(false);
   };
 
+  // handleRefuse : sauvegarde un refus et affiche un message explicatif
+  // L'utilisateur peut toujours naviguer en mode public mais ne peut pas s'inscrire
   const handleRefuse = () => {
     saveLegalConsent({
       acceptedTerms: false,
@@ -47,6 +77,7 @@ function ConsentModal() {
     );
   };
 
+  // closeModal : ferme la modale sans sauvegarder (l'utilisateur peut revisiter la modale plus tard)
   const closeModal = () => {
     setIsVisible(false);
   };

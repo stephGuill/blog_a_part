@@ -1,15 +1,409 @@
+/* ===================================================
+   EN-TÊTE DU SITE (Header)
+   ===================================================
+   Ce fichier gère les styles de la barre de navigation du site.
+   Il contient : le logo (brand), la nav desktop, les outils rapides
+   (langue/thème), les boutons d'auth, le hamburger mobile et le drawer.
+*/
+
+/* isolation: isolate → crée un nouveau contexte de composition CSS (stacking context).
+   Cela isole les z-index des éléments enfants et évite les conflits d'empilement. */
 .site-header {
   isolation: isolate;
 }
 
+/* Conteneur interne du header : utilise CSS Grid pour aligner tous les éléments en ligne.
+   Sur mobile : 4 colonnes — logo (flexible), outils, auth, hamburger.
+   grid-template-columns: minmax(0, 1fr) → le logo prend le maximum d'espace disponible.
+   auto → les autres colonnes prennent exactement la largeur de leur contenu. */
 .site-header__inner {
-  position: relative;
+  position: relative;           /* Nécessaire pour positionner les enfants absolus (ex: drawer). */
+  display: grid;                /* CSS Grid pour aligner logo + nav + outils + auth sur une ligne. */
+  grid-template-columns: minmax(0, 1fr) auto auto auto; /* 4 colonnes : logo flexible + 3 colonnes auto. */
+  gap: 10px;                    /* Espacement entre les colonnes de la grille. */
+  align-items: center;          /* Aligne verticalement tous les éléments au centre de la ligne. */
+  min-height: 58px;             /* Hauteur minimale du header pour un zone de clic confortable. */
+  padding: 8px 0;               /* Espacements haut/bas internes. */
+}
+
+/* Lien du logo/marque : affichage inline-flex pour aligner icône et texte horizontalement. */
+.site-header__brand {
+  display: inline-flex;         /* Flexbox en ligne pour aligner logo image + texte. */
+  min-width: 0;                 /* Permet le raccourcissement avec text-overflow: ellipsis. */
+  align-items: center;          /* Aligne verticalement icône et texte. */
+  gap: 10px;                    /* Espace entre l'image du logo et le texte. */
+  color: inherit;               /* Hérite la couleur du parent (évite le bleu par défaut des liens). */
+  text-decoration: none;        /* Supprime le soulignement du lien. */
+}
+
+/* Conteneur du texte du logo : grille pour gérer la coupure de texte long. */
+.brand__copy {
+  display: grid;                /* Grid à une colonne pour que min-width:0 fonctionne sur l'enfant. */
+  min-width: 0;                 /* Permet text-overflow: ellipsis sur le texte enfant. */
+}
+
+/* Nom du site affiché dans le header. */
+.brand__name {
+  display: block;
+  overflow: hidden;             /* Cache le texte qui dépasse. */
+  text-overflow: ellipsis;      /* Remplace le texte caché par "..." au lieu de couper brutalement. */
+  white-space: nowrap;          /* Empêche le retour à la ligne du nom du site. */
+  color: var(--color-navy);     /* Couleur navy définie dans les variables CSS globales. */
+  font-family: var(--font-sans);/* Police sans-serif définie dans les variables CSS globales. */
+  /* clamp(min, préféré, max) : taille responsive.
+     1.05rem → minimum sur mobile, 3vw → s'adapte à la largeur écran, 1.28rem → maximum desktop. */
+  font-size: clamp(1.05rem, 3vw, 1.28rem);
+  font-weight: 900;             /* Gras maximum (Ultra Bold). */
+  letter-spacing: 0;            /* Pas d'espacement entre les lettres. */
+  text-transform: none;         /* Pas de transformation de casse (garde la casse originale). */
+}
+
+/* Règle multi-sélecteur : appliquée à tous les conteneurs de type "boîte d'outils" en ligne.
+   display: inline-flex + flex-wrap: wrap → les boutons s'enroulent sur une nouvelle ligne si nécessaire. */
+.site-header__quick-tools,
+.site-header__tools,
+.site-header__auth,
+.site-header__drawer-preferences {
+  display: inline-flex;         /* Flexbox en ligne pour aligner les boutons horizontalement. */
+  flex-wrap: wrap;              /* Si les boutons dépassent la largeur, ils passent à la ligne. */
+  gap: 8px;                     /* Espacement entre les boutons. */
+  align-items: center;          /* Aligne verticalement les boutons. */
+}
+
+/* Style commun à tous les éléments interactifs du header (boutons, liens, sélecteurs).
+   Ils partagent tous le même aspect : pilule (border-radius: 999px), fond semi-transparent, ombre. */
+.site-header__burger,
+.site-header__language,
+.site-header__theme,
+.site-header__auth-link,
+.site-header__icon-link,
+.site-header__user {
+  display: inline-flex;         /* Flexbox pour centrer le contenu (icône + texte). */
+  min-height: 36px;             /* Hauteur minimale pour une zone de clic accessible (WCAG). */
+  align-items: center;          /* Centrage vertical du contenu. */
+  justify-content: center;      /* Centrage horizontal du contenu. */
+  gap: 7px;                     /* Espace entre l'icône et le texte. */
+  border: 1px solid rgba(27, 36, 50, 0.11); /* Bordure subtile semi-transparente. */
+  border-radius: 999px;         /* Forme pilule : coins complètement arrondis. */
+  background: var(--button-secondary-bg);   /* Fond défini par variable CSS (s'adapte au thème). */
+  color: var(--color-navy);     /* Couleur du texte et des icônes. */
+  box-shadow: 0 10px 28px rgba(27, 36, 50, 0.06); /* Ombre douce sous les boutons. */
+  /* transition : anime les changements de transform, box-shadow et background lors du survol. */
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+/* Bouton hamburger : carré de 40px sans padding (l'icône est centrée par justify-content). */
+.site-header__burger {
+  width: 40px;
+  padding: 0;
+}
+
+/* Padding horizontal et typographie pour les éléments avec du texte (langue, thème, liens auth). */
+.site-header__language,
+.site-header__theme,
+.site-header__auth-link,
+.site-header__user {
+  padding: 0 10px;              /* Espacement horizontal interne. */
+  font-size: 0.68rem;           /* Petite taille de police pour les labels. */
+  font-weight: 900;             /* Ultra-gras pour une meilleure lisibilité à petite taille. */
+  letter-spacing: 0.08em;       /* Léger espacement entre lettres pour l'effet "all-caps". */
+  text-transform: uppercase;    /* Transforme le texte en majuscules (FR, EN, SE CONNECTER, etc.). */
+}
+
+/* Effets au survol : légère élévation + fond plus blanc + ombre plus marquée.
+   translateY(-2px) → déplace l'élément de 2px vers le haut (effet "lift"). */
+.site-header__language:hover,
+.site-header__theme:hover,
+.site-header__auth-link:hover,
+.site-header__burger:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-small);
+}
+
+/* Le lien d'auth est aussi un bouton (cursor: pointer) et ne doit pas avoir de soulignement. */
+.site-header__auth-link {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Icône seule (dashboard) : carré de 36px, pas de padding, texte non-souligné. */
+.site-header__icon-link {
+  width: 36px;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Bouton déconnexion : couleur rouge pour indiquer une action destructive. */
+.site-header__logout {
+  color: var(--color-danger);
+}
+
+/* Forcer la taille de l'avatar dans le header à 36x36px. */
+.site-header__avatar .avatar {
+  width: 36px;
+  height: 36px;
+}
+
+/* Lien d'inscription avec style primaire : fond dégradé coloré, texte blanc, sans bordure. */
+.site-header__auth-link.is-primary {
+  border-color: transparent;
+  background: var(--gradient-editorial); /* Dégradé éditorial défini en variable CSS. */
+  color: #fff;
+}
+
+/* Affichage du nom d'utilisateur : limité à 190px avec coupure du texte. */
+.site-header__user {
+  max-width: min(100%, 190px);  /* max-width : au plus 190px, mais jamais plus que son conteneur. */
+  overflow: hidden;
+}
+
+/* Texte du nom d'utilisateur : coupe avec "..." si trop long. */
+.site-header__user span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* <select> du sélecteur de langue : invisible visuellement, c'est le <label> parent qui est stylé. */
+.site-header__language select {
+  width: 66px;
+  border: 0;                    /* Supprime la bordure native du select. */
+  outline: 0;                   /* Supprime l'outline natif. */
+  background: transparent;      /* Fond transparent pour voir le background du label parent. */
+  color: inherit;               /* Hérite la couleur du parent. */
+  font: inherit;                /* Hérite la police du parent. */
+  cursor: pointer;
+}
+
+/* Les <option> du select : fond et couleur propres au thème actif (variable CSS). */
+.site-header__language option {
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+/* ============================
+   DRAWER NAVIGATION MOBILE
+   Panneau latéral gauche qui glisse depuis le bord de l'écran.
+   Par défaut il est hors de l'écran (translateX(-102%)) et invisible (opacity: 0).
+   ============================ */
+.site-header__drawer {
+  position: fixed;              /* Positionné par rapport à la fenêtre (pas au flux du document). */
+  top: 0;                       /* Depuis le haut de la fenêtre. */
+  right: auto;
+  bottom: 0;                    /* Depuis le bas de la fenêtre (hauteur = 100vh). */
+  left: 0;                      /* Collé au bord gauche. */
+  z-index: 44;                  /* Au-dessus du contenu (44 > backdrop 43 > contenu normal). */
+  display: grid;                /* Grid pour empiler les sections (nav, auth, préférences). */
+  align-content: start;         /* Colle les enfants en haut du drawer. */
+  gap: 14px;                    /* Espacement entre les sections. */
+  width: 75%;                   /* Occupe 75% de la largeur de l'écran. */
+  max-width: 360px;             /* Mais jamais plus de 360px de large. */
+  height: 100vh;                /* Hauteur totale de la fenêtre. */
+  border-right: 1px solid rgba(255, 255, 255, 0.14); /* Bordure droite subtile. */
+  border-radius: 0 26px 26px 0; /* Coins arrondis seulement à droite (l'effet "drawer"). */
+  padding: 86px 18px 22px;      /* padding-top: 86px pour laisser de la place au header fixe au-dessus. */
+  background: var(--dashboard-sidebar); /* Fond identique à la sidebar du dashboard. */
+  box-shadow: 26px 0 70px rgba(9, 22, 31, 0.28); /* Ombre portée vers la droite. */
+  opacity: 0;                   /* Invisible par défaut. */
+  pointer-events: none;         /* Non cliquable quand invisible. */
+  transform: translateX(-102%); /* Hors de l'écran à gauche (-102% pour cacher la bordure). */
+  /* Animation fluide pour l'ouverture/fermeture. */
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+/* État ouvert du drawer : visible et glisse en position normale (translateX(0)). */
+.site-header__drawer.is-open {
+  opacity: 0.7;                 /* Légèrement transparent (style "frosted glass"). */
+  pointer-events: auto;         /* Redevient cliquable. */
+  transform: translateX(0);     /* Revient à sa position normale (visible). */
+}
+
+/* Fond sombre semi-transparent derrière le drawer (backdrop).
+   position: fixed + inset: 0 → couvre toute la fenêtre.
+   backdrop-filter: blur(5px) → applique un flou sur le contenu en dessous. */
+.site-header__drawer-backdrop {
+  position: fixed;
+  inset: 0;                     /* Raccourci pour top:0, right:0, bottom:0, left:0. */
+  z-index: 43;                  /* Juste en dessous du drawer (44), au-dessus du contenu. */
+  border: 0;
+  background: rgba(9, 22, 31, 0.34); /* Fond noir semi-transparent à 34% d'opacité. */
+  backdrop-filter: blur(5px);   /* Flou sur le contenu en arrière-plan. */
+}
+
+/* Navigation principale (partagée entre le drawer et le desktop nav).
+   display: grid → empile les liens verticalement avec un espacement de 8px. */
+.main-nav {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto auto;
-  gap: 10px;
-  align-items: center;
-  min-height: 58px;
-  padding: 8px 0;
+  gap: 8px;
+}
+
+/* Navigation desktop et auth desktop : masquées par défaut (mobile-first).
+   Elles s'affichent via media query à partir de 960px. */
+.site-header__desktop-nav,
+.site-header__desktop-auth {
+  display: none;
+}
+
+/* Liens de la nav principale : hauteur minimale pour les zones de clic. */
+.main-nav a {
+  justify-content: center;
+  min-height: 42px;
+}
+
+/* Dans le drawer : tous les éléments interactifs prennent 100% de la largeur
+   pour former des boutons pleine largeur (layout vertical). */
+.site-header__drawer .site-header__tools,
+.site-header__drawer .site-header__auth,
+.site-header__drawer .site-header__drawer-preferences,
+.site-header__drawer .site-header__language,
+.site-header__drawer .site-header__theme,
+.site-header__drawer .site-header__auth-link,
+.site-header__drawer .site-header__user {
+  width: 100%;
+}
+
+/* Dans le drawer : flex-direction: column empile les éléments verticalement. */
+.site-header__drawer .main-nav,
+.site-header__drawer .site-header__auth,
+.site-header__drawer .site-header__drawer-preferences {
+  display: flex;
+  flex-direction: column;       /* Empile les éléments de haut en bas. */
+}
+
+/* Apparence des boutons et liens dans le drawer mobile :
+   style sombre avec fond semi-transparent blanc et texte blanc.
+   justify-content: flex-start → aligne le contenu à gauche (cohérent avec un menu vertical). */
+.site-header__drawer .main-nav a,
+.site-header__drawer .site-header__auth-link,
+.site-header__drawer .site-header__language,
+.site-header__drawer .site-header__theme,
+.site-header__drawer .site-header__user {
+  min-height: 46px;             /* Plus grand que desktop pour faciliter le touch mobile. */
+  justify-content: flex-start;  /* Contenu aligné à gauche dans le bouton. */
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+/* Lien actif et survol dans la nav du drawer : fond chaud (doré) subtil. */
+.site-header__drawer .main-nav a.active,
+.site-header__drawer .main-nav a:hover {
+  background: rgba(255, 214, 165, 0.18); /* Teinte dorée légère. */
+  color: #fff;
+}
+
+/* ============================
+   RESPONSIVE — TRÈS PETIT ÉCRAN (≤ 560px)
+   Sur les très petits mobiles, on simplifie la grille à 2 colonnes : logo + hamburger.
+   Les outils rapides (langue/thème) sont masqués.
+   ============================ */
+@media (max-width: 560px) {
+  /* Grille simplifiée : seulement logo (flexible) + hamburger (auto). */
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  /* Cache le sélecteur de langue et le bouton thème sur les très petits écrans. */
+  .site-header__quick-tools {
+    display: none;
+  }
+
+  /* Supprime l'espace entre le logo et le texte (plus besoin de gap si pas d'image). */
+  .site-header__brand {
+    gap: 0;
+  }
+}
+
+/* ============================
+   RESPONSIVE — ÉCRAN LARGE (≥ 960px) — DESKTOP
+   Affiche la navigation et l'auth desktop, masque le hamburger et le drawer.
+   ============================ */
+@media (min-width: 960px) {
+  /* Grille à 4 colonnes : logo (auto) | nav (flexible) | outils | auth.
+     minmax(280px, 1fr) → la nav fait au moins 280px et au plus tout l'espace disponible. */
+  .site-header__inner {
+    grid-template-columns: auto minmax(280px, 1fr) auto auto;
+    min-height: 62px;
+    gap: 12px;
+  }
+
+  /* Affiche la navigation desktop en flexbox horizontal centré. */
+  .site-header__desktop-nav {
+    display: inline-flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* Style des liens de nav desktop : pilules discrètes. */
+  .site-header__desktop-nav a {
+    min-height: 36px;
+    border-radius: 999px;
+    padding: 0 12px;
+    color: var(--color-navy);
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  /* Lien actif et survol desktop : fond navy + texte blanc pour le lien courant. */
+  .site-header__desktop-nav a.active,
+  .site-header__desktop-nav a:hover {
+    background: var(--color-navy);
+    color: #fff;
+  }
+
+  /* Affiche la zone d'auth desktop. */
+  .site-header__desktop-auth {
+    display: inline-flex;
+  }
+
+  /* Cache le hamburger sur desktop. */
+  .site-header__burger {
+    display: none;
+  }
+
+  /* Cache le drawer mobile sur desktop (il ne doit pas exister dans le flux desktop). */
+  .site-header__drawer {
+    display: none;
+  }
+
+  /* Cache aussi le backdrop du drawer sur desktop. */
+  .site-header__drawer-backdrop {
+    display: none;
+  }
+}
+
+/* ============================
+   RESPONSIVE — ÉCRAN INTERMÉDIAIRE (≥ 1080px)
+   Ajustements mineurs de hauteur.
+   ============================ */
+@media (min-width: 1080px) {
+  .site-header__inner {
+    min-height: 58px;
+  }
+
+  /* S'assure que le hamburger est bien caché (doublon de sécurité). */
+  .site-header__burger {
+    display: none;
+  }
+}
+
+/* ============================
+   RESPONSIVE — GRAND ÉCRAN (≥ 1280px)
+   Plus d'espace entre les liens de navigation.
+   ============================ */
+@media (min-width: 1280px) {
+  /* Plus d'espacement entre les liens de la nav. */
+  .site-header__desktop-nav {
+    gap: 8px;
+  }
+
+  /* padding-inline : raccourci CSS pour padding-left + padding-right. */
+  .site-header__desktop-nav a {
+    padding-inline: 16px;
+  }
 }
 
 .site-header__brand {

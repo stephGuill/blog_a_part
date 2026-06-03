@@ -1,10 +1,415 @@
+/* ===================================================
+   PIED DE PAGE DU SITE (Footer)
+   ===================================================
+   Ce fichier gère tous les styles du footer : fond sombre, dégradés décoratifs,
+   grille des sections, newsletter, réseaux sociaux, partenaires et bas de page.
+*/
+
+/* Conteneur principal du footer. */
 .site-footer {
-  position: relative;
-  isolation: isolate;
+  position: relative;           /* Nécessaire pour positionner les pseudo-éléments ::before et ::after. */
+  isolation: isolate;           /* Crée un nouveau contexte de composition (z-index isolé). */
+  /* clamp(46px, 8vw, 84px) : margin-top responsive.
+     46px → minimum sur mobile, 8vw → proportionnel à l'écran, 84px → maximum desktop. */
   margin-top: clamp(46px, 8vw, 84px);
-  overflow: clip;
-  background: var(--footer-bg);
+  overflow: clip;               /* Cache les débordements sans créer de scrollbar (comme overflow: hidden). */
+  background: var(--footer-bg); /* Fond sombre défini dans les variables CSS globales du thème. */
+  color: var(--footer-text);    /* Couleur de texte claire adaptée au fond sombre. */
+}
+
+/* Pseudo-élément décoratif en bas à droite : cercle dégradé doré.
+   position: absolute + inset positionne le cercle sans affecter le flux du document.
+   content: "" → obligatoire pour les pseudo-éléments (même vide).
+   pointer-events: none → le cercle n'intercepte pas les clics souris. */
+.site-footer::before {
+  position: absolute;
+  inset: auto -16% -42% auto;   /* Positionné en bas à droite, partiellement hors du footer. */
+  width: min(460px, 70vw);      /* min() : au plus 460px, ou 70% de la largeur d'écran si plus petit. */
+  aspect-ratio: 1;              /* Forcer un rapport largeur/hauteur 1:1 (carré → cercle avec border-radius). */
+  border-radius: 999px;         /* Transforme le carré en cercle parfait. */
+  /* radial-gradient : dégradé radial allant d'un doré semi-transparent au transparent.
+     Cela crée un halo lumineux décoratif. */
+  background: radial-gradient(circle, rgba(255, 214, 165, 0.2), transparent 65%);
+  content: "";
+  pointer-events: none;
+}
+
+/* Pseudo-élément décoratif en haut à gauche : cercle dégradé bleu. */
+.site-footer::after {
+  position: absolute;
+  inset: -32% auto auto -12%;   /* Positionné en haut à gauche, partiellement hors du footer. */
+  width: min(420px, 72vw);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(167, 199, 231, 0.18), transparent 62%);
+  content: "";
+  pointer-events: none;
+}
+
+/* Conteneur interne : grille verticale qui empile toutes les sections du footer.
+   z-index: 1 → au-dessus des pseudo-éléments décoratifs (qui sont à z-index: auto = 0).
+   gap responsive avec clamp() : espacement entre sections s'adapte à la taille d'écran. */
+.site-footer__inner {
+  position: relative;
+  z-index: 1;                   /* Passe au-dessus des dégradés décoratifs ::before et ::after. */
+  display: grid;                /* CSS Grid pour empiler les sections verticalement. */
+  gap: clamp(22px, 4vw, 34px);  /* Espacement responsive entre les sections. */
+  /* padding responsive : haut (34→68px), bas (22→38px) selon la taille d'écran. */
+  padding: clamp(34px, 7vw, 68px) 0 clamp(22px, 5vw, 38px);
+}
+
+/* Surcharge de la couleur du card-kicker dans le footer : doré au lieu du bleu habituel. */
+.site-footer .card-kicker {
+  color: #ffd6a5; /* Couleur dorée chaude pour contraster avec le fond sombre. */
+}
+
+/* Style commun aux sections "encadrées" du footer (hero, newsletter, partenaires, social, bottom).
+   backdrop-filter: blur(18px) → flou de l'arrière-plan derrière les cartes (effet "frosted glass"). */
+.site-footer__hero,
+.site-footer__newsletter,
+.site-footer__partners,
+.site-footer__social,
+.site-footer__bottom {
+  border: 1px solid var(--footer-border);   /* Bordure subtile adaptée au thème. */
+  background: var(--footer-surface);        /* Fond semi-transparent de carte. */
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18); /* Ombre portée profonde. */
+  backdrop-filter: blur(18px);             /* Flou de fond (effet verre dépoli). */
+}
+
+/* Section hero du footer : présentation de la plateforme. */
+.site-footer__hero {
+  display: grid;                /* Grid pour empiler logo + texte + badges verticalement. */
+  gap: 18px;
+  align-items: start;           /* Aligne les enfants en haut (pas de centrage vertical). */
+  /* border-radius responsive : coins arrondis s'adaptent à la taille d'écran. */
+  border-radius: clamp(22px, 4vw, 32px);
+  padding: clamp(22px, 4vw, 34px);
+}
+
+/* Carré d'icône de la marque (Sparkles) dans le hero du footer. */
+.site-footer__brand-mark {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;          /* Raccourci grid pour centrer horizontalement et verticalement. */
+  border: 1px solid rgba(255, 214, 165, 0.34);
+  border-radius: 16px;
+  background: rgba(255, 214, 165, 0.12);
+  color: #ffd6a5;               /* Icône couleur dorée. */
+}
+
+/* Titres h2 et h3 dans le footer : couleur, police display et interlignage. */
+.site-footer h2,
+.site-footer h3 {
+  margin: 8px 0 0;              /* Petit espace au-dessus du titre. */
+  color: var(--footer-text);    /* Couleur claire pour contraster avec le fond sombre. */
+  font-family: var(--font-display); /* Police d'affichage (plus expressive). */
+  line-height: 1.05;            /* Interlignage très serré pour les grands titres. */
+  text-wrap: balance;           /* Équilibre les longueurs de lignes pour une meilleure lisibilité. */
+}
+
+/* Grand titre h2 : taille responsive très grande (jusqu'à 4rem desktop). */
+.site-footer h2 {
+  max-width: 780px;             /* Limite la largeur pour éviter des lignes trop longues. */
+  font-size: clamp(1.85rem, 7vw, 4rem); /* De 1.85rem (mobile) à 4rem (desktop). */
+}
+
+/* Titre h3 de la newsletter. */
+.site-footer h3 {
+  font-size: clamp(1.35rem, 5vw, 2.1rem);
+}
+
+/* Paragraphes de description dans le footer. */
+.site-footer p {
+  max-width: 680px;             /* Limite la largeur pour la lisibilité (environ 80 caractères/ligne). */
+  margin: 14px 0 0;
+  color: var(--footer-muted);   /* Couleur légèrement atténuée (gris clair). */
+  line-height: 1.75;            /* Interlignage généreux pour une bonne lisibilité. */
+}
+
+/* Badges de confiance (signals) et partenaires : flex horizontal avec retour à la ligne. */
+.site-footer__signals,
+.site-footer__partners {
+  display: flex;
+  flex-wrap: wrap;              /* Retour à la ligne si les badges ne tiennent pas sur une ligne. */
+  gap: 10px;
+}
+
+/* Style pilule pour chaque badge de confiance et de partenaire. */
+.site-footer__signals span,
+.site-footer__partners span,
+.site-footer__partners strong {
+  display: inline-flex;
+  min-height: 34px;             /* Hauteur minimale pour les zones de clic (accessibilité). */
+  align-items: center;
+  gap: 8px;                     /* Espace entre l'icône et le texte. */
+  border: 1px solid var(--footer-border);
+  border-radius: 999px;         /* Forme pilule. */
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.07); /* Fond très légèrement transparent. */
   color: var(--footer-text);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+/* Grille de navigation : 1 colonne par défaut (mobile), 3 colonnes en responsive (≥640px). */
+.site-footer__links {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;   /* Une seule colonne sur mobile. */
+}
+
+/* Colonne de liens : séparée par une bordure en haut. */
+.site-footer__column {
+  display: grid;
+  gap: 9px;                     /* Espacement entre les liens. */
+  border-top: 1px solid var(--footer-border); /* Ligne de séparation horizontale. */
+  padding-top: 16px;
+}
+
+/* Liens dans les colonnes et en bas de page : inline-flex pour aligner icône + texte. */
+.site-footer__column a,
+.site-footer__bottom a {
+  display: inline-flex;
+  width: fit-content;           /* Le lien ne prend que la largeur de son contenu. */
+  align-items: center;
+  gap: 7px;
+  color: var(--footer-muted);   /* Gris atténué par défaut. */
+  font-weight: 750;
+  /* transition : anime le changement de couleur et le déplacement au survol. */
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+/* Survol et focus des liens : texte plus lumineux + léger décalage vers la droite. */
+.site-footer__column a:hover,
+.site-footer__column a:focus-visible,
+.site-footer__bottom a:hover,
+.site-footer__bottom a:focus-visible {
+  color: var(--footer-text);    /* Couleur pleine au survol. */
+  transform: translateX(3px);   /* Décalage vers la droite pour l'effet "hover". */
+}
+
+/* En mode RTL (arabe) : l'animation de survol va vers la gauche (direction inverse). */
+[dir="rtl"] .site-footer__column a:hover,
+[dir="rtl"] .site-footer__column a:focus-visible,
+[dir="rtl"] .site-footer__bottom a:hover,
+[dir="rtl"] .site-footer__bottom a:focus-visible {
+  transform: translateX(-3px);  /* Inverse la direction pour l'écriture droite→gauche. */
+}
+
+/* Section newsletter : carte avec padding et coins arrondis. */
+.site-footer__newsletter {
+  display: grid;
+  gap: 20px;
+  border-radius: clamp(20px, 4vw, 28px);
+  padding: clamp(20px, 4vw, 30px);
+}
+
+/* Formulaire newsletter : grille à 1 colonne par défaut (input au-dessus du bouton sur mobile). */
+.site-footer__form {
+  display: grid;
+  gap: 12px;
+}
+
+/* Zone de saisie email avec icône intégrée à gauche. */
+.site-footer__input-wrap {
+  display: flex;                /* Flexbox pour aligner l'icône Mail et l'input sur une ligne. */
+  min-height: 48px;             /* Grande hauteur pour le confort tactile mobile. */
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--footer-border);
+  border-radius: 999px;         /* Forme pilule. */
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--footer-muted);
+}
+
+/* :focus-within : s'active quand un enfant (l'input) reçoit le focus.
+   Affiche une bordure et un halo dorés pour indiquer que le champ est actif. */
+.site-footer__input-wrap:focus-within {
+  border-color: rgba(255, 214, 165, 0.62);
+  box-shadow: 0 0 0 4px rgba(255, 214, 165, 0.12); /* Halo externe autour du champ focalisé. */
+}
+
+/* Input email : occupe tout l'espace disponible dans la pilule. */
+.site-footer__input-wrap input {
+  min-width: 0;                 /* Évite les débordements en CSS Flex. */
+  width: 100%;
+  border: 0;
+  outline: 0;                   /* Supprime le focus ring natif (remplacé par le halo sur .input-wrap). */
+  background: transparent;
+  color: var(--footer-text);
+}
+
+/* Placeholder : texte gris semi-transparent indiquant le format attendu. */
+.site-footer__input-wrap input::placeholder {
+  color: rgba(247, 251, 252, 0.52); /* Blanc cassé à 52% d'opacité. */
+}
+
+/* Bouton de soumission de la newsletter. */
+.site-footer__submit {
+  min-height: 48px;
+  color: var(--button-primary-text);
+}
+
+/* Section partenaires : badge centré horizontalement avec padding confortable. */
+.site-footer__partners {
+  align-items: center;
+  border-radius: 22px;
+  padding: 14px;
+}
+
+/* Titre "Fait pour" en doré. */
+.site-footer__partners span {
+  color: #ffd6a5;
+}
+
+/* Noms des partenaires (écoles, créateurs, agences) en gris atténué. */
+.site-footer__partners strong {
+  color: var(--footer-muted);
+}
+
+/* Section réseaux sociaux : grille à 1 colonne par défaut. */
+.site-footer__social {
+  display: grid;
+  gap: 18px;
+  align-items: center;
+  border-radius: 22px;
+  padding: clamp(18px, 4vw, 24px);
+}
+
+/* Paragraphe de description des réseaux. */
+.site-footer__social p {
+  margin-top: 6px;
+}
+
+/* Conteneur des icônes sociales : flex horizontal avec retour à la ligne. */
+.site-footer__social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Icône sociale individuelle : cercle de 44px centré via CSS Grid. */
+.site-footer__social-links a {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;          /* Centre le texte/icône dans le cercle. */
+  border: 1px solid var(--footer-border);
+  border-radius: 999px;         /* Cercle parfait. */
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--footer-text);
+  font-size: 1rem;
+  font-weight: 950;             /* Ultra-gras pour les abréviations (f, X, YT, IG). */
+  /* box-shadow interne : légère lueur interne en haut pour effet "glass". */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+/* Survol des icônes sociales : élévation + teinte dorée. */
+.site-footer__social-links a:hover,
+.site-footer__social-links a:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 214, 165, 0.56);
+  background: rgba(255, 214, 165, 0.14);
+}
+
+/* Barre du bas : copyright + liens légaux. */
+.site-footer__bottom {
+  display: grid;
+  gap: 12px;
+  border-radius: 22px;
+  padding: 16px;
+  color: var(--footer-muted);
+  font-size: 0.88rem;
+}
+
+/* Liens légaux en ligne avec retour à la ligne si nécessaire. */
+.site-footer__bottom div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;               /* 10px vertical, 16px horizontal entre les liens. */
+}
+
+/* ============================
+   RESPONSIVE — PAYSAGE SUR PETIT ÉCRAN (mobile retourné)
+   @media orientation: landscape → écran en mode paysage.
+   Conditions cumulées : hauteur ≤ 520px ET largeur ≤ 920px (petits mobiles en paysage).
+   ============================ */
+@media (orientation: landscape) and (max-height: 520px) and (max-width: 920px) {
+  /* Réduit les espaces verticaux sur mobile en paysage pour économiser de la hauteur. */
+  .site-footer__inner {
+    padding-block: 24px; /* padding-block : raccourci pour padding-top + padding-bottom. */
+  }
+
+  /* Réduit la taille du titre h2 sur mobile en paysage. */
+  .site-footer h2 {
+    font-size: clamp(1.65rem, 4vw, 2.4rem);
+  }
+}
+
+/* ============================
+   RESPONSIVE — TABLETTE (≥ 640px)
+   ============================ */
+@media (min-width: 640px) {
+  /* Les 3 colonnes de liens apparaissent côte à côte.
+     repeat(3, minmax(0, 1fr)) → 3 colonnes égales, chacune avec min=0 et max=1fr. */
+  .site-footer__links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Formulaire newsletter : input à gauche, bouton à droite sur la même ligne.
+     minmax(0, 1fr) → input prend tout l'espace.
+     auto → bouton prend sa largeur naturelle. */
+  .site-footer__form {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+/* ============================
+   RESPONSIVE — DESKTOP (≥ 900px)
+   ============================ */
+@media (min-width: 900px) {
+  /* Hero du footer : logo à gauche (auto), texte à droite (flexible).
+     auto minmax(0, 1fr) → 2 colonnes : logo en largeur naturelle + texte flexible. */
+  .site-footer__hero {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  /* Les badges de confiance (signals) se placent dans la 2ème colonne (sous le texte, pas sous le logo). */
+  .site-footer__signals {
+    grid-column: 2; /* Force le placement dans la colonne 2 de la grille hero. */
+  }
+
+  /* Newsletter : description à gauche (flexible), formulaire à droite (taille fixe min 420px).
+     align-items: end → aligne les deux colonnes par le bas. */
+  .site-footer__newsletter {
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1fr);
+    align-items: end;
+  }
+
+  /* Bas de page : copyright à gauche, liens légaux à droite. */
+  .site-footer__bottom {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  /* Section sociale : texte à gauche, icônes à droite. */
+  .site-footer__social {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+/* ============================
+   RESPONSIVE — GRAND ÉCRAN (≥ 1280px)
+   ============================ */
+@media (min-width: 1280px) {
+  /* Plus d'espacement entre les colonnes de liens sur les grands écrans. */
+  .site-footer__links {
+    gap: 28px;
+  }
 }
 
 .site-footer::before {

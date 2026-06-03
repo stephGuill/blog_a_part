@@ -1,0 +1,30 @@
+# ─── .dockerignore — Backend ──────────────────────────────────────────────────
+# Exclut les fichiers inutiles du contexte de build Docker
+# → build plus rapide, image plus petite, pas de secrets dans l'image
+
+node_modules/
+npm-debug.log*
+
+# Variables d'environnement locales (ne jamais embarquer dans l'image)
+.env
+.env.*
+!.env.sample
+
+# Fichiers de développement
+*.test.js
+__tests__/
+
+# Rapports et logs
+backend/eslint-report.json
+*.log
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+LISEZ-MOI.md
+
+# Fichiers uploads (montés en volume au runtime, pas dans l'image)
+public/uploads/

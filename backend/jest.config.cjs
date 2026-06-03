@@ -16,4 +16,15 @@ module.exports = {
   // testMatch : motifs glob pour localiser les fichiers de test. Jest va
   // exécuter les fichiers correspondant à ces patterns.
   testMatch: ['**/__tests__/**/*.test.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+
+  // helpers.js est un utilitaire partagé, pas une suite de tests : on l'exclut
+  testPathIgnorePatterns: ['/node_modules/', '/__tests__/helpers\\.js$'],
+
+  // forceExit : force Jest à se terminer après la fin des tests même si des
+  // handles asynchrones (connexions DB, timers) restent ouverts.
+  // Évite que le processus reste suspendu après la fin de la suite.
+  forceExit: true,
+
+  // Délai maximum par test en millisecondes (10 s pour les tests DB/réseau)
+  testTimeout: 10000,
 };
