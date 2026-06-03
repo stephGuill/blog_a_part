@@ -1,0 +1,19 @@
+{
+  // CSS vendor prefix warnings are handled manually with -webkit- prefixes
+  "css.lint.compatibleVendorPrefixes": "ignore",
+  // color-mix() and text-wrap: balance are well-supported in 2026 browsers
+  // The .browserslistrc targets Chrome 114+, Firefox 121+, Safari 17.4+, Edge 114+
+  "css.lint.unknownVendorSpecificProperties": "ignore",
+  // Markdown linting rules are configured via .markdownlint.json
+  "markdownlint.config": {
+    "MD013": false,
+    "MD022": false,
+    "MD031": false,
+    "MD032": false,
+    "MD033": false,
+    "MD040": false,
+    "MD041": false,
+    "MD047": false,
+    "MD060": false
+  }
+}

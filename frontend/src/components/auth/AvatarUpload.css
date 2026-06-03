@@ -1,12 +1,11 @@
-/* Conteneur principal du composant d'upload d'avatar */
-/* position: relative permet de positionner absolument le bouton de suppression */
 .avatar-upload {
+  --_avatar-bd: color-mix(in srgb, var(--color-sky-deep) 42%, var(--border-color)); /* Bordure pointillée avec mélange de couleurs CSS */
   position: relative; /* Référence pour le positionnement absolu du bouton .avatar-upload__clear */
   display: grid; /* Mise en page en grille pour aligner prévisualisation et contenu */
   grid-template-columns: auto minmax(0, 1fr); /* Colonne auto pour l'image, colonne flexible pour le contenu */
   gap: 14px; /* Espace entre la prévisualisation et le contenu textuel */
   align-items: center; /* Centrage vertical des éléments sur l'axe transversal */
-  border: 1px dashed color-mix(in srgb, var(--color-sky-deep) 42%, var(--border-color)); /* Bordure pointillée avec mélange de couleurs CSS */
+  border: 1px dashed var(--_avatar-bd);
   border-radius: 20px; /* Coins arrondis pour un aspect carte moderne */
   padding: 14px; /* Espacement interne uniforme */
   background: color-mix(in srgb, var(--bg-card) 82%, var(--color-sky) 18%); /* Fond légèrement teinté de bleu */

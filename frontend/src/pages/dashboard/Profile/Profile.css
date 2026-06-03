@@ -80,6 +80,7 @@
   position: absolute;
   inset: 0;
   background: rgba(27, 36, 50, 0.34);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
 

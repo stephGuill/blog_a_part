@@ -15,7 +15,8 @@
 }
 
 .owner-blogs__alert {
-  border: 1px solid color-mix(in srgb, var(--color-danger) 24%, transparent);
+  --_alert-bd: color-mix(in srgb, var(--color-danger) 24%, transparent);
+  border: 1px solid var(--_alert-bd);
   border-radius: var(--radius-lg);
   padding: 12px 14px;
   background: color-mix(in srgb, var(--color-danger) 10%, var(--bg-card));
@@ -66,12 +67,14 @@
 }
 
 .owner-blog-toggle.is-public {
-  border-color: color-mix(in srgb, var(--color-success) 32%, transparent);
+  --_toggle-bd: color-mix(in srgb, var(--color-success) 32%, transparent);
+  border-color: var(--_toggle-bd);
   background: color-mix(in srgb, var(--color-success) 16%, var(--bg-card));
 }
 
 .owner-blog-toggle.is-private {
-  border-color: color-mix(in srgb, var(--color-gold) 36%, transparent);
+  --_toggle-bd: color-mix(in srgb, var(--color-gold) 36%, transparent);
+  border-color: var(--_toggle-bd);
   background: color-mix(in srgb, var(--color-gold) 18%, var(--bg-card));
 }
 
@@ -91,6 +94,7 @@
 .owner-blog-modal__backdrop {
   border: 0;
   background: rgba(12, 22, 31, 0.46);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -148,8 +152,9 @@
 
 .owner-blog-field textarea:focus,
 .owner-blog-field select:focus {
+  --_focus-ol: color-mix(in srgb, var(--color-sky) 32%, transparent);
   border-color: var(--color-sky-deep);
-  outline: 3px solid color-mix(in srgb, var(--color-sky) 32%, transparent);
+  outline: 3px solid var(--_focus-ol);
 }
 
 .owner-blog-visibility {

@@ -1,12 +1,86 @@
-# blog_a_part
+# Blog à Part — Plateforme de blogging multi-utilisateurs
 
-## 🧩 Résumé
+Blog à Part est une plateforme SaaS de blogging multi-utilisateurs construite avec **Node.js / Express** côté serveur et **React / Vite** côté client. Elle permet de créer et gérer des blogs indépendants, avec un système de rôles complet, une modération des contenus et un constructeur de pages visuel.
 
-blog_a_part est une application fullstack avec :
-- backend Express + MySQL
-- frontend React + Vite
-- authentification JWT + Argon2
-- gestion de rôles RBAC
+---
+
+## Liens rapides
+
+| Document | Description |
+|---|---|
+| [01 — Présentation](docs/01-presentation.md) | Fonctionnalités, public cible, cas d'usage |
+| [02 — Installation](docs/02-installation.md) | Mise en place locale pas à pas |
+| [03 — Architecture](docs/03-architecture.md) | Structure des fichiers, flux de données |
+| [04 — Base de données](docs/04-base-de-donnees.md) | Schéma SQL, relations entre tables |
+| [05 — API](docs/05-api.md) | Référence de tous les endpoints REST |
+| [06 — Frontend](docs/06-frontend.md) | Pages, composants, routing, contextes |
+| [07 — Sécurité](docs/07-securite.md) | JWT, RBAC, rate limiting, CORS, RGPD |
+| [08 — Tests](docs/08-tests.md) | Stratégie de test, Jest, Supertest |
+| [09 — Docker](docs/09-docker.md) | Conteneurisation, Filess.io, modes de lancement |
+| [10 — Déploiement](docs/10-deploiement.md) | Netlify + Render + Filess.io, étape par étape |
+
+---
+
+## Stack technique
+
+```
+Frontend          Backend             Base de données   Infra
+─────────────     ──────────────────  ───────────────   ──────────────
+React 18.2        Node.js 24 LTS      MySQL 8           Docker
+Vite 5.4          Express 4.18        mysql2/promise    Netlify (front)
+React Router 7    JWT jsonwebtoken                      Render (back)
+Tailwind CSS 4    argon2 + bcryptjs                     Filess.io (DB)
+i18next           Multer
+                  express-rate-limit
+```
+
+---
+
+## Démarrage rapide (local)
+
+```bash
+# 1. Cloner le projet
+git clone https://github.com/stephGuill/blog_a_part.git
+cd blog_a_part
+
+# 2. Backend
+cd backend
+cp .env.sample .env        # remplir les variables
+npm install
+node migrate.js            # créer les tables
+npm run dev                # http://localhost:5000
+
+# 3. Frontend (nouveau terminal)
+cd frontend
+cp .env.sample .env        # VITE_BACKEND_URL=http://localhost:5000
+npm install
+npm run dev                # http://localhost:5173
+```
+
+> Voir [02 — Installation](docs/02-installation.md) pour le guide complet.
+
+---
+
+## Lancer les tests
+
+```bash
+cd backend
+npm test -- --runInBand
+```
+
+> Voir [08 — Tests](docs/08-tests.md) pour le détail.
+
+---
+
+## Déploiement Docker + Filess.io
+
+```bash
+cp .env.sample .env   # remplir avec les credentials Filess.io
+docker compose up --build
+docker compose exec backend node migrate.js
+```
+
+> Voir [09 — Docker](docs/09-docker.md) et [10 — Déploiement](docs/10-deploiement.md).
 
 ## 🚀 Démarrage rapide
 

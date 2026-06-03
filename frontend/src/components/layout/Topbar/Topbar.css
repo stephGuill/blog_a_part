@@ -9,6 +9,7 @@
   padding: 14px 16px;
   background: var(--color-card-strong);
   box-shadow: var(--shadow-small);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
 
