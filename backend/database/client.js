@@ -8,12 +8,14 @@
 
 // Lecture des variables de connexion depuis process.env
 // (chargées au préalable par dotenv dans server.js ou app.js).
-// DB_HOST  : adresse du serveur MySQL (ex: "localhost" ou IP)
-// DB_PORT  : port MySQL (par défaut 3306)
-// DB_USER  : nom d'utilisateur de la base de données
+// DB_HOST     : adresse du serveur MySQL (ex: "localhost", "xxx.h.filess.io")
+// DB_PORT     : port MySQL (3306 local, 3307 Filess.io)
+// DB_USER     : nom d'utilisateur de la base de données
 // DB_PASSWORD : mot de passe associé à DB_USER
-// DB_NAME  : nom de la base de données cible
+// DB_NAME     : nom de la base de données cible
+// DB_SSL      : "true" pour activer TLS (requis par Filess.io et autres hébergeurs)
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
+const DB_SSL = process.env.DB_SSL === "true";
 
 // Importation du driver MySQL2 en mode Promise.
 // mysql2/promise fournit une API async/await native sans callbacks.
@@ -24,11 +26,14 @@ const mysql = require("mysql2/promise");
 // automatiquement, ce qui est plus performant pour un serveur HTTP
 // qui traite plusieurs requêtes en parallèle.
 const client = mysql.createPool({
-  host: DB_HOST,       // Hôte MySQL (ex: "localhost")
-  port: DB_PORT,       // Port d'écoute MySQL (ex: 3306)
+  host: DB_HOST,       // Hôte MySQL (ex: "localhost" ou "xxx.h.filess.io")
+  port: DB_PORT,       // Port d'écoute MySQL (3306 local, 3307 Filess.io)
   user: DB_USER,       // Identifiant de connexion
   password: DB_PASSWORD, // Mot de passe (ne jamais committer en clair)
   database: DB_NAME,   // Base de données à utiliser par défaut
+  // SSL activé si DB_SSL=true dans l'environnement.
+  // rejectUnauthorized: false accepte le certificat auto-signé de Filess.io.
+  ssl: DB_SSL ? { rejectUnauthorized: false } : undefined,
 });
 
 // Vérification de la connexion au démarrage du serveur :

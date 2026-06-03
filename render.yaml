@@ -1,0 +1,73 @@
+# ─── render.yaml ──────────────────────────────────────────────────────────────
+# Configuration Infrastructure-as-Code pour Render.com.
+# Déploie le backend Node.js (Express) en tant que Web Service.
+#
+# Prérequis :
+#   1. Connecter le dépôt GitHub sur https://dashboard.render.com
+#   2. Créer une base de données MySQL gratuite sur https://filess.io
+#      → Récupérer : DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
+#   3. Render détecte automatiquement ce fichier à la racine du repo.
+#
+# Déploiement : dashboard Render → "New → Blueprint" → choisir ce repo.
+
+services:
+  - type: web
+    name: blog-a-part-backend
+    runtime: node
+
+    # Dossier racine du backend (relatif à la racine du repo)
+    rootDir: backend
+
+    # Commande de build : installe les dépendances ET applique les migrations SQL
+    # Les migrations sont idempotentes (ADD COLUMN IF NOT EXISTS, CREATE TABLE IF NOT EXISTS)
+    buildCommand: npm ci && node migrate.js
+
+    # Commande de démarrage du serveur Express
+    startCommand: node src/server.js
+
+    # Plan gratuit de Render (0 $/mois, se met en veille après 15 min d'inactivité)
+    plan: free
+
+    # Variables d'environnement du service
+    envVars:
+      - key: PORT
+        value: 5000
+
+      - key: NODE_ENV
+        value: production
+
+      # ── Base de données Filess.io ─────────────────────────────────────────────
+      # Renseigner ces valeurs dans le dashboard Render après création de la DB :
+      # Dashboard Render → Environment → Add Environment Variable
+      #
+      # Où trouver ces valeurs ?
+      #   https://filess.io → votre base → "Connection details"
+      - key: DB_HOST
+        sync: false    # ex: xxxxxxxx.h.filess.io
+
+      - key: DB_PORT
+        value: "3307"  # Filess.io utilise le port 3307
+
+      - key: DB_USER
+        sync: false    # ex: blog_a_part_xxxxxxxx
+
+      - key: DB_PASSWORD
+        sync: false    # mot de passe généré par Filess.io
+
+      - key: DB_NAME
+        sync: false    # ex: blog_a_part_xxxxxxxx
+
+      # SSL obligatoire pour Filess.io
+      - key: DB_SSL
+        value: "true"
+
+      # ── JWT ──────────────────────────────────────────────────────────────────
+      # generateValue: true → Render génère automatiquement une clé aléatoire
+      - key: JWT_SECRET
+        generateValue: true
+
+      # ── CORS ─────────────────────────────────────────────────────────────────
+      # URL du frontend Netlify (à renseigner après le premier déploiement Netlify)
+      # ex: https://blog-a-part.netlify.app
+      - key: FRONTEND_URL
+        sync: false

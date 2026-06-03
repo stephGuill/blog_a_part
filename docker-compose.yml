@@ -1,0 +1,88 @@
+# ─── docker-compose.yml ───────────────────────────────────────────────────────
+# Orchestre les services du projet.
+# Les variables DB_* sont lues depuis un fichier `.env` à la racine du projet.
+# Copier `.env.sample` en `.env` et remplir les valeurs.
+#
+# ── Deux modes de base de données ──────────────────────────────────────────────
+#
+#   MODE FILESS.IO (par défaut, recommandé) :
+#     1. Renseigner les variables DB_* de Filess.io dans .env
+#     2. docker compose up --build
+#
+#   MODE LOCAL (MySQL dans Docker, pour tests hors connexion) :
+#     1. Garder DB_HOST=db, DB_PASSWORD=rootpassword dans .env
+#     2. docker compose --profile local up --build
+#
+# ── Autres commandes utiles ────────────────────────────────────────────────────
+#   docker compose exec backend node migrate.js   # appliquer les migrations SQL
+#   docker compose down -v                        # reset complet (supprime les volumes)
+
+services:
+
+  # ── Base de données MySQL 8 (mode local uniquement) ─────────────────────────
+  # Démarré seulement avec : docker compose --profile local up
+  db:
+    profiles: [local]
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-blog_a_part}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD:-rootpassword}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  # ── Backend Express Node.js ─────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      NODE_ENV: production
+      # Variables DB lues depuis .env (Filess.io ou service "db" local)
+      DB_HOST:     ${DB_HOST:-db}
+      DB_PORT:     ${DB_PORT:-3306}
+      DB_USER:     ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-rootpassword}
+      DB_NAME:     ${DB_NAME:-blog_a_part}
+      # SSL requis pour Filess.io (true), désactivé en local (false)
+      DB_SSL:      ${DB_SSL:-false}
+      # Clé secrète JWT — générer une valeur unique pour chaque déploiement
+      JWT_SECRET:  ${JWT_SECRET:-change-me-in-production}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+    # required: false → le backend ne dépend du service "db" que s'il est actif
+    # (profil local). Sans le profil, Docker ignore cette dépendance.
+    depends_on:
+      db:
+        condition: service_healthy
+        required: false
+    volumes:
+      - ./backend/public/uploads:/app/public/uploads
+
+  # ── Frontend React / Nginx ──────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_BACKEND_URL: ${VITE_BACKEND_URL:-http://localhost:5000}
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+# ── Volumes nommés ──────────────────────────────────────────────────────────
+volumes:
+  db_data:

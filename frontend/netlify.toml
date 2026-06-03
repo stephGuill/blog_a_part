@@ -1,0 +1,36 @@
+# ─── netlify.toml ─────────────────────────────────────────────────────────────
+# Configuration du déploiement Netlify pour le frontend React/Vite.
+#
+# Prérequis sur le dashboard Netlify (Site settings → Environment variables) :
+#   VITE_BACKEND_URL = https://votre-backend.onrender.com
+#
+# Le dépôt GitHub doit être connecté à Netlify.
+# Netlify détectera automatiquement ce fichier à la racine du repo.
+
+[build]
+  # Dossier racine du frontend (relatif à la racine du repo)
+  base = "frontend"
+
+  # Commande de build : installe les dépendances puis compile avec Vite
+  command = "npm ci && npm run build"
+
+  # Dossier contenant les fichiers statiques après le build
+  publish = "dist"
+
+# ── Headers de sécurité ────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# ── Redirect SPA ──────────────────────────────────────────────────────────────
+# Indispensable pour le routing côté client (React Router).
+# Toutes les URLs inconnues renvoient vers index.html avec un code 200
+# (et non 404) pour que React Router gère la navigation.
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200
