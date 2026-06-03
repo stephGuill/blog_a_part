@@ -1,29 +1,66 @@
+/* ============================
+   LAYOUT PRINCIPAL DU DASHBOARD
+   ============================
+   Ce fichier gère la grille CSS qui divise l'écran en deux colonnes :
+   - colonne gauche  : la Sidebar (navigation)
+   - colonne droite  : le contenu principal (Topbar + page courante)
+*/
+
 .dashboard-layout {
+  /* display: grid → active le CSS Grid Layout pour disposer les enfants en grille. */
   display: grid;
+
+  /* min-height: 100vh → le layout occupe au minimum toute la hauteur de la fenêtre. */
   min-height: 100vh;
+
+  /* grid-template-columns : définit les largeurs des 2 colonnes.
+     - 92px          → largeur fixe de la sidebar compacte (icônes seulement).
+     - minmax(0, 1fr) → la zone principale prend tout l'espace restant.
+       minmax(0, ...) est crucial pour éviter les débordements (overflow) en CSS Grid. */
   grid-template-columns: 92px minmax(0, 1fr);
+
+  /* Dégradé d'arrière-plan défini dans les variables CSS globales (thème clair/sombre). */
   background: var(--gradient-page);
+
+  /* transition : anime le changement de largeur des colonnes lorsqu'on ouvre/ferme la sidebar.
+     220ms ease → durée de 220 millisecondes avec accélération douce. */
   transition: grid-template-columns 220ms ease;
 }
 
+/* Modificateur CSS : appliqué quand la sidebar est ouverte (classe ajoutée via React useState).
+   La sidebar passe de 92px à 286px, le reste du contenu se réajuste automatiquement. */
 .dashboard-layout.is-sidebar-open {
   grid-template-columns: 286px minmax(0, 1fr);
 }
 
+/* Zone principale du dashboard (à droite de la sidebar). */
 .dashboard-main {
+  /* min-width: 0 → indispensable en CSS Grid pour empêcher le contenu de déborder.
+     Par défaut, les enfants de grille ont min-width: auto, ce qui peut causer des overflow. */
   min-width: 0;
+
+  /* Espacements internes : haut 18px, gauche/droite 24px, bas 42px (espace sous le contenu). */
   padding: 18px 24px 42px;
 }
 
+/* ============================
+   RESPONSIVE — TABLETTE (≤ 980px)
+   @media : règle conditionnelle appliquée uniquement quand la fenêtre fait ≤ 980px de large.
+   ============================ */
 @media (max-width: 980px) {
+  /* Sidebar encore plus compacte sur tablette : 76px au lieu de 92px. */
   .dashboard-layout {
     grid-template-columns: 76px minmax(0, 1fr);
   }
 
+  /* Quand la sidebar est ouverte sur tablette :
+     minmax(230px, 72vw) → la sidebar fait au moins 230px mais au maximum 72% de la largeur de l'écran.
+     Cela évite qu'elle prenne toute la place sur les petits écrans. */
   .dashboard-layout.is-sidebar-open {
     grid-template-columns: minmax(230px, 72vw) minmax(0, 1fr);
   }
 
+  /* Padding réduit sur tablette pour gagner de l'espace d'affichage. */
   .dashboard-main {
     padding: 14px 14px 38px;
   }

@@ -1,3 +1,10 @@
+// services/AdminUsersService.js
+// ============================================================
+// Service d'administration des utilisateurs.
+// Fournit toute la logique métier consommée par adminUsersController.
+// ============================================================
+
+// Module natif Node.js pour générer des tokens de réinitialisation (crypto.randomBytes)
 const crypto = require("node:crypto");
 
 const models = require("../models");

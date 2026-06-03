@@ -1,3 +1,5 @@
+// Icônes lucide-react utilisées dans la barre de navigation latérale.
+// Chaque icône correspond à un groupe ou un élément de menu.
 import {
   BarChart3,
   Brush,
@@ -15,11 +17,15 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+// useTranslation : fournit t() pour traduire les libellés du menu
 import { useTranslation } from "react-i18next";
+// NavLink : variante de Link qui applique automatiquement la classe "active" sur la route courante
 import { NavLink } from "react-router-dom";
 
+// Hook pour accéder au rôle et aux données de l'utilisateur connecté
 import { useAuth } from "@hooks/useAuth";
 
+// Styles CSS de la barre latérale (largeur, animation, version compact vs étendue)
 import "./Sidebar.css";
 
 const navGroups = [

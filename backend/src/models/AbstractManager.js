@@ -1,51 +1,65 @@
 // AbstractManager.js
-// Classe de base pour les managers (Data Access Objects).
-// Fournit des méthodes utilitaires communes (`find`, `findAll`, `delete`) et
-// une méthode `setDatabase` pour injecter le pool/connexion MySQL.
+// Classe de base (classe abstraite) pour tous les managers du projet.
+// Un "manager" est un objet d'accès aux données (DAO) qui encapsule
+// les requêtes SQL pour une table donnée.
+//
+// Pattern utilisé :
+// - Héritage ES6 : chaque manager spécialisé étend cette classe avec `extends`.
+// - Injection de dépendance : `setDatabase(database)` reçoit le pool MySQL.
+// - `database.query(sql, params)` : méthode du pool mysql2/promise qui exécute
+//   une requête préparée (paramétrée) et retourne une promesse.
 //
 // Conventions attendues :
-// - `setDatabase(database)` attend un objet exposant `query(sql, params)`;
-// - `database.query(...)` retourne une promesse (par ex. mysql2/promise)
-//   qui résout le résultat de la requête. Selon l'adaptateur, la forme
-//   résolue peut être `[rows, fields]` ou `rows` — les callers gèrent cela.
+// - `setDatabase(database)` attend un objet exposant `query(sql, params)`.
+// - `database.query(...)` retourne une promesse (mysql2/promise).
+//   La valeur résolue peut être `[rows, fields]` selon l'adaptateur.
 
 class AbstractManager {
-  // `options.table` : nom de la table SQL manipulée par le manager
+  // Constructeur : reçoit un objet d'options avec le nom de la table SQL.
+  // `options.table` : nom de la table SQL manipulée par le manager.
   constructor({ table }) {
-    // stocker le nom de la table pour construire des requêtes dynamiques
+    // Stocker le nom de la table comme propriété d'instance.
+    // Utilisé dans toutes les méthodes pour construire des requêtes dynamiques.
     this.table = table;
   }
 
-  // find(id) : récupère une ligne par identifiant primaire
-  // - id : valeur de la colonne id
-  // Retour : promesse renvoyée par `this.database.query(...)` contenant les lignes
+  // find(id) : récupère une seule ligne par sa clé primaire.
+  // Paramètre :
+  //   - id : valeur numérique ou chaîne de la colonne `id`.
+  // Retour : promesse résolue avec le tableau de lignes correspondantes.
   find(id) {
-    // Utiliser un placeholder (?) pour sécuriser la valeur `id` contre l'injection SQL
+    // Utiliser un placeholder (?) pour sécuriser la valeur `id` contre l'injection SQL.
+    // Le tableau `[id]` contient les valeurs à substituer aux placeholders.
     return this.database.query(`SELECT * FROM ${this.table} WHERE id = ?`, [id]);
   }
 
-  // findAll() : récupère toutes les lignes de la table (sans filtre)
-  // Retour : promesse avec toutes les lignes (potentiellement volumineux)
+  // findAll() : récupère toutes les lignes de la table sans filtre ni tri.
+  // Attention : peut être volumineux sur de grandes tables.
+  // Retour : promesse résolue avec toutes les lignes.
   findAll() {
-    // Pas de paramètres pour cette requête
+    // Aucun paramètre nécessaire pour un SELECT * sans condition.
     return this.database.query(`SELECT * FROM ${this.table}`);
   }
 
-  // delete(id) : suppression d'une ligne par id
-  // - id : identifiant primaire de la ligne à supprimer
+  // delete(id) : supprime physiquement une ligne identifiée par sa clé primaire.
+  // Paramètre :
+  //   - id : identifiant primaire de la ligne à supprimer.
+  // Retour : promesse résolue avec le résultat DELETE (affectedRows).
   delete(id) {
-    // Requête paramétrée pour supprimer de manière sûre
+    // Requête paramétrée pour supprimer de manière sûre en évitant l'injection SQL.
     return this.database.query(`DELETE FROM ${this.table} WHERE id = ?`, [id]);
   }
 
-  // setDatabase(database) : injecte le pool/connexion utilisé pour les queries
-  // - database doit exposer une méthode `.query(sql, params)`
-  // Note : on stocke seulement la référence ; la connexion réelle est gérée
-  // par l'objet `database` (souvent un pool mysql2/promise).
+  // setDatabase(database) : injecte le pool ou la connexion MySQL utilisé pour les requêtes.
+  // Paramètre :
+  //   - database : objet exposant une méthode `.query(sql, params)` retournant une promesse.
+  // Note : on stocke uniquement la référence ; la gestion de la connexion réelle
+  // est déléguée à l'objet `database` (généralement un pool mysql2/promise).
   setDatabase(database) {
-    // On stocke la référence pour les appels ultérieurs
+    // Stocker la référence du pool/connexion pour l'utiliser dans toutes les méthodes.
     this.database = database;
   }
 }
 
+// Exporter la classe pour qu'elle soit disponible via require() dans les autres managers.
 module.exports = AbstractManager;

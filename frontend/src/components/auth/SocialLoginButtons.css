@@ -1,57 +1,63 @@
+/* Grille à 3 colonnes pour aligner les boutons Google, Facebook et Apple */
 .social-login {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  display: grid; /* Mise en page en grille */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 colonnes égales qui se réduisent si besoin */
+  gap: 10px; /* Espace uniforme entre les boutons */
 }
 
+/* Style des liens (boutons) de connexion sociale */
 .social-login a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: var(--bg-card);
-  color: var(--text-main);
-  font-weight: 900;
-  text-decoration: none;
-  transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+  display: inline-flex; /* Flex pour aligner icône et texte côte à côte */
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal du contenu */
+  gap: 8px; /* Espace entre le logo et le texte */
+  min-height: 44px; /* Hauteur minimale pour l'accessibilité tactile */
+  border: 1px solid var(--border-color); /* Bordure légère */
+  border-radius: 999px; /* Forme pilule (pill button) */
+  background: var(--bg-card); /* Fond de la carte */
+  color: var(--text-main); /* Couleur du texte */
+  font-weight: 900; /* Texte très gras */
+  text-decoration: none; /* Supprime le soulignement natif des liens */
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast); /* Transitions douces */
 }
 
+/* États interactifs des liens : survol et focus clavier */
 .social-login a:hover,
 .social-login a:focus-visible {
-  border-color: var(--color-sky-deep);
-  background: color-mix(in srgb, var(--bg-card) 76%, var(--color-sky) 24%);
-  transform: translateY(-1px);
-  outline: none;
+  border-color: var(--color-sky-deep); /* Bordure bleue au survol */
+  background: color-mix(in srgb, var(--bg-card) 76%, var(--color-sky) 24%); /* Fond légèrement teinté */
+  transform: translateY(-1px); /* Légère élévation au survol pour un effet 3D subtil */
+  outline: none; /* Supprime l'outline natif — remplacé par la bordure colorée */
 }
 
+/* Badge logo Google — cercle blanc avec lettre "G" bleue */
 .social-login__google {
-  display: inline-grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #1a73e8;
-  font-weight: 900;
+  display: inline-grid; /* Grille pour centrer la lettre */
+  place-items: center; /* Centrage parfait de la lettre */
+  width: 18px; /* Dimension du badge */
+  height: 18px; /* Dimension du badge — ratio 1:1 pour un cercle parfait */
+  border-radius: 999px; /* Badge circulaire */
+  background: #ffffff; /* Fond blanc (couleur officielle Google) */
+  color: #1a73e8; /* Bleu Google officiel */
+  font-weight: 900; /* Lettre G en gras */
 }
 
+/* Badge logo Facebook — cercle bleu avec lettre "f" blanche */
 .social-login__facebook {
-  display: inline-grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background: #1877f2;
-  color: #ffffff;
-  font-weight: 900;
-  font-family: Arial, sans-serif;
+  display: inline-grid; /* Grille pour centrer la lettre */
+  place-items: center; /* Centrage parfait de la lettre */
+  width: 18px; /* Dimension du badge */
+  height: 18px; /* Dimension du badge — ratio 1:1 */
+  border-radius: 999px; /* Badge circulaire */
+  background: #1877f2; /* Bleu Facebook officiel */
+  color: #ffffff; /* Lettre f en blanc */
+  font-weight: 900; /* Lettre f en gras */
+  font-family: Arial, sans-serif; /* Police sans-serif pour reproduire le style Facebook */
 }
 
+/* Responsive : une seule colonne sur les petits écrans (< 560px) */
 @media (max-width: 560px) {
   .social-login {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Passage à une colonne unique sur mobile */
   }
 }

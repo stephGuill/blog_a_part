@@ -1,3 +1,13 @@
+/* ============================
+   ACTIONS RAPIDES (QuickActions)
+   ============================
+   Styles du conteneur de boutons d'action rapide du dashboard.
+*/
+
 .actions {
+  /* align-items: center → aligne verticalement les boutons au centre du conteneur.
+     Cette propriété est utile quand les boutons ont des hauteurs différentes.
+     Note : ce sélecteur n'a pas de `display` défini ici — il hérite du display
+     de son parent (probablement flex ou grid appliqué par un composant parent). */
   align-items: center;
 }

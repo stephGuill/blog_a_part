@@ -1,3 +1,14 @@
+/* ============================
+   CONTENEUR DES PAGES PUBLIQUES
+   ============================
+   Ce sélecteur cible le div racine du PublicLayout (className="page-shell").
+   Il sert de coquille transparente : le fond (background) est géré par chaque page individuelle
+   ou par le body/html global, ce layout ne surcharge donc pas la couleur d'arrière-plan.
+*/
+
 .page-shell {
+  /* background: transparent → le layout public n'impose pas de couleur de fond.
+     Le background visible provient soit du body (variable CSS globale --bg-page),
+     soit du composant de page enfant (ex: HomePage peut avoir son propre gradient). */
   background: transparent;
 }

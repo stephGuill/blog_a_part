@@ -1,73 +1,85 @@
+/* Conteneur principal du formulaire d'inscription — grille verticale avec espacement adaptatif */
 .form-card {
-  display: grid;
-  gap: clamp(14px, 3vw, 18px);
-  max-width: 680px;
+  display: grid; /* Empile les éléments du formulaire verticalement */
+  gap: clamp(14px, 3vw, 18px); /* Espacement adaptatif entre 14px et 18px */
+  max-width: 680px; /* Largeur maximale pour la lisibilité */
 }
 
+/* Styles communs aux blocs de feedback (erreur et succès) */
 .auth-error,
 .auth-success {
-  border-radius: 14px;
-  padding: 10px 12px;
-  font-weight: 800;
+  border-radius: 14px; /* Coins arrondis communs */
+  padding: 10px 12px; /* Espacement interne commun */
+  font-weight: 800; /* Texte en gras */
 }
 
+/* Message d'erreur — fond et texte rouges */
 .auth-error {
-  border: 1px solid rgba(220, 76, 76, 0.28);
-  background: rgba(220, 76, 76, 0.08);
-  color: var(--color-danger);
+  border: 1px solid rgba(220, 76, 76, 0.28); /* Bordure rouge semi-transparente */
+  background: rgba(220, 76, 76, 0.08); /* Fond rouge très léger */
+  color: var(--color-danger); /* Texte rouge danger */
 }
 
+/* Message de succès — fond et texte verts */
 .auth-success {
-  border: 1px solid rgba(143, 185, 150, 0.3);
-  background: rgba(143, 185, 150, 0.12);
-  color: var(--color-success);
+  border: 1px solid rgba(143, 185, 150, 0.3); /* Bordure verte semi-transparente */
+  background: rgba(143, 185, 150, 0.12); /* Fond vert très léger */
+  color: var(--color-success); /* Texte vert succès */
 }
 
+/* Paragraphe "Vous avez déjà un compte ?" en bas du formulaire */
 .auth-form__switch {
-  margin: 0;
-  color: var(--color-muted);
-  font-weight: 700;
-  text-align: center;
+  margin: 0; /* Supprime la marge par défaut */
+  color: var(--color-muted); /* Texte en couleur atténuée */
+  font-weight: 700; /* Semi-gras */
+  text-align: center; /* Centré */
 }
 
+/* Lien dans le paragraphe de redirection vers la connexion */
 .auth-form__switch a {
-  color: var(--color-sky-deep);
-  font-weight: 900;
-  text-decoration: none;
+  color: var(--color-sky-deep); /* Bleu pour identifier le lien */
+  font-weight: 900; /* Très gras */
+  text-decoration: none; /* Sans soulignement natif */
 }
 
+/* Changement de couleur du lien au survol */
 .auth-form__switch a:hover {
-  color: var(--color-ink);
+  color: var(--color-ink); /* Plus foncé au survol */
 }
 
+/* Conteneur de la case à cocher des CGU */
+/* Grille pour aligner la checkbox et le texte légal côte à côte */
 .auth-legal {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 10px;
-  align-items: start;
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-  padding: 13px 14px;
-  background: color-mix(in srgb, var(--bg-card) 82%, var(--color-peach) 18%);
-  color: var(--text-muted);
-  font-size: 0.88rem;
-  line-height: 1.55;
+  display: grid; /* Mise en page grille pour checkbox + texte */
+  grid-template-columns: auto minmax(0, 1fr); /* Checkbox de taille auto, texte flexible */
+  gap: 10px; /* Espace entre la checkbox et le texte */
+  align-items: start; /* Aligne en haut (le texte peut s'étendre sur plusieurs lignes) */
+  border: 1px solid var(--border-color); /* Bordure légère */
+  border-radius: 18px; /* Coins très arrondis */
+  padding: 13px 14px; /* Espacement interne */
+  background: color-mix(in srgb, var(--bg-card) 82%, var(--color-peach) 18%); /* Fond légèrement pêche */
+  color: var(--text-muted); /* Texte en couleur atténuée */
+  font-size: 0.88rem; /* Légèrement plus petit que le corps du texte */
+  line-height: 1.55; /* Interligne confortable pour la lisibilité */
 }
 
+/* Checkbox de consentement légal */
 .auth-legal input {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  accent-color: var(--color-coral);
+  width: 18px; /* Taille explicite de la checkbox */
+  height: 18px; /* Taille explicite — ratio 1:1 */
+  margin-top: 2px; /* Légère correction verticale pour l'alignement avec la première ligne */
+  accent-color: var(--color-coral); /* Couleur corail pour la coche (CSS moderne) */
 }
 
+/* Liens vers les pages légales dans le texte de consentement */
 .auth-legal a {
-  color: var(--color-sky-deep);
-  font-weight: 900;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--color-sky-deep); /* Bleu pour identifier les liens */
+  font-weight: 900; /* Très gras pour les mettre en valeur */
+  text-decoration: underline; /* Soulignement explicite pour les liens dans du texte */
+  text-underline-offset: 3px; /* Décale le soulignement pour plus de lisibilité */
 }
 
+/* Changement de couleur des liens légaux au survol */
 .auth-legal a:hover {
-  color: var(--color-coral);
+  color: var(--color-coral); /* Couleur corail au survol — cohérent avec accent-color de la checkbox */
 }

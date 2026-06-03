@@ -1,21 +1,29 @@
+/* ===== TABLEAU DE BORD — Zone inférieure ===== */
+
+/* Marge supérieure entre la grille de stats et la zone actions/activité */
 .dashboard-home__lower {
   margin-top: 18px;
 }
 
+/* Carte d'accueil / actions rapides : occupe 5 colonnes sur 12 de la grille */
+/* Fond dégradé sky pour la différencier visuellement */
 .dashboard-welcome {
   grid-column: span 5;
   background: var(--gradient-sky);
 }
 
+/* Carte d'activité récente : occupe les 7 colonnes restantes */
 .dashboard-activity {
   grid-column: span 7;
 }
 
+/* Titre de la section actions rapides en police display navy */
 .dashboard-welcome h2 {
   color: var(--color-navy);
   font-family: var(--font-display);
 }
 
+/* Responsive : sur mobile les deux cartes prennent toute la largeur */
 @media (max-width: 900px) {
   .dashboard-welcome,
   .dashboard-activity {

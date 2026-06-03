@@ -1,14 +1,22 @@
+// useEffect : charge l'article et son blog parent au montage ou à chaque changement d'id
+// useState  : stocke l'article, le blog parent et l'état de chargement
 import { useEffect, useState } from "react";
+// Link : navigation interne React Router
+// useParams : récupère le paramètre ":id" depuis l'URL (/posts/:id)
 import { Link, useParams } from "react-router-dom";
 
+// Services API : récupère l'article par id, puis son blog parent par blog_id
 import { fetchBlogById } from "@services/blogsService";
 import { fetchPostById } from "@services/postsService";
 
+// formatDateTime : formate une date en texte long français avec heure.
+// Retourne "Non publie" si la valeur est vide (article en brouillon sans date de publication).
 const formatDateTime = (value) => {
   if (!value) {
     return "Non publie";
   }
 
+  // Intl.DateTimeFormat : "3 juin 2026 à 14:30" en locale fr-FR
   return new Intl.DateTimeFormat("fr-FR", {
     day: "numeric",
     month: "long",
@@ -18,26 +26,37 @@ const formatDateTime = (value) => {
   }).format(new Date(value));
 };
 
+// Composant page : détail d'un article public (accessible via /posts/:id).
+// Charge d'abord l'article par son id, puis son blog parent via blog_id.
+// Affiche : métadonnées de l'article + contenu HTML + lien vers le blog parent.
 function PostDetail() {
+  // id : identifiant de l'article extrait du paramètre de route URL
   const { id } = useParams();
+  // post : objet article récupéré depuis l'API (null si non chargé ou introuvable)
   const [post, setPost] = useState(null);
+  // blog : objet blog parent de l'article (chargé après l'article via post.blog_id)
   const [blog, setBlog] = useState(null);
+  // isLoading : true tant que les requêtes API sont en cours
   const [isLoading, setIsLoading] = useState(true);
 
+  // useEffect : charge l'article puis son blog parent de manière séquentielle
   useEffect(() => {
     fetchPostById(id)
       .then(async (postData) => {
         setPost(postData);
+        // Chargement séquentiel : le blog_id n'est connu qu'après avoir reçu l'article
         const blogData = await fetchBlogById(postData.blog_id);
         setBlog(blogData);
       })
       .catch(() => {
+        // En cas d'échec : post null → affichera le message 404
         setPost(null);
         setBlog(null);
       })
       .finally(() => setIsLoading(false));
-  }, [id]);
+  }, [id]); // Dépendance sur id : recharge si navigation vers un autre article
 
+  // État de chargement
   if (isLoading) {
     return (
       <section className="section">
@@ -46,6 +65,7 @@ function PostDetail() {
     );
   }
 
+  // État 404 : article introuvable ou erreur API
   if (!post) {
     return (
       <section className="section">

@@ -1,4 +1,15 @@
+/* ============================
+   NAVIGATION MOBILE
+   ============================
+   Styles de la barre de navigation simplifiée pour mobile.
+*/
+
 .mobile-nav {
+  /* display: flex → active le Flexbox pour aligner les liens horizontalement sur une ligne.
+     Par défaut flex-direction est "row" : les liens sont côte à côte. */
   display: flex;
+
+  /* gap: 8px → espacement horizontal entre chaque lien NavLink.
+     Équivalent à margin-right sur chaque élément, mais sans affecter le dernier. */
   gap: 8px;
 }

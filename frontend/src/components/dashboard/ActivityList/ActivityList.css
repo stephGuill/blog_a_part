@@ -1,5 +1,20 @@
+/* ============================
+   LISTE D'ACTIVITÉS (ActivityList)
+   ============================
+   Styles de la liste des activités récentes du tableau de bord.
+*/
+
 .activity-list {
+  /* display: grid → CSS Grid pour empiler les éléments <li> verticalement.
+     Une grille à une colonne implicite est utilisée (pas de grid-template-columns défini).
+     Cela permet un espacement uniforme entre chaque élément grâce à `gap`. */
   display: grid;
+
+  /* gap: 10px → espacement vertical entre chaque élément de la liste.
+     Plus lisible et maintenable que des margin-bottom sur chaque <li>. */
   gap: 10px;
+
+  /* padding-left: 18px → indentation pour les puces de la liste <ul>.
+     Sans ce padding, les puces seraient masquées hors de la zone visible. */
   padding-left: 18px;
 }

@@ -1,56 +1,71 @@
+/* Réinitialisation de la marge par défaut appliquée par le navigateur sur l'élément <body> */
 body {
   margin: 0;
+  /* Police de secours système par ordre de préférence :
+     macOS/iOS, Windows Vista+, Linux (GNOME), Android, Ubuntu,
+     GNOME (Cantarell), puis générique sans-serif */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  /* Lissage des polices sur les moteurs WebKit (macOS, iOS) pour un rendu plus net */
   -webkit-font-smoothing: antialiased;
+  /* Lissage des polices en niveaux de gris sur Firefox macOS */
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Style appliqué aux balises <code> pour afficher une police à espacement fixe (monospace) */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
+/* Classe racine de l'application (convention héritée de Create React App) */
 .App {
   text-align: center;
 }
 
+/* Logo animé de l'application : taille relative à la fenêtre, non cliquable */
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 40vmin;        /* Taille calculée par rapport à la plus petite dimension de la fenêtre */
+  pointer-events: none;  /* Désactive les interactions souris/tactile sur l'image */
 }
 
+/* Active l'animation de rotation uniquement si l'utilisateur n'a pas demandé de réduction des mouvements */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
+    /* Animation infinie de rotation à vitesse linéaire constante sur 20 secondes */
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* En-tête de l'application de démonstration (fond sombre, contenu centré verticalement) */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #282c34;        /* Couleur de fond gris anthracite */
+  min-height: 100vh;                /* Occupe au minimum toute la hauteur de la fenêtre */
+  display: flex;                    /* Disposition en flexbox */
+  flex-direction: column;           /* Enfants empilés verticalement */
+  align-items: center;              /* Centrage horizontal des enfants */
+  justify-content: center;          /* Centrage vertical des enfants */
+  font-size: calc(10px + 2vmin);   /* Taille de police responsive basée sur la fenêtre */
+  color: white;                     /* Texte en blanc */
 }
 
+/* Couleur des liens dans l'en-tête de démonstration (bleu React officiel) */
 .App-link {
   color: #61dafb;
 }
 
+/* Définition de l'animation de rotation utilisée par la classe .App-logo */
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg);   /* Départ : 0 degré (position initiale) */
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg); /* Arrivée : 360 degrés (rotation complète) */
   }
 }
 
+/* Taille de police responsive pour les boutons (héritée de l'ancienne convention CRA) */
 button {
   font-size: calc(10px + 2vmin);
 }

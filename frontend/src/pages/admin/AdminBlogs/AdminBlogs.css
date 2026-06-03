@@ -1,7 +1,11 @@
+/* ===== BLOGS ADMIN ===== */
+
+/* Grille de cartes blog : marge inférieure pour séparer du tableau */
 .admin-blog-cards {
   margin-bottom: 18px;
 }
 
+/* Titre de chaque carte blog : police display, taille réduite, navy */
 .admin-blog-cards h2 {
   color: var(--color-navy);
   font-family: var(--font-display);

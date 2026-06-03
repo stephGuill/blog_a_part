@@ -1,3 +1,15 @@
+/* ============================
+   CARTE DE STATISTIQUE (StatCard)
+   ============================
+   Ce composant est une carte minimale qui affiche une métrique du dashboard.
+   Les styles principaux (card-title, stat-value, meta-label) sont définis
+   dans les fichiers CSS globaux — ce fichier ne surcharge que la contrainte de largeur.
+*/
+
 .stat-card {
+  /* min-width: 0 → empêche le débordement en CSS Grid ou Flexbox.
+     Par défaut, les éléments ont min-width: auto ce qui peut provoquer des overflow.
+     En mettant min-width: 0, on permet à la carte de se rétrécir si nécessaire
+     et au texte long d'être coupé avec text-overflow: ellipsis. */
   min-width: 0;
 }

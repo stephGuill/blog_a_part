@@ -1,9 +1,13 @@
+/* ===== THÈMES ADMIN ===== */
+
+/* Grille des cartes thèmes : auto-fit, minimum 260px par carte */
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
 }
 
+/* Palette de couleurs : grille 3 colonnes, hauteur fixe, coins arrondis, overflow masqué */
 .theme-card__palette {
   display: grid;
   height: 120px;
@@ -13,6 +17,7 @@
   margin-bottom: 18px;
 }
 
+/* Titre de la carte thème : police display, taille 1.7rem, navy */
 .theme-card h2 {
   color: var(--color-navy);
   font-family: var(--font-display);

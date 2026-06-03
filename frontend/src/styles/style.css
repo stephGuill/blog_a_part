@@ -1,9 +1,29 @@
+/* Import de polices Google Fonts :
+   - Fraunces : police serif variable utilisée pour les titres (poids 600, 700, 800 ; taille optique 9–144)
+   - Inter : police sans-serif utilisée pour le texte courant (poids de 300 à 900)
+   display=swap : affiche la police système le temps du chargement pour éviter le FOIT */
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* Import de Tailwind CSS v4 : injecte les classes utilitaires, les composants et la base normalize */
 @import "tailwindcss";
+
+/* Import des variables CSS personnalisées (couleurs, espacements, tailles de police, rayons...) */
 @import "./variables.css";
+
+/* Import des thèmes visuels (mode clair, mode sombre et couleurs personnalisées des blogs) */
 @import "./themes.css";
+
+/* Import des styles globaux (reset complémentaire, body, liens, titres, éléments HTML de base) */
 @import "./globals.css";
+
+/* Import des styles de mise en page (conteneurs, grilles, flexbox à portée globale) */
 @import "./layout.css";
+
+/* Import des classes utilitaires CSS personnalisées (complément à Tailwind) */
 @import "./utilities.css";
+
+/* Import des définitions d'animations CSS (keyframes globaux et classes de transition) */
 @import "./animations.css";
+
+/* Import des media queries de responsive design (adaptation mobile / tablette / desktop) */
 @import "./responsive.css";

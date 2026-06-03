@@ -1,3 +1,17 @@
+/* ============================
+   CARTE DE BLOG (BlogCard)
+   ============================
+   Styles de la carte d'affichage d'un blog dans la liste.
+   Les styles visuels principaux (card-title, chip, button, meta-label)
+   sont définis dans les fichiers CSS globaux — ce fichier ne gère
+   que le comportement du texte long dans la carte.
+*/
+
 .blog-card {
+  /* overflow-wrap: anywhere → permet au navigateur de couper le texte n'importe où
+     (même au milieu d'un mot ou d'une URL longue) pour éviter les débordements.
+     Utile car les slugs, URLs ou titres peuvent contenir de longues chaînes sans espaces
+     (ex: "mon-tres-long-titre-de-blog-sans-espaces-123456789") qui déborderaient sinon
+     de leur conteneur sur les petits écrans. */
   overflow-wrap: anywhere;
 }

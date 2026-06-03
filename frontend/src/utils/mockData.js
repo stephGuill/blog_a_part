@@ -1,3 +1,12 @@
+// mockData.js : données fictives utilisées pour les démonstrations et les tests.
+// Ces données simulent les réponses API sans appeler le backend.
+//
+// Structure :
+//   - mockStats    : statistiques par rôle (admin, owner, editor, moderator)
+//   - mockActivity : liste des dernières activités récentes
+
+// mockStats : objet indexé par rôle, chaque entrée est un tableau de métriques.
+// Chaque métrique : label (texte), labelKey (clé i18n), value (valeur), trend (évolution), tone (variante couleur)
 export const mockStats = {
   admin: [
     { label: "Utilisateurs", labelKey: "metrics.users", value: "12.8k", trend: "+18%", tone: "info" },

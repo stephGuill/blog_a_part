@@ -1,7 +1,10 @@
+// Link : navigation interne vers d'autres pages légales sans rechargement de page
 import { Link } from "react-router-dom";
 
+// Styles CSS partagés par toutes les pages légales (hero, sommaire, sections)
 import "./legalPages.css";
 
+// Sommaire : titres des sections des conditions d'utilisation
 const sections = [
   "Objet",
   "Acceptation",
