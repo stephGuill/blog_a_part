@@ -18,6 +18,12 @@
     "react-i18next": "^17.0.8",
     "react-router-dom": "^7.15.0"
   },
+  "browserslist": [
+    "Chrome >= 114",
+    "Firefox >= 121",
+    "Safari >= 17.4",
+    "Edge >= 114"
+  ],
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "@vitejs/plugin-react": "^4.2.1",

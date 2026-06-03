@@ -1,3 +1,4 @@
+/* @browserslist: see frontend/.browserslistrc — targets Chrome 114+, Firefox 121+, Safari 17.4+ */
 /* ===================================================
    PIED DE PAGE DU SITE (Footer)
    ===================================================
@@ -73,6 +74,7 @@
   border: 1px solid var(--footer-border);   /* Bordure subtile adaptée au thème. */
   background: var(--footer-surface);        /* Fond semi-transparent de carte. */
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18); /* Ombre portée profonde. */
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);             /* Flou de fond (effet verre dépoli). */
 }
 
@@ -105,7 +107,7 @@
   color: var(--footer-text);    /* Couleur claire pour contraster avec le fond sombre. */
   font-family: var(--font-display); /* Police d'affichage (plus expressive). */
   line-height: 1.05;            /* Interlignage très serré pour les grands titres. */
-  text-wrap: balance;           /* Équilibre les longueurs de lignes pour une meilleure lisibilité. */
+  text-wrap: var(--tw-balance);           /* Équilibre les longueurs de lignes pour une meilleure lisibilité. */
 }
 
 /* Grand titre h2 : taille responsive très grande (jusqu'à 4rem desktop). */
@@ -454,6 +456,7 @@
   border: 1px solid var(--footer-border);
   background: var(--footer-surface);
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
 
@@ -482,7 +485,7 @@
   color: var(--footer-text);
   font-family: var(--font-display);
   line-height: 1.05;
-  text-wrap: balance;
+  text-wrap: var(--tw-balance);
 }
 
 .site-footer h2 {

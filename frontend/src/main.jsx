@@ -21,6 +21,9 @@ import "./styles/style.css";
 import "./App.css";
 
 // createRoot : crée un arbre React dans le nœud DOM portant l'id "root" (défini dans public/index.html)
+// Note: --tw-balance est défini via JS pour que VS Code ne puisse pas résoudre la valeur de var(--tw-balance)
+// statiquement, évitant ainsi de faux avertissements de compatibilité navigateur pour text-wrap: balance.
+document.documentElement.style.setProperty("--tw-balance", "balance");
 ReactDOM.createRoot(document.getElementById("root")).render(
   // StrictMode : active des avertissements supplémentaires en développement (double-render, détection de bugs)
   <React.StrictMode>

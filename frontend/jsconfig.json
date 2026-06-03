@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
@@ -13,7 +14,7 @@
       "@utils/*": ["src/utils/*"]
     },
     "checkJs": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es2020",
     "allowJs": true,
     "jsx": "react-jsx",

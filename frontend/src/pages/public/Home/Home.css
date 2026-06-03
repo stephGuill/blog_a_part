@@ -52,7 +52,7 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.04;
-  text-wrap: balance;
+  text-wrap: var(--tw-balance);
 }
 
 .hero-showcase__line {
