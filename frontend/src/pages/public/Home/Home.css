@@ -91,3 +91,18 @@
     font-size: 1.65rem;
   }
 }
+
+/* Panel d'inscription rapide dans la sidebar desktop : espace contraint (min 340px).
+   On réduit l'avatar et le bouton pour éviter que le texte déborde à 960-1200px. */
+@media (min-width: 960px) and (max-width: 1200px) {
+  .home-signup-panel .avatar-upload__preview {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+  }
+
+  .home-signup-panel .avatar-upload__button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}

@@ -80,7 +80,7 @@ function AvatarUpload({ file, onChange, onError }) {
         <label className="avatar-upload__button" htmlFor="avatar">
           <ImagePlus size={16} />
           {/* Texte dynamique selon qu'un fichier est déjà sélectionné */}
-          {file ? "Changer la photo" : "Ajouter une photo"}
+          {file ? "Changer la photo" : "Choisir une photo"}
         </label>
         {/* Input de sélection de fichier masqué visuellement (accessible via le label) */}
         {/* accept : filtre les fichiers affichés dans l'explorateur */}
