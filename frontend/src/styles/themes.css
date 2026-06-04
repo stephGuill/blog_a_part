@@ -4,30 +4,31 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
+  --color-blue: #8dbbc8;
   --color-ink: #edf4f7;
   --color-navy: #d7edf4;
-  --color-muted: #9db2bc;
-  --color-border: rgba(255, 255, 255, 0.12);
+  --color-muted: #b5ccd5;
+  --color-border: rgba(255, 255, 255, 0.19);
   --color-card: rgba(17, 33, 43, 0.78);
   --color-card-strong: rgba(17, 33, 43, 0.92);
-  --color-chip: rgba(255, 255, 255, 0.12);
+  --color-chip: rgba(255, 255, 255, 0.2);
   --color-focus: rgba(255, 214, 165, 0.46);
   --bg-page: #101923;
   --bg-card: rgba(17, 33, 43, 0.92);
   --text-main: #edf4f7;
-  --text-muted: #9db2bc;
+  --text-muted: #b5ccd5;
   --text-inverse: #09161f;
-  --border-color: rgba(255, 255, 255, 0.12);
+  --border-color: rgba(255, 255, 255, 0.19);
   --input-bg: rgba(9, 22, 31, 0.92);
   --input-text: #f8fbfc;
   --input-placeholder: #9db2bc;
-  --input-border: rgba(255, 255, 255, 0.16);
+  --input-border: rgba(255, 255, 255, 0.28);
   --button-primary-bg: linear-gradient(135deg, #ffd6a5 0%, #ff8d72 100%);
   --button-primary-text: #1b2432;
   --button-primary-border: rgba(255, 214, 165, 0.36);
-  --button-secondary-bg: rgba(255, 255, 255, 0.1);
+  --button-secondary-bg: rgba(255, 255, 255, 0.14);
   --button-secondary-text: #edf4f7;
-  --button-secondary-border: rgba(255, 255, 255, 0.18);
+  --button-secondary-border: rgba(255, 255, 255, 0.28);
   --footer-bg: linear-gradient(145deg, #061018 0%, #0e2230 54%, #07131b 100%);
   --footer-text: #f7fbfc;
   --footer-muted: rgba(247, 251, 252, 0.7);
@@ -37,4 +38,72 @@
     radial-gradient(circle at top right, rgba(216, 169, 79, 0.18), transparent 30%),
     linear-gradient(180deg, #101923 0%, #16242e 55%, #101923 100%);
   --dashboard-sidebar: rgba(9, 22, 31, 0.96);
+}
+
+/* ================================================
+   Surcharges thème sombre — éléments aux couleurs
+   codées en dur dans les fichiers CSS sources
+   ================================================ */
+
+[data-theme="dark"] .site-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background: rgba(16, 25, 35, 0.88);
+}
+
+[data-theme="dark"] .lead {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .content-card p,
+[data-theme="dark"] .blog-card p,
+[data-theme="dark"] .meta-list,
+[data-theme="dark"] .empty-card {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .panel,
+[data-theme="dark"] .content-card,
+[data-theme="dark"] .blog-card,
+[data-theme="dark"] .form-card {
+  background: var(--color-card-strong);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .stat-card {
+  background: rgba(17, 33, 43, 0.82);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .badge--owner,
+[data-theme="dark"] .badge--warning {
+  background: rgba(216, 169, 79, 0.24);
+  color: #e8c870;
+}
+
+[data-theme="dark"] .badge--editor,
+[data-theme="dark"] .badge--info {
+  background: rgba(167, 199, 231, 0.22);
+  color: #8ec4e4;
+}
+
+[data-theme="dark"] .badge--moderator,
+[data-theme="dark"] .badge--success {
+  background: rgba(143, 185, 150, 0.24);
+  color: #7fd88c;
+}
+
+[data-theme="dark"] .main-nav a.active {
+  background: rgba(215, 237, 244, 0.18);
+  color: #d7edf4;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .chip--dark {
+  background: rgba(215, 237, 244, 0.18);
+  color: #d7edf4;
+}
+
+[data-theme="dark"] .avatar-upload__button {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
 }

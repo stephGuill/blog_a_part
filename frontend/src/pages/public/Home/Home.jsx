@@ -14,6 +14,8 @@ import ConsentModal from "@components/legal/ConsentModal";
 import { fetchBlogs } from "@services/blogsService";
 import { fetchPosts } from "@services/postsService";
 
+import "./Home.css";
+
 // Clés de traduction pour les trois cartes de valeur (explorer, consommer, évoluer)
 const cards = ["explorer", "consumer", "evolve"];
 

@@ -53,14 +53,19 @@
   display: inline-flex; /* Inline pour s'adapter au contenu, flex pour aligner icône et texte */
   align-items: center; /* Centrage vertical de l'icône et du texte */
   justify-content: center; /* Centrage horizontal */
-  gap: 8px; /* Espace entre l'icône et le texte */
-  width: fit-content; /* S'adapte exactement au contenu */
-  border-radius: 999px; /* Forme pilule (pill) — coins entièrement arrondis */
-  padding: 10px 14px; /* Espacement interne confortable */
-  background: var(--color-ink); /* Fond sombre (couleur d'encre du thème) */
-  color: var(--color-cream); /* Texte clair sur fond sombre */
-  font-weight: 900; /* Texte très gras pour l'emphase */
-  cursor: pointer; /* Curseur pointer pour indiquer l'interactivité */
+  gap: 6px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 8px 16px;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-size: 0.875rem;
+  font-weight: 600;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 /* Texte d'aide sous le bouton (formats et taille max) */
